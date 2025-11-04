@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Typography
+title: "State & Local"
 permalink: /typography/
 main_nav: true
 ---

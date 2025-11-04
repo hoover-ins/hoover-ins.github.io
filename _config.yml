@@ -77,29 +77,29 @@ descriptions:
 social:
   - name: Twitter
     icon: twitter
-    username: HooverInst
+    username: 
     url: https://x.com/HooverInst
     desc: 
     share: true
 
   - name: Facebook
     icon: facebook
-    username: https://www.facebook.com/HooverInstStanford/
-    url: 
+    username: 
+    url: https://www.facebook.com/HooverInstStanford/
     desc:
     share: true
 
   - name: GitHub
     icon: github
-    username: 
+    username:
     url: https://github.com/hoover-ins
     desc: 
     share: false
 
   - name: LinkedIn
     icon: linkedin
-    username: https://www.linkedin.com/company/hoover-institution-at-stanford-university/posts/?feedView=all
-    url: 
+    username: 
+    url: https://www.linkedin.com/company/hoover-institution-at-stanford-university/posts/?feedView=all
     desc: 
     share: true
 
@@ -112,9 +112,9 @@ social:
 
   - name: YouTube
     icon: youtube
-    username: ""
+    username: 
     url: https://www.youtube.com/user/HooverInstitution
-    desc: Subscribe on YouTube
+    desc: 
     share: false
 
   - name: Instagram
