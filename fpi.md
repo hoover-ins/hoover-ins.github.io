@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Fiscal"
-permalink: /posts/
+permalink: /fpi/
 main_nav: true
 ---
 
