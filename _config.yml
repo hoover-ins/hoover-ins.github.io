@@ -75,32 +75,32 @@ descriptions:
 #     desc: Follow me on Twitter            # Description to display as link title, etc
 #     share: true                           # Include in the "Share" section of posts
 social:
-  - name: X
-    icon: x
+  - name: Twitter
+    icon: twitter
     username: HooverInst
     url: https://x.com/HooverInst
-    desc: Follow Hoover on X
+    desc: 
     share: true
 
   - name: Facebook
     icon: facebook
-    username: thebencentra
+    username: https://www.facebook.com/HooverInstStanford/
     url: 
-    desc: Friend Hoover on Facebook
+    desc:
     share: true
 
   - name: GitHub
     icon: github
-    username: hoover-ins
+    username: 
     url: https://github.com/hoover-ins
-    desc: Fork Hoover on GitHub
+    desc: 
     share: false
 
   - name: LinkedIn
     icon: linkedin
-    username: Ben Centra
-    url: https://www.linkedin.com/pub/ben-centra/47/769/60a
-    desc: Connect with Hoover on LinkedIn
+    username: https://www.linkedin.com/company/hoover-institution-at-stanford-university/posts/?feedView=all
+    url: 
+    desc: 
     share: true
 
   - name: Google+
