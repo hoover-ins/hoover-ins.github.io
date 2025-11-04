@@ -11,16 +11,16 @@ exclude:
 # Site settings
 title: Hoover Institution
 subtitle: "Fiscal Policy Initiative"
-name:
-description: >
-  The Fiscal Policy Initiative researches potential solutions to the nation’s fiscal policy challenges, providing a road map that promotes future economic growth and opportunity. Led by Senior Fellow Joshua D. Rauh, the initiative launched in 2025 with a conference exploring the economic consequences of US fiscal policy trends, including extensive discussions of budget projections, debt sustainability, international responses to debt crises, the effectiveness of government spending and tax policy, and the interaction between fiscal and monetary policies.
+name: Hoover Institution
+description: > 
+ Fiscal Policy Initiative
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "" # the base hostname & protocol for your site
 cover: "/assets/FPILogo.jpg"
-logo: "/assets/logo.png"
+logo: "/assets/HooverLogo.jpg"
 
 # Build settings
 markdown: kramdown
@@ -75,32 +75,32 @@ descriptions:
 #     desc: Follow me on Twitter            # Description to display as link title, etc
 #     share: true                           # Include in the "Share" section of posts
 social:
-  - name: Twitter
-    icon: twitter
-    username: TheBenCentra
-    url: https://twitter.com/TheBenCentra
-    desc: Follow me on Twitter
+  - name: X
+    icon: x
+    username: HooverInst
+    url: https://x.com/HooverInst
+    desc: Follow Hoover on X
     share: true
 
   - name: Facebook
     icon: facebook
     username: thebencentra
-    url: ""
-    desc: Friend me on Facebook
+    url: 
+    desc: Friend Hoover on Facebook
     share: true
 
   - name: GitHub
     icon: github
-    username: bencentra
-    url: https://github.com/bencentra
-    desc: Fork me on GitHub
+    username: hoover-ins
+    url: https://github.com/hoover-ins
+    desc: Fork Hoover on GitHub
     share: false
 
   - name: LinkedIn
     icon: linkedin
     username: Ben Centra
     url: https://www.linkedin.com/pub/ben-centra/47/769/60a
-    desc: Connect with me on LinkedIn
+    desc: Connect with Hoover on LinkedIn
     share: true
 
   - name: Google+
@@ -113,7 +113,7 @@ social:
   - name: YouTube
     icon: youtube
     username: ""
-    url: ""
+    url: https://www.youtube.com/user/HooverInstitution
     desc: Subscribe on YouTube
     share: false
 
@@ -191,13 +191,13 @@ social:
 # These are for automatically generating sharing metadata for FB and Twitter
 # OS Protocol is for sharing the source of your site, if you're interested. For more, see osprotocol.com
 protocols:
-    fb_image: "/assets/logo.png"
+    fb_image: "/assets/HooverLogo.jpg"
     fb_image_width: 612
     fb_image_height: 605
-    fb_image_type: "image/png"
+    fb_image_type: "image/jpeg"
 
-    twitter_image: "/assets/logo.png"
+    twitter_image: "/assets/HooverLogo.jpg"
 
-    os_repo: "https://github.com/bencentra/centrarium.com"
+    os_repo: "https://github.com/hoover-ins/hoover-ins.github.io"
     os_rcs_type: "git"
-    os_src: "git@github.com:bencentra/centrarium.com.git"
+    os_src: "git@github.com:hoover-ins/hoover-ins.github.io.git"
