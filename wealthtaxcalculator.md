@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Tax Calculator
-permalink: /taxcalculator/
+title: Wealth Tax Calculator
+permalink: /wealthtaxcalculator/
 main_nav: true
 ---
 
