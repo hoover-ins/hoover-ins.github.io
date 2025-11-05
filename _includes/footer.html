@@ -1,4 +1,4 @@
-<footer class="site-footer">
+footer class="site-footer">
 
   <div class="wrapper">
 
@@ -8,7 +8,7 @@
 
       <p><strong>Site Map</strong></p>
       <ul class="pages">
-				{% include nav_links.html %}
+                {% include nav_links.html %}
       </ul>
     </div>
 
@@ -70,14 +70,14 @@ $(document).ready(function() {
     });
   });
 
-	// Enable tooltips via Tippy.js
-	if (Array.isArray(window.tooltips)) {
-		window.tooltips.forEach(function(tooltip) {
-			var selector = tooltip[0];
-			var config = tooltip[1];
-			tippy(selector, config);
-		})
-	}
+    // Enable tooltips via Tippy.js
+    if (Array.isArray(window.tooltips)) {
+        window.tooltips.forEach(function(tooltip) {
+            var selector = tooltip[0];
+            var config = tooltip[1];
+            tippy(selector, config);
+        })
+    }
 });
 
 </script>
