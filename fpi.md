@@ -6,11 +6,9 @@ main_nav: true
 ---
 <h1 id="headings">Headings</h1>
 
-<h1>h1. About the Fiscal Policy Initiative</h1>
+<h1>About the Fiscal Policy Initiative</h1>
 
 The Fiscal Policy Initiative researches potential solutions to the nation’s fiscal policy challenges, providing a road map that promotes future economic growth and opportunity. Led by Senior Fellow Joshua D. Rauh, the initiative launched in 2025 with a conference exploring the economic consequences of US fiscal policy trends, including extensive discussions of budget projections, debt sustainability, international responses to debt crises, the effectiveness of government spending and tax policy, and the interaction between fiscal and monetary policies.
-
-<h1 id="headings">Headings</h1>
 
 <h1>h1. Current Projects</h1>
 

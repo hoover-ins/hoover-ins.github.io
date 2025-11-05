@@ -4,19 +4,19 @@ title: "State & Local"
 permalink: /slgi/
 main_nav: true
 ---
+<h1>About the State & Local Governance Initiative</h1>
 
 The State and Local Governance Initiative at the Hoover Institution conducts rigorous research to inform state and local government policy. Our team partners with government officials, policymakers, and other stakeholders to conduct analysis, generate actionable policy recommendations, and produce top-tier academic publications.
 
-<p>The purpose of this HTML is to help determine what default settings are with Bitters and to make sure that all possible HTML Elements are included in this HTML so as to not miss any possible Elements when designing a site.</p>
-
 <hr>
-
-<h1 id="headings">Headings</h1>
-
-<h1>h1. Current Projects</h1>
-
-
+<h1>Current Projects</h1>
+<h2>Working Papers</h2>
+<h2>Dashboards</h2>
 <hr>
+<h1>Publications</h1>
+<h2>Journal Articles</h2>
+<h2>Op-eds</h2>
+
 
 <h1 id="paragraph">Paragraph</h1>
 
