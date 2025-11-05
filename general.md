@@ -1,7 +1,7 @@
 ---
 layout: page
-title: General
-permalink: /general/
+title: About
+permalink: /about/
 main_nav: true
 ---
 

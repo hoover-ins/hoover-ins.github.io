@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Team
-permalink: /team/
+title: GitHub Team
+permalink: /githubteam/
 main_nav: true
 ---
 <h1 style="text-align: center;">Leadership</h1>
@@ -44,7 +44,7 @@ Heil received a master’s of public policy degree with a specialization in econ
 ![alt text]({{ site.baseurl }}/assets/HeadshotJonHartley.jpg "Profile Picture"){:.profile}
 <h2 style="text-align: center;">Jon Hartley</h2>
 <h4 style="text-align: center;">Policy Fellow</h4>
-<h4 style="text-align: center;">_Capitalism and Freedom in the 21st Century_ Host</h4>
+<h4 style="text-align: center;"><em>Capitalism and Freedom in the 21st Century</em> Host</h4>
 Jon Hartley is an economist specializing in finance, labor economics, and macroeconomics. He is currently a Policy Fellow at the Hoover Institution, a Research Fellow at the UT-Austin Civitas Institute, a Senior Fellow at the Foundation for Research on Equal Opportunity (FREOPP), a Senior Fellow at the Macdonald-Laurier Institute, and an Affiliated Scholar at the Mercatus Center. Jon also is the host of the Capitalism and Freedom in the 21st Century Podcast, an official podcast of the Hoover Institution, a member of the Canadian Group of Economists, and founding chair of the Economic Club of Miami.
 
 Jon has previously worked at Goldman Sachs Asset Management as a Fixed Income Portfolio Construction and Risk Management Associate and as a Quantitative Investment Strategies Client Portfolio Management Senior Analyst and in various policy/governmental roles at the World Bank, IMF, Committee on Capital Markets Regulation, U.S. Congress Joint Economic Committee, the Federal Reserve Bank of New York, the Federal Reserve Bank of Chicago, and the Bank of Canada.
@@ -63,10 +63,6 @@ Church’s research interests include tax-advantaged savings accounts for health
 He has researched the fiscal effects of major health care proposals and is a co-author of Choices for All, a set of common-sense health care reforms. He contributes to Hoover’s Healthcare Policy Working Group, the Fiscal Policy Initiative, and the Tennenbaum Program for Fact-Based Policy.
 
 Church received his master’s degree in public policy with honors from Pepperdine University, specializing in economics and international relations. He has a bachelor’s degree in mathematics and political science from the University of Michigan.
-
-<hr>
-<h1 style="text-align: center;">State & Local Governance Initiative</h1>
-<hr>
 
 [centrarium]: https://github.com/bencentra/centrarium
 [bencentra]: http://bencentra.com
