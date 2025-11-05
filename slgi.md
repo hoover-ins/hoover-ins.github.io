@@ -4,7 +4,7 @@ title: "State & Local"
 permalink: /slgi/
 main_nav: true
 ---
-<h1>About the State & Local Governance Initiative</h1>
+<h1>About</h1>
 
 The State and Local Governance Initiative at the Hoover Institution conducts rigorous research to inform state and local government policy. Our team partners with government officials, policymakers, and other stakeholders to conduct analysis, generate actionable policy recommendations, and produce top-tier academic publications.
 

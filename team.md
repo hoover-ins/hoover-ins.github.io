@@ -65,6 +65,8 @@ He has researched the fiscal effects of major health care proposals and is a co-
 Church received his master’s degree in public policy with honors from Pepperdine University, specializing in economics and international relations. He has a bachelor’s degree in mathematics and political science from the University of Michigan.
 
 <hr>
+<h1 style="text-align: center;">State & Local Governance Initiative</h1>
+<hr>
 
 [centrarium]: https://github.com/bencentra/centrarium
 [bencentra]: http://bencentra.com
