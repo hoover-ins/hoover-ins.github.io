@@ -55,15 +55,18 @@ Or try a real-life proposal:
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
-  <button onclick="calculate()" 
-          style="width: 100%; padding: 12px; font-size: 18px; background-color: #B3173C; color: white; border: none; cursor: pointer; margin: 20px 0;">
-    Calculate
-  </button>
+ <button onclick="calculate()" 
+        style="width: 100%; padding: 12px; font-size: 18px; background-color: #0074D9; color: white; border: none; cursor: pointer; margin: 20px 0;">
+  Calculate
+</button>
 
-  <div id="result" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
-    <h3 style="margin-top: 0;">Result:</h3>
-    <p id="resultText" style="font-size: 18px;"></p>
-  </div>
+<div id="error" style="margin-top: 20px; padding: 20px; background-color: #ffcccc; border-radius: 5px; display: none; color: #cc0000;">
+  <strong>Unacceptable values entered.</strong>
+</div>
+
+<div id="result" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
+  <h3 style="margin-top: 0;">Result:</h3>
+  <p id="resultText" style="font-size: 18px;"></p>
 </div>
 
 <script>
@@ -71,6 +74,16 @@ function calculate() {
   // Get input values
   var theta = parseFloat(document.getElementById('theta').value);
   var r = parseFloat(document.getElementById('r').value);
+  
+  // Hide previous messages
+  document.getElementById('error').style.display = 'none';
+  document.getElementById('result').style.display = 'none';
+  
+  // Validate inputs
+  if (isNaN(theta) || isNaN(r) || theta < 0 || theta > 1 || r < -1 || r > 1) {
+    document.getElementById('error').style.display = 'block';
+    return;
+  }
   
   // Calculate equivalent tax rate
   var t = (1 - ((r * (1 - theta)) / (r + theta))) * 100;
@@ -80,7 +93,7 @@ function calculate() {
   
   // Display result
   document.getElementById('resultText').innerHTML = 
-    "The equivalent capital income tax rate is <strong>" + t + "%.</strong>";
+    "The equivalent capital income tax rate is <strong>" + t + "%</strong>";
   document.getElementById('result').style.display = 'block';
 }
 </script>
