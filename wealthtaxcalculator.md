@@ -56,7 +56,7 @@ Or try a real-life proposal:
   </div>
 
  <button onclick="calculate()" 
-        style="width: 100%; padding: 12px; font-size: 18px; background-color: #0074D9; color: white; border: none; cursor: pointer; margin: 20px 0;">
+        style="width: 100%; padding: 12px; font-size: 18px; background-color: #0DAC50; color: white; border: none; cursor: pointer; margin: 20px 0;">
   Calculate
 </button>
 
