@@ -9,8 +9,8 @@ This calculator quantifies the equivalent capital income tax rate of a wealth ta
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
 <h2 style="text-align: center;">Try It</h2>
 Input values for:
-<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% may be entered as 0.01.</p>
-<p><strong>Baseline Return (r):</strong> This reflects the return to capital in the economy. For reference, the average return to capital in advanced economies is between 4% and 8%. Returns vary more widely among sectors. A baseline return of 5% may be entered as 0.5.</p>
+<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% may be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
+<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the average return to capital in advanced economies is between 4% and 8%. Returns vary more widely among sectors. A Risk Free Rate of 5% may be entered as 0.5. Acceptable range of values is between -1 and 1 (-100%-100%). </p>
 
 Or try a real-life proposal:
 <table>
@@ -37,21 +37,21 @@ Or try a real-life proposal:
 <table>
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center;">Input your parameters below</h2>
+  <h2 style="text-align: center;">Input Parameters Below</h2>
   
   <div style="margin: 20px 0;">
     <label for="theta" style="display: block; margin-bottom: 5px;">
       <strong>Expropriation Risk - Wealth Tax Rate (θ):</strong>
     </label>
-    <input type="number" id="theta" step="0.001" value=""
+    <input type="number" id="theta" step="0.001" value="" min="0" max="1"
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
   <div style="margin: 20px 0;">
     <label for="r" style="display: block; margin-bottom: 5px;">
-      <strong>Baseline Return (r):</strong>
+      <strong>Risk Free Rate (r):</strong>
     </label>
-    <input type="number" id="r" step="0.001" value="" 
+    <input type="number" id="r" step="0.001" value="" min="-1" max="1"
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
