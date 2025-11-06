@@ -4,22 +4,46 @@ title: Wealth Tax Calculator
 permalink: /wealthtaxcalculator/
 main_nav: true
 ---
+<h2 style="text-align: center;">Purpose</h2>
+This calculator quantifies the equivalent capital income tax rate of a wealth tax.
+It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
+<h2 style="text-align: center;">Try It</h2>
+Input values for:
+<strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% may be entered as 0.01.
+<strong>Baseline Return (r):</strong> This reflects the return to capital in the economy. For reference, the average return to capital in advanced economies is between 4% and 8%. Returns vary more widely among sectors.
 
----
-layout: page
-title: Tax Calculator
-permalink: /tax-calculator/
-main_nav: true
----
+Or try a real-life proposal:
+<table>
+    <tr>
+        <th>Example</th>
+        <th>Wealth Tax Rate (θ)</th>
+    </tr>
+    <tr>
+        <th>State of Washington's Proposed Wealth Tax</th>
+        <th>1%</th>
+    </tr>
+    <tr>
+        <th>France's Proposed "Zucman Tax"</th>
+        <th>2%</th>
+    </tr>
+    <tr>
+        <th>California Ballot Initiative, "2026 Billionare Tax Act"</th>
+        <th>5%</th>
+    </tr>
+    <tr>
+        <th>Bernie Sander's Proposed Wealth Tax Top Bracket</th>
+        <th>8%</th>
+    </tr>
+<table>
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center;">Equivalent Capital Income Tax Calculator</h2>
+  <h2 style="text-align: center;">Input your parameters below</h2>
   
   <div style="margin: 20px 0;">
     <label for="theta" style="display: block; margin-bottom: 5px;">
-      <strong>Expropriation Risk (Wealth Tax Rate) θ:</strong>
+      <strong>Expropriation Risk - Wealth Tax Rate (θ):</strong>
     </label>
-    <input type="number" id="theta" step="0.001" value="0.01" 
+    <input type="number" id="theta" step="" value=""
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
@@ -32,7 +56,7 @@ main_nav: true
   </div>
 
   <button onclick="calculate()" 
-          style="width: 100%; padding: 12px; font-size: 18px; background-color: #0074D9; color: white; border: none; cursor: pointer; margin: 20px 0;">
+          style="width: 100%; padding: 12px; font-size: 18px; background-color: #B3173C; color: white; border: none; cursor: pointer; margin: 20px 0;">
     Calculate
   </button>
 

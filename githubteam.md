@@ -63,7 +63,3 @@ Church’s research interests include tax-advantaged savings accounts for health
 He has researched the fiscal effects of major health care proposals and is a co-author of Choices for All, a set of common-sense health care reforms. He contributes to Hoover’s Healthcare Policy Working Group, the Fiscal Policy Initiative, and the Tennenbaum Program for Fact-Based Policy.
 
 Church received his master’s degree in public policy with honors from Pepperdine University, specializing in economics and international relations. He has a bachelor’s degree in mathematics and political science from the University of Michigan.
-
-[centrarium]: https://github.com/bencentra/centrarium
-[bencentra]: http://bencentra.com
-[jekyll]: https://github.com/jekyll/jekyll
