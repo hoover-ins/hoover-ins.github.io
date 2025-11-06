@@ -9,8 +9,9 @@ This calculator quantifies the equivalent capital income tax rate of a wealth ta
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
 <h2 style="text-align: center;">Try It</h2>
 Input values for:
-<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% may be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
-<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the average return to capital in advanced economies is between 4% and 8%. Returns vary more widely among sectors. A Risk Free Rate of 5% may be entered as 0.5. Acceptable range of values is between -1 and 1 (-100%-100%). </p>
+<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
+<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk free rate of return seldom exceeds 0.05 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A Risk Free Rate of 5% should be entered as 0.05. Acceptable range of values is between -1 and 1 (-100%-100%). </p>
+<p>*Note: Output exceeding 100% is impossible given Calculator constraints.</p>
 
 Or try a real-life proposal:
 <table>
