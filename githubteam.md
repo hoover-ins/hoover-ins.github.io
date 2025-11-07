@@ -56,7 +56,7 @@ Jon has also been a regular economics contributor for National Review Online, Fo
 ![alt text]({{ site.baseurl }}/assets/HeadshotTomChurch.jpg "Profile Picture"){:.profile}
 <h2 style="text-align: center;">Tom Church</h2>
 <h4 style="text-align: center;">Policy Fellow</h4>
-om Church is a policy fellow at the Hoover Institution. He studies health care policy, entitlement reform, income inequality, poverty, and the federal budget.
+Tom Church is a policy fellow at the Hoover Institution. He studies health care policy, entitlement reform, income inequality, poverty, and the federal budget.
 
 Church’s research interests include tax-advantaged savings accounts for health care, the fiscal effects of a federal public option, state-based regulatory reform, pro-growth federal tax policy, and the distributional effects of entitlement spending reform.
 
