@@ -7,7 +7,7 @@ main_nav: true
 <h2 style="text-align: center;">Purpose</h2>
 This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax.
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
-<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 50%;">
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%;">
 <h2 style="text-align: center;">Try It</h2>
 Input values for:
 <p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
@@ -103,9 +103,9 @@ function calculate() {
 
 
 <h2 style="text-align: center;">State Tax Burden Simulator</h2>
-<p> This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax while also allowing for the application of capital gains rates by state.
+<p> This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax while also allowing for the application of capital gains rates by state and the Federal tax on capital gains.
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state I pay taxes in?</p>
-<p>*Note: State capital gains in this calculator consist of the top capital gains rate plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</p>
+<p>*Note: Capital gains in this calculator consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</p>
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -192,7 +192,7 @@ function calculateWithCapGains() {
 
 <h2 style="text-align: center;">Required Return Analysis</h2>
 <p>Having established the equivalence between taxation and expropriation (t), the required rate of return (ρ) investors must demand to compensate for expropriation risk can be derived.</p>
-<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 50%;">
+<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 200%;">
 
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
@@ -201,7 +201,7 @@ function calculateWithCapGains() {
   
   <div style="margin: 20px 0;">
     <label for="r2" style="display: block; margin-bottom: 5px;">
-      <strong>Baseline Return (r):</strong>
+      <strong>Risk Free Rate (r):</strong>
     </label>
     <input type="number" id="r2" step="0.001" value="" min="-1" max="1"
            style="width: 100%; padding: 8px; font-size: 16px;">
@@ -265,3 +265,267 @@ function calculateRho() {
   document.getElementById('result2').style.display = 'block';
 }
 </script>
+
+
+<table>
+    <tr>
+        <th>State</th>
+        <th>Top Capital Gains Rate</th>
+        <th>Source</th>
+    </tr>
+    <tr>
+        <td>Alabama</td>
+        <td>0.05</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Alaska</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Arizona</td>
+        <td>0.01875</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Arkansas</td>
+        <td>0.022</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>California</td>
+        <td>0.133</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Colorado</td>
+        <td>0.044</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Connecticut</td>
+        <td>0.0475</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Delaware</td>
+        <td>0.066</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Florida</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Georgia</td>
+        <td>0.0549</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Hawaii</td>
+        <td>0.0725</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Idaho</td>
+        <td>0.058</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Illinois</td>
+        <td>0.0495</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Indiana</td>
+        <td>0.0305</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Iowa</td>
+        <td>0.057</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Kansas</td>
+        <td>0.057</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Kentucky</td>
+        <td>0.04</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Louisiana</td>
+        <td>0.0425</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Maine</td>
+        <td>0.0715</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Maryland</td>
+        <td>0.0575</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Massachusetts</td>
+        <td>0.09</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Michigan</td>
+        <td>0.0425</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Minnesota</td>
+        <td>0.1085</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Mississippi</td>
+        <td>0.047</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Missouri</td>
+        <td>0.048</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Montana</td>
+        <td>0.041</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Nebraska</td>
+        <td>0.0584</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Nevada</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>New Hampshire</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>New Jersey</td>
+        <td>0.1075</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>New Mexico</td>
+        <td>0.0354</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>New York</td>
+        <td>0.109</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>North Carolina</td>
+        <td>0.045</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>North Dakota</td>
+        <td>0.015</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Ohio</td>
+        <td>0.035</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Oklahoma</td>
+        <td>0.0475</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Oregon</td>
+        <td>0.099</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Pennsylvania</td>
+        <td>0.0307</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Rhode Island</td>
+        <td>0.0599</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>South Carolina</td>
+        <td>0.0392</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>South Dakota</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Tennessee</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Texas</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Utah</td>
+        <td>0.0455</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Vermont</td>
+        <td>0.0875</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Virginia</td>
+        <td>0.0575</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Washington D.C.</td>
+        <td>0.1075</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Washington</td>
+        <td>0.07</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>West Virginia</td>
+        <td>0.0512</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Wisconsin</td>
+        <td>0.05355</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Wyoming</td>
+        <td>0</td>
+        <td></td>
+    </tr>
+</table>
