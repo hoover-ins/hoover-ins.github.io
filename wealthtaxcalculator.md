@@ -7,7 +7,7 @@ main_nav: true
 <h2 style="text-align: center;">Purpose</h2>
 This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax.
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
-<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="Rho Formula" style="width: 4%; max-width: none;">
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 50%;">
 <h2 style="text-align: center;">Try It</h2>
 Input values for:
 <p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
@@ -192,7 +192,7 @@ function calculateWithCapGains() {
 
 <h2 style="text-align: center;">Required Return Analysis</h2>
 <p>Having established the equivalence between taxation and expropriation (t), the required rate of return (ρ) investors must demand to compensate for expropriation risk can be derived.</p>
-<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 4%; max-width: none;">
+<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 50%;">
 
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
