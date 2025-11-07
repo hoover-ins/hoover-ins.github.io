@@ -63,3 +63,9 @@ Church’s research interests include tax-advantaged savings accounts for health
 He has researched the fiscal effects of major health care proposals and is a co-author of Choices for All, a set of common-sense health care reforms. He contributes to Hoover’s Healthcare Policy Working Group, the Fiscal Policy Initiative, and the Tennenbaum Program for Fact-Based Policy.
 
 Church received his master’s degree in public policy with honors from Pepperdine University, specializing in economics and international relations. He has a bachelor’s degree in mathematics and political science from the University of Michigan.
+
+![alt text]({{ site.baseurl }}/assets/HeadshotJohnDoran.jpg "Profile Picture"){:.profile}
+<h2 style="text-align: center;">John Doran</h2>
+<h4 style="text-align: center;">Research Analyst</h4>
+
+John Doran is a research analyst for the Hoover Institution’s Fiscal Policy Initiative. His research interests include public finance, financial economics, and monetary economics. John graduated summa cum laude and Phi Beta Kappa from the University of Connecticut with a BA in economics with a minor in analytics.
