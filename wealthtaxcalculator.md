@@ -104,8 +104,8 @@ function calculate() {
 
 <h2 style="text-align: center;">State Tax Burden Simulator</h2>
 <p> This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax while also allowing for the application of capital gains rates by state.
-It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state I pay taxes in?
-</p>
+It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state I pay taxes in?</p>
+<p>*Note: State capital gains in this calculator consist of the top capital gains rate plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</p>
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
