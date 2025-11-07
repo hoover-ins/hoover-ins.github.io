@@ -36,7 +36,7 @@ Or try a real-life proposal:
         <th>Bernie Sander's Proposed Wealth Tax Top Bracket</th>
         <th>8%</th>
     </tr>
-<table>
+</table>
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
   <h2 style="text-align: center;">Input Parameters Below</h2>
@@ -57,18 +57,19 @@ Or try a real-life proposal:
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
- <button onclick="calculate()" 
-        style="width: 100%; padding: 12px; font-size: 18px; background-color: #0DAC50; color: white; border: none; cursor: pointer; margin: 20px 0;">
-  Calculate
-</button>
+  <button onclick="calculate()" 
+          style="width: 100%; padding: 12px; font-size: 18px; background-color: #0DAC50; color: white; border: none; cursor: pointer; margin: 20px 0;">
+    Calculate
+  </button>
 
-<div id="error" style="margin-top: 20px; padding: 20px; background-color: #ffcccc; border-radius: 5px; display: none; color: #cc0000;">
-  <strong>Unacceptable values entered.</strong>
-</div>
+  <div id="error" style="margin-top: 20px; padding: 20px; background-color: #ffcccc; border-radius: 5px; display: none; color: #cc0000;">
+    <strong>Unacceptable values entered.</strong>
+  </div>
 
-<div id="result" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
-  <h3 style="margin-top: 0;">Result:</h3>
-  <p id="resultText" style="font-size: 18px;"></p>
+  <div id="result" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
+    <h3 style="margin-top: 0;">Result:</h3>
+    <p id="resultText" style="font-size: 18px;"></p>
+  </div>
 </div>
 
 <script>
@@ -98,6 +99,8 @@ function calculate() {
     "The equivalent capital income tax rate is <strong>" + t + "%</strong>";
   document.getElementById('result').style.display = 'block';
 }
+</script>
+
 <h2 style="text-align: center;">Required Return Analysis</h2>
 <p>Having established the equivalence between taxation and expropriation (t), the required rate of return (ρ) investors must demand to compensate for expropriation risk can be derived.</p>
 ![alt text]({{ site.baseurl }}/assets/rhoformula.jpg "Profile Picture"){:.profile}
@@ -149,7 +152,7 @@ function calculateRho() {
   document.getElementById('result2').style.display = 'none';
   
   // Validate inputs
-  if (isNaN(r) || isNaN(t) || r < -1 || r > 1 || t < 0 || t > 1) {
+  if (isNaN(r) || isNaN(t) || r < -1 || r > 1) {
     document.getElementById('error2').style.display = 'block';
     return;
   }
@@ -169,9 +172,7 @@ function calculateRho() {
   
   // Display result
   document.getElementById('resultText2').innerHTML = 
-    "A required pre-tax return on assets of <strong>" + rho + "% is needed to compensate for the expropriation risk.</strong>";
+    "A required pre-tax return on assets of <strong>" + rho + "</strong> is needed to compensate for the expropriation risk.";
   document.getElementById('result2').style.display = 'block';
 }
-</script>
-
 </script>

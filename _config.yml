@@ -12,6 +12,7 @@ exclude:
 title: Hoover Institution
 subtitle: "GitHub Landing Page"
 name: Hoover Institution
+email: hooverfpi@stanford.edu
 description: > 
  Fiscal Policy Initiative
 # Base URL of site (i.e. /blog). It should always start with a slash,
