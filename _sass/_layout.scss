@@ -216,6 +216,9 @@ pre code.hljs {
 .page-content {
 	// Remove this to make header scrollable again
 	margin-top: 66px;
+	@include media ($mobile) {
+		margin-top: 80px; // Extra space on mobile for dropdown menu
+	}
 	.wrapper {
 		@include outer-container;
 		padding: 1em;
