@@ -145,7 +145,6 @@ It addresses the question: What rate of income taxation on capital yields the sa
 </div>
 
 <script>
-<script>
 function calculateAll() {
   // Get input values and convert percentages to decimals
   var theta = parseFloat(document.getElementById('theta1').value) / 100;
