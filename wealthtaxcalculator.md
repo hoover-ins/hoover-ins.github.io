@@ -273,7 +273,8 @@ function calculateAll() {
   <li><strong>t</strong> = the combined capital income tax rate (t* plus existing capital gains taxes)</li>
 </ul>
 
-<p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. When combined tax rates approach 100%, the required return becomes impossibly high, effectively discouraging investment in that jurisdiction.</p>
+<p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. The insecurity of property rights generated under a wealth tax regime can functionally deter internal and external direct investment. For example, California's proposed 5 percent wealth tax would require investors to demand a 48.1 percent pre-tax return—nine to ten times the risk-free rate—to compensate for expropriation risk. This exorbitant required return dwarfs the total market return on invested capital of 7.64 percent and exceeds the returns of 91 out of 94 publicly traded industry asset classes, serving as a substantial barrier to capital investment in the adopting jurisdiction.</p>
+
 
 <p><em>For a complete theoretical derivation and policy analysis, please refer to the accompanying academic paper.</em></p>
 
