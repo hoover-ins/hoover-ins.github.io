@@ -189,7 +189,7 @@ function calculateAll() {
   // Display results
   document.getElementById('resultText1').innerHTML = 
     "<strong>Base equivalent capital income tax rate:</strong> " + tBase + "%<br>" +
-    "<strong>State capital gains tax:</strong> " + (stateCapGainsRate * 100) + "%<br>" +
+    "<strong>State capital gains tax:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>" +
     "<strong>Federal capital gains tax:</strong> 20%<br>" +
     "<strong>NIIT:</strong> 3.8%<br>" +
     "<strong>Combined tax on capital:</strong> " + combinedTax + "%<br><br>" +
