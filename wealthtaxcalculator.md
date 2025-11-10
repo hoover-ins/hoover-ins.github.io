@@ -537,3 +537,5 @@ function calculateAll() {
         <td>Tax Foundation</td>
     </tr>
 </table>
+
+The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
