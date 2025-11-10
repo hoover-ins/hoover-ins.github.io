@@ -204,7 +204,7 @@ function calculateAll() {
   var tCombinedDecimal = combinedTax / 100;
   
   // Check for division by zero
-  if (tCombinedDecimal >= 1) {
+  if (tCombinedDecimal >= 2) {
     document.getElementById('error1').style.display = 'block';
     document.getElementById('error1').innerHTML = '<strong>Error: Combined tax rate equals or exceeds 100% (calculation not possible).</strong>';
     return;
@@ -539,5 +539,28 @@ function calculateAll() {
         <td>Tax Foundation</td>
     </tr>
 </table>
+
+
+
+<table>
+    <tr>
+        <td></td>
+        <td>Capital Gains</td>
+        <td>Source</td>
+    </tr>
+    <tr>
+        <td>France - Financial Assets</td>
+        <td>30%</td>
+        <td>Service-Public.fr,</td>
+    </tr>
+    <tr>
+        <td>France - Real Estate (under 22 years)</td>
+        <td>36.2%</td>
+        <td>Service-Public.fr</td>
+    </tr>
+</table>
+
+"></option>
+      <option value="0.362">
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
