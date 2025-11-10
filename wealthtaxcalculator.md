@@ -156,7 +156,7 @@ function calculateAll() {
   var selectedStateName = stateSelect.options[stateSelect.selectedIndex].text;
   
   // Check if France is selected
-  var isFrance = selectedStateName.includes("France");
+  var isFrance = selectedStateName.indexOf("France") !== -1;
   
   // Federal capital gains and NIIT (constants) - only for US
   var federalCapGains = isFrance ? 0 : 0.20;
