@@ -1,18 +1,22 @@
 ## License
 
-MIT. See [LICENSE.MD](https://github.com/bencentra/centrarium/blob/master/LICENSE.md).
+This is the source code for the Hoover Institution Wealth Tax Calculator, built using the **Centrarium Jekyll theme** by **Ben Centra**.
 
-[bencentra]: http://bencentra.com
-[bourbon]: http://bourbon.io/
-[neat]: http://neat.bourbon.io/
-[bitters]: http://bitters.bourbon.io/
-[refills]: http://refills.bourbon.io/
-[fontawesome]: http://fortawesome.github.io/Font-Awesome/
-[highlightjs]: https://highlightjs.org/
-[highlightjs_theme]: https://highlightjs.org/static/demo/
-[lightbox]: http://lokeshdhakar.com/projects/lightbox2/
-[cover]: https://www.flickr.com/photos/79666107@N00/3796678503/in/photolist-6MuYfc-61Rtft-8XzPmY-a6Cozm-54eSMs-6oMJmk-aepZQq-9YkPHp-fiAEGE-dVP4Z5-oxPyJP-atKUFJ-9YHWA5-9YF2f2-9YF2gR-9YHVGN-9YHVvs-qZYYQ6-4JqP2i-a2peGy-9YHVUm-9YHVF7-9YHVCL-9YF3NK-cYteMo-aiPmb9-69dtAi-9YF21x-4aWpmn-7SLiUL-77pqVX-8vXbYv-4HGDSH-a2h5P1-8LsZrQ-9aj1ez-auPZ7q-9YHVMd-9YF2bi-9YF23D-8LpWpn-9an6KL-9YHVZL-dqZ3Cz-2GuvnX-9YHWUo-9YHVWd-p5Roh5-i1zTbv-6sYrUT
-[disqus]: https://disqus.com/
-[ga]: http://www.google.com/analytics/
-[archives]: https://github.com/jekyll/jekyll-archives
-[sitemap]: https://github.com/jekyll/jekyll-sitemap
+### Credits
+
+The theme and layout were originally developed by Ben Centra and are licensed under the MIT License. See the [original Centrarium repository](https://github.com/bencentra/centrarium) for more information and documentation.
+
+The Centrarium theme utilizes the following open-source projects:
+- [Bourbon](http://bourbon.io/) - Sass mixin library
+- [Neat](http://neat.bourbon.io/) - Semantic grid framework
+- [Bitters](http://bitters.bourbon.io/) - Scaffold styles
+- [Refills](http://refills.bourbon.io/) - Components and patterns
+- [Font Awesome](http://fortawesome.github.io/Font-Awesome/) - Icon font
+- [Highlight.js](https://highlightjs.org/) - Syntax highlighting
+- [Lightbox](http://lokeshdhakar.com/projects/lightbox2/) - Image lightbox
+
+### Content License
+
+The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: benjaros@stanford.edu.
+
+Full MIT License text: [LICENSE.MD](https://github.com/bencentra/centrarium/blob/master/LICENSE.md)
