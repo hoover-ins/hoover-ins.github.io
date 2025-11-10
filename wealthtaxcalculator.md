@@ -107,7 +107,9 @@ It addresses the question: What rate of income taxation on capital yields the sa
       <option value="0.07">Washington State</option>
       <option value="0.0482">West Virginia</option>
       <option value="0.0765">Wisconsin</option>
-      <option value="0">Wyoming</option>      
+      <option value="0">Wyoming</option>
+      <option value="0.3">France - Financial Assets</option>
+      <option value="0.362">France - Real Estate (under 22 years)</option>   
     </select>
   </div>
 
@@ -143,15 +145,23 @@ It addresses the question: What rate of income taxation on capital yields the sa
 </div>
 
 <script>
+<script>
 function calculateAll() {
   // Get input values and convert percentages to decimals
   var theta = parseFloat(document.getElementById('theta1').value) / 100;
   var r = parseFloat(document.getElementById('r1').value) / 100;
   var stateCapGainsRate = parseFloat(document.getElementById('state').value);
   
-  // Federal capital gains and NIIT (constants)
-  var federalCapGains = 0.20;
-  var niit = 0.038;
+  // Get selected state name
+  var stateSelect = document.getElementById('state');
+  var selectedStateName = stateSelect.options[stateSelect.selectedIndex].text;
+  
+  // Check if France is selected
+  var isFrance = selectedStateName.includes("France");
+  
+  // Federal capital gains and NIIT (constants) - only for US
+  var federalCapGains = isFrance ? 0 : 0.20;
+  var niit = isFrance ? 0 : 0.038;
   
   // Hide previous messages
   document.getElementById('error1').style.display = 'none';
@@ -186,14 +196,22 @@ function calculateAll() {
   combinedTax = Math.round(combinedTax * 1000) / 1000;
   rho = Math.round((rho * 100) * 1000) / 1000;
   
-  // Display results
-  document.getElementById('resultText1').innerHTML = 
-    "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>" +
-    "<strong>Top State Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>" +
-    "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>" +
-    "<strong>Net Investment Income Tax:</strong> 3.8%<br>" +
-    "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>" +
-    "A required pre-tax return on assets of <strong>" + rho + "%</strong> is needed to compensate for the expropriation risk.";
+  // Display results - different format for France
+  var resultHTML = "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>";
+  
+  if (isFrance) {
+    resultHTML += "<strong>France Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
+    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
+  } else {
+    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
+    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
+    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
+    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
+  }
+  
+  resultHTML += "A required pre-tax return on assets of <strong>" + rho + "%</strong> is needed to compensate for the expropriation risk.";
+  
+  document.getElementById('resultText1').innerHTML = resultHTML;
   document.getElementById('result1').style.display = 'block';
 }
 </script>
