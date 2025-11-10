@@ -10,8 +10,8 @@ It addresses the question: What rate of income taxation on capital yields the sa
 <img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%;">
 <h2 style="text-align: center;">Try It</h2>
 Input values for:
-<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 0.01. Acceptable range of values is between 0 and 1 (0-100%).</p>
-<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk free rate of return seldom exceeds 0.05 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A Risk Free Rate of 5% should be entered as 0.05. Acceptable range of values is between -1 and 1 (-100%-100%). </p>
+<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
+<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk free rate of return seldom exceeds 5 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A Risk Free Rate of 5% should be entered as 5. Acceptable range of values is between -100 and 100 (-100%-100%). </p>
 <p>*Note: Output exceeding 100% is impossible given Calculator constraints.</p>
 
 Or try a real-life proposal:
@@ -38,78 +38,13 @@ Or try a real-life proposal:
     </tr>
 </table>
 
-<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center;">Input Parameters Below</h2>
-  
-  <div style="margin: 20px 0;">
-    <label for="theta" style="display: block; margin-bottom: 5px;">
-      <strong>Expropriation Risk - Wealth Tax Rate (θ):</strong>
-    </label>
-    <input type="number" id="theta" step="0.001" value="" min="0" max="1"
-           style="width: 100%; padding: 8px; font-size: 16px;">
-  </div>
-
-  <div style="margin: 20px 0;">
-    <label for="r" style="display: block; margin-bottom: 5px;">
-      <strong>Risk Free Rate (r):</strong>
-    </label>
-    <input type="number" id="r" step="0.001" value="" min="-1" max="1"
-           style="width: 100%; padding: 8px; font-size: 16px;">
-  </div>
-
-  <button onclick="calculate()" 
-          style="width: 100%; padding: 12px; font-size: 18px; background-color: #0DAC50; color: white; border: none; cursor: pointer; margin: 20px 0;">
-    Calculate
-  </button>
-
-  <div id="error" style="margin-top: 20px; padding: 20px; background-color: #ffcccc; border-radius: 5px; display: none; color: #cc0000;">
-    <strong>Unacceptable values entered.</strong>
-  </div>
-
-  <div id="result" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
-    <h3 style="margin-top: 0;">Result:</h3>
-    <p id="resultText" style="font-size: 18px;"></p>
-  </div>
-</div>
-
-<script>
-function calculate() {
-  // Get input values
-  var theta = parseFloat(document.getElementById('theta').value);
-  var r = parseFloat(document.getElementById('r').value);
-  
-  // Hide previous messages
-  document.getElementById('error').style.display = 'none';
-  document.getElementById('result').style.display = 'none';
-  
-  // Validate inputs
-  if (isNaN(theta) || isNaN(r) || theta < 0 || theta > 1 || r < -1 || r > 1) {
-    document.getElementById('error').style.display = 'block';
-    return;
-  }
-  
-  // Calculate equivalent tax rate
-  var t = (1 - ((r * (1 - theta)) / (r + theta))) * 100;
-  
-  // Round to 3 decimal places
-  t = Math.round(t * 1000) / 1000;
-  
-  // Display result
-  document.getElementById('resultText').innerHTML = 
-    "The equivalent capital income tax rate is <strong>" + t + "%</strong>";
-  document.getElementById('result').style.display = 'block';
-}
-</script>
-
-
-<h2 style="text-align: center;">State Tax Burden Simulator</h2>
 <p> This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax while also allowing for the application of capital gains rates by state and the Federal tax on capital gains.
 It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state I pay taxes in?</p>
 <p>*Note: Capital gains in this calculator consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</p>
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center;">Wealth Tax Calculator with Capital Gains Tax</h2>
+  <h2 style="text-align: center;">Input Your Parameters Below</h2>
   
   <div style="margin: 20px 0;">
     <label for="state" style="display: block; margin-bottom: 5px;">
@@ -117,25 +52,75 @@ It addresses the question: What rate of income taxation on capital yields the sa
     </label>
     <select id="state" style="width: 100%; padding: 8px; font-size: 16px;">
       <option value="0.2">United States (Federal Only)</option>
-      <option value="0.308">Washington State</option>
+      <option value="0.491">National Average</option>
+      <option value="0.288">Alabama</option>
+      <option value="0.238">Alaska</option>
+      <option value="0.25675">Arizona</option>
+      <option value="0.26">Arkansas</option>
       <option value="0.371">California</option>
+      <option value="0.282">Colorado</option>
+      <option value="0.2855">Connecticut</option>
+      <option value="0.304">Delaware</option>
+      <option value="0.238">Florida</option>
+      <option value="0.2929">Georgia</option>
+      <option value="0.3105">Hawaii</option>
+      <option value="0.296">Idaho</option>
+      <option value="0.2875">Illinois</option>
+      <option value="0.2685">Indiana</option>
+      <option value="0.295">Iowa</option>
+      <option value="0.295">Kansas</option>
+      <option value="0.278">Kentucky</option>
+      <option value="0.2805">Louisiana</option>
+      <option value="0.3095">Maine</option>
+      <option value="0.2955">Maryland</option>
+      <option value="0.328">Massachusetts</option>
+      <option value="0.2805">Michigan</option>
+      <option value="0.3465">Minnesota</option>
+      <option value="0.285">Mississippi</option>
+      <option value="0.286">Missouri</option>
+      <option value="0.279">Montana</option>
+      <option value="0.2964">Nebraska</option>
+      <option value="0.238">Nevada</option>
+      <option value="0.238">New Hampshire</option>
+      <option value="0.3455">New Jersey</option>
+      <option value="0.2734">New Mexico</option>
+      <option value="0.347">New York</option>
+      <option value="0.283">North Carolina</option>
+      <option value="0.253">North Dakota</option>
+      <option value="0.273">Ohio</option>
+      <option value="0.2855">Oklahoma</option>
+      <option value="0.337">Oregon</option>
+      <option value="0.2687">Pennsylvania</option>
+      <option value="0.2979">Rhode Island</option>
+      <option value="0.2772">South Carolina</option>
+      <option value="0.238">South Dakota</option>
+      <option value="0.238">Tennessee</option>
+      <option value="0.238">Texas</option>
+      <option value="0.2835">Utah</option>
+      <option value="0.3255">Vermont</option>
+      <option value="0.2955">Virginia</option>
+      <option value="0.3455">Washington D.C.</option>
+      <option value="0.308">Washington State</option>
+      <option value="0.2892">West Virginia</option>
+      <option value="0.29155">Wisconsin</option>
+      <option value="0.238">Wyoming</option>      
     </select>
   </div>
 
   <div style="margin: 20px 0;">
     <label for="theta1" style="display: block; margin-bottom: 5px;">
-      <strong>Expropriation Risk - Wealth Tax Rate (θ):</strong>
+      <strong>Expropriation Risk - Wealth Tax Rate (θ) in %:</strong>
     </label>
-    <input type="number" id="theta1" step="0.001" value="" min="0" max="1"
+    <input type="number" id="theta1" step="0.001" value="" min="0" max="100"
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
   <div style="margin: 20px 0;">
     <label for="r1" style="display: block; margin-bottom: 5px;">
-      <strong>Risk Free Rate (r):</strong>
+      <strong>Risk Free Rate (r) in %:</strong>
     </label>
-    <input type="number" id="r1" step="0.001" value="" min="-1" max="1"
-           style="width: 100%; padding: 8px; font-size: 16px;">
+    <input type="number" id="r1" step="0.001" value="" min="-100" max="100"
+           style="width: 100%; padding: 8px; font-size: 16px;" oninput="document.getElementById('r2').value = this.value;">
   </div>
 
   <button onclick="calculateWithCapGains()" 
@@ -155,9 +140,9 @@ It addresses the question: What rate of income taxation on capital yields the sa
 
 <script>
 function calculateWithCapGains() {
-  // Get input values
-  var theta = parseFloat(document.getElementById('theta1').value);
-  var r = parseFloat(document.getElementById('r1').value);
+  // Get input values and convert percentages to decimals
+  var theta = parseFloat(document.getElementById('theta1').value) / 100;
+  var r = parseFloat(document.getElementById('r1').value) / 100;
   var capGainsRate = parseFloat(document.getElementById('state').value);
   
   // Hide previous messages
@@ -201,15 +186,15 @@ function calculateWithCapGains() {
   
   <div style="margin: 20px 0;">
     <label for="r2" style="display: block; margin-bottom: 5px;">
-      <strong>Risk Free Rate (r):</strong>
+      <strong>Risk Free Rate (r) in %:</strong>
     </label>
-    <input type="number" id="r2" step="0.001" value="" min="-1" max="1"
+    <input type="number" id="r2" step="0.001" value="" min="-100" max="100"
            style="width: 100%; padding: 8px; font-size: 16px;">
   </div>
 
   <div style="margin: 20px 0;">
     <label for="t2" style="display: block; margin-bottom: 5px;">
-      <strong>Equivalent Capital Income Tax Rate (t):</strong>
+      <strong>Equivalent Capital Income Tax Rate (t) in %:</strong>
     </label>
     <input type="number" id="t2" step="0.001" value=""
            style="width: 100%; padding: 8px; font-size: 16px;">
@@ -232,9 +217,9 @@ function calculateWithCapGains() {
 
 <script>
 function calculateRho() {
-  // Get input values
-  var r = parseFloat(document.getElementById('r2').value);
-  var t = parseFloat(document.getElementById('t2').value);
+  // Get input values and convert percentages to decimals
+  var r = parseFloat(document.getElementById('r2').value) / 100;
+  var t = parseFloat(document.getElementById('t2').value) / 100;
   
   // Hide previous messages
   document.getElementById('error2').style.display = 'none';
@@ -249,7 +234,7 @@ function calculateRho() {
   // Check for division by zero
   if (t === 1) {
     document.getElementById('error2').style.display = 'block';
-    document.getElementById('error2').innerHTML = '<strong>Error: t cannot equal 1 (division by zero).</strong>';
+    document.getElementById('error2').innerHTML = '<strong>Error: t cannot equal 100% (division by zero).</strong>';
     return;
   }
   
@@ -259,9 +244,9 @@ function calculateRho() {
   // Round to 3 decimal places
   rho = Math.round(rho * 1000) / 1000;
   
-  // Display result
+  // Display result (convert back to percentage for display)
   document.getElementById('resultText2').innerHTML = 
-    "A required pre-tax return on assets of <strong>" + rho + "</strong> is needed to compensate for the expropriation risk.";
+    "A required pre-tax return on assets of <strong>" + (rho * 100) + "%</strong> is needed to compensate for the expropriation risk.";
   document.getElementById('result2').style.display = 'block';
 }
 </script>
