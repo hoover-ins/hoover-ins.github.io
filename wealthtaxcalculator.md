@@ -4,46 +4,66 @@ title: Wealth Tax Calculator
 permalink: /wealthtaxcalculator/
 main_nav: true
 ---
-<h2 style="text-align: center;">Purpose</h2>
-This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax.
-It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
-<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%;">
-<h2 style="text-align: center;">Try It</h2>
-Input values for:
-<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
-<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk free rate of return seldom exceeds 5 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A Risk Free Rate of 5% should be entered as 5. Acceptable range of values is between -100 and 100 (-100%-100%). </p>
+<h2 style="text-align: center;">Introduction</h2>
 
-Or try a real-life proposal:
+The recent interest in wealth taxes highlights the importance of clarifying their tradeoffs, since the absence of a familiar benchmark leads to misanchored judgments about their costs and benefits. The apparent simplicity of taxing accumulated assets conceals the effects these policies impose on economic behavior and property rights, ultimately trading short-term fiscal gains for long-term economic costs. For example, the "Zucman Tax," a 2 percent wealth tax in France and Washington state's recently proposed 1 percent wealth tax in the United States have gained traction by appealing to fairness and these taxes as a source of redistributive public sector revenue. Surveys suggest that a non-trivial portion of the electorate would support a wealth tax levied on individuals with assets over a certain dollar threshold. However, extrapolation from that self-reported support generally rests on the assumption that citizens and business leaders are able to appropriately anchor the costs and benefits of a wealth tax, for which they do not have a comparable tax experience. The support for these measures therefore rests less on a concrete understanding of their incidence than on the perception that a wealth tax set at a seemingly low rate would impose minimal distortions, particularly when targeted at the wealthiest households. This disconnect between the political appeal of wealth taxes and the absence of a meaningful benchmark underscores the necessity of a framework that quantifies their true economic tradeoffs in a way that is relatable and tangible to a larger portion of citizens and policymakers.
+
+This calculator provides that framework. For those interested in the theoretical foundation and detailed analysis behind these calculations, please refer to the accompanying academic paper (citation to paper). For everyone else, the calculator below makes the economic tradeoffs of wealth taxation transparent and tangible.
+
+<h2 style="text-align: center;">Purpose</h2>
+
+This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax. It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
+
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%;">
+
+<h2 style="text-align: center;">Real-Life Proposals</h2>
+
+To see how this works in practice, here are actual wealth tax proposals you can test in the calculator:
+
 <table>
     <tr>
-        <th>Example</th>
+        <th>Proposal</th>
         <th>Wealth Tax Rate (θ)</th>
     </tr>
     <tr>
-        <th>State of Washington's Proposed Wealth Tax</th>
-        <th>1%</th>
+        <td>State of Washington's Proposed Wealth Tax</td>
+        <td>1%</td>
     </tr>
     <tr>
-        <th>France's Proposed "Zucman Tax"</th>
-        <th>2%</th>
+        <td>France's Proposed "Zucman Tax"</td>
+        <td>2%</td>
     </tr>
     <tr>
-        <th>California Ballot Initiative, "2026 Billionare Tax Act"</th>
-        <th>5%</th>
+        <td>California Ballot Initiative, "2026 Billionaire Tax Act"</td>
+        <td>5%</td>
     </tr>
     <tr>
-        <th>Bernie Sander's Proposed Wealth Tax Top Bracket</th>
-        <th>8%</th>
+        <td>Bernie Sanders' Proposed Wealth Tax Top Bracket</td>
+        <td>8%</td>
     </tr>
 </table>
 
-<p> This calculator also allows for the application of capital gains rates by state and the federal tax on capital gains.
-It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state I pay taxes in?</p>
-<p>*Note: Capital gains consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</p>
+<h2 style="text-align: center;">How to Use the Calculator</h2>
 
-<h2 style="text-align: center;">Required Return Analysis</h2>
-<p>Having established the equivalence between taxation and expropriation (t), the required rate of return (ρ) investors must demand to compensate for expropriation risk can be derived.</p>
-<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 200%;">
+Input values for the following parameters:
+
+<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
+
+<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk-free rate of return seldom exceeds 5 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A risk-free rate of 5% should be entered as 5. Acceptable range of values is between -100 and 100 (-100% to 100%).</p>
+
+<h3 style="text-align: center;">Adjusting for State and Federal Capital Gains Taxes</h3>
+
+<p>This calculator also allows for the application of capital gains rates by state and the federal tax on capital gains. It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state those gains are realized in?</p>
+
+<p><em>Note: Capital gains consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</em></p>
+
+
+
+
+
+<h2 style="text-align: center;">Understanding Required Returns</h2>
+
+<p>Beyond calculating the equivalent capital income tax rate, this calculator also determines the required pre-tax return on assets (ρ) that investors would demand to compensate for the expropriation risk created by a wealth tax combined with the existing federal and state capital gains tax rates. This metric is critical for communicating investment tradeoffs to owners of capital in the adopting jurisdiction. The required return calculations are meant to support economic theory and historical experience that substantial industry outmigration becomes likely, as investors seek jurisdictions where their capital can earn competitive after-tax returns without the recurring burden of wealth confiscation.</p>
 
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
@@ -214,6 +234,46 @@ function calculateAll() {
   document.getElementById('result1').style.display = 'block';
 }
 </script>
+
+
+
+<hr style="margin: 40px 0; border: 1px solid #ddd;">
+
+<h2 style="text-align: center;">Understanding the Calculations</h2>
+
+<p>For those interested in the mathematical framework behind the calculator, this section explains the two key formulas used.</p>
+
+<h3 style="text-align: center;">Equivalent Capital Income Tax Rate (t*)</h3>
+
+<p>The first calculation determines what rate of capital income taxation produces the same economic outcome as a wealth tax. This equivalence is captured by the following formula:</p>
+
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%; max-width: 600px; display: block; margin: 20px auto;">
+
+<p>Where:</p>
+<ul>
+  <li><strong>t*</strong> = the equivalent capital income tax rate</li>
+  <li><strong>θ</strong> (theta) = the wealth tax rate</li>
+  <li><strong>r</strong> = the risk-free rate of return</li>
+</ul>
+
+<p>This formula shows that even a seemingly small wealth tax translates into a much larger effective tax on capital income. When combined with existing state and federal capital gains taxes, the total tax burden can approach or exceed revenue-maximizing levels.</p>
+
+<h3 style="text-align: center;">Required Return Analysis (ρ)</h3>
+
+<p>The second calculation determines the pre-tax return that investors must demand to compensate for the expropriation risk created by a wealth tax:</p>
+
+<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 200%; max-width: 600px; display: block; margin: 20px auto;">
+
+<p>Where:</p>
+<ul>
+  <li><strong>ρ</strong> (rho) = the required pre-tax rate of return</li>
+  <li><strong>r</strong> = the risk-free rate of return</li>
+  <li><strong>t</strong> = the combined capital income tax rate (t* plus existing capital gains taxes)</li>
+</ul>
+
+<p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. When combined tax rates approach 100%, the required return becomes impossibly high, effectively discouraging investment in that jurisdiction.</p>
+
+<p><em>For a complete theoretical derivation and policy analysis, please refer to the accompanying academic paper.</em></p>
 
 <table>
     <tr>
