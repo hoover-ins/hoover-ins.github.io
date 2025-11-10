@@ -188,11 +188,11 @@ function calculateAll() {
   
   // Display results
   document.getElementById('resultText1').innerHTML = 
-    "<strong>Base equivalent capital income tax rate:</strong> " + tBase + "%<br>" +
-    "<strong>State capital gains tax:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>" +
-    "<strong>Federal capital gains tax:</strong> 20%<br>" +
-    "<strong>NIIT:</strong> 3.8%<br>" +
-    "<strong>Combined tax on capital:</strong> " + combinedTax + "%<br><br>" +
+    "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>" +
+    "<strong>Top State Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>" +
+    "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>" +
+    "<strong>Net Investment Income Tax:</strong> 3.8%<br>" +
+    "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>" +
     "A required pre-tax return on assets of <strong>" + rho + "%</strong> is needed to compensate for the expropriation risk.";
   document.getElementById('result1').style.display = 'block';
 }
