@@ -16,7 +16,7 @@ This calculator provides that framework. For those interested in the theoretical
 
 This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax. It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
 
-<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%;">
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
 
 <h2 style="text-align: center;">Real-Life Proposals</h2>
 
