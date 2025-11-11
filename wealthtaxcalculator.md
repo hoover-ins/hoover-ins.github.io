@@ -206,7 +206,7 @@ function calculateAll() {
   // Check for division by zero
   if (tCombinedDecimal >= 2) {
     document.getElementById('error1').style.display = 'block';
-    document.getElementById('error1').innerHTML = '<strong>Error: Combined tax rate equals or exceeds 100% (calculation not possible).</strong>';
+    document.getElementById('error1').innerHTML = '<strong>Error: Combined tax rate equals or exceeds 200% (calculation not possible).</strong>';
     return;
   }
   
