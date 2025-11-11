@@ -249,7 +249,7 @@ function calculateAll() {
 
 <p>The first calculation determines what rate of capital income taxation produces the same economic outcome as a wealth tax. This equivalence is captured by the following formula:</p>
 
-<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="width: 200%; max-width: 600px; display: block; margin: 20px auto;">
+<img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
 
 <p>Where:</p>
 <ul>
@@ -264,7 +264,7 @@ function calculateAll() {
 
 <p>The second calculation determines the pre-tax return that investors must demand to compensate for the expropriation risk created by a wealth tax:</p>
 
-<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="width: 200%; max-width: 600px; display: block; margin: 20px auto;">
+<img src="{{ site.baseurl }}/assets/rhoformula.jpg" alt="Rho Formula" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
 
 <p>Where:</p>
 <ul>
