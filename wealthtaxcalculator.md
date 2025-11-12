@@ -85,49 +85,49 @@ Input values for the following parameters:
       <option value="0.039">Arkansas</option>
       <option value="0.133">California</option>
       <option value="0.044">Colorado</option>
-      <option value="0.0699">Connecticut</option>
+      <option value="0.096">Connecticut</option>
       <option value="0.066">Delaware</option>
       <option value="0">Florida</option>
       <option value="0.0539">Georgia</option>
       <option value="0.0725">Hawaii</option>
-      <option value="0.0569">Idaho</option>
+      <option value="0.053">Idaho</option>
       <option value="0.0495">Illinois</option>
       <option value="0.03">Indiana</option>
       <option value="0.038">Iowa</option>
       <option value="0.0558">Kansas</option>
       <option value="0.04">Kentucky</option>
-      <option value="0.03">Louisiana</option>
+      <option value="0.0425">Louisiana</option>
       <option value="0.0715">Maine</option>
       <option value="0.0575">Maryland</option>
-      <option value="0.09">Massachusetts</option>
+      <option value="0.16">Massachusetts</option>
       <option value="0.0425">Michigan</option>
       <option value="0.0985">Minnesota</option>
       <option value="0.044">Mississippi</option>
-      <option value="0.047">Missouri</option>
-      <option value="0.059">Montana</option>
+      <option value="0.0495">Missouri</option>
+      <option value="0.041">Montana</option>
       <option value="0.052">Nebraska</option>
       <option value="0">Nevada</option>
       <option value="0">New Hampshire</option>
       <option value="0.1075">New Jersey</option>
       <option value="0.059">New Mexico</option>
       <option value="0.109">New York</option>
-      <option value="0.0425">North Carolina</option>
+      <option value="0.045">North Carolina</option>
       <option value="0.025">North Dakota</option>
       <option value="0.035">Ohio</option>
       <option value="0.0475">Oklahoma</option>
       <option value="0.099">Oregon</option>
       <option value="0.0307">Pennsylvania</option>
       <option value="0.0599">Rhode Island</option>
-      <option value="0.062">South Carolina</option>
+      <option value="0.0358">South Carolina</option>
       <option value="0">South Dakota</option>
       <option value="0">Tennessee</option>
       <option value="0">Texas</option>
       <option value="0.0455">Utah</option>
       <option value="0.0875">Vermont</option>
       <option value="0.0575">Virginia</option>
-      <option value="0.1075">Washington D.C.</option>
-      <option value="0.07">Washington State</option>
-      <option value="0.0482">West Virginia</option>
+      <option value="0.09">Washington D.C.</option>
+      <option value="0.099">Washington State</option>
+      <option value="0.0512">West Virginia</option>
       <option value="0.0765">Wisconsin</option>
       <option value="0">Wyoming</option>
       <option value="0.3">France - Financial Assets</option>
@@ -540,8 +540,6 @@ function calculateAll() {
         <td>Tax Foundation</td>
     </tr>
 </table>
-
-<hr>
 
 <table>
     <tr>
