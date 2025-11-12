@@ -78,7 +78,7 @@ Input values for the following parameters:
     </label>
     <select id="state" style="width: 100%; padding: 8px; font-size: 16px;">
       <option value="0">United States (Federal Only)</option>
-      <option value="0.0486">National Average</option>
+      <option value="0.0522">National Average</option>
       <option value="0.05">Alabama</option>
       <option value="0">Alaska</option>
       <option value="0.025">Arizona</option>
