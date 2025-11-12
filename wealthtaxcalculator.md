@@ -287,7 +287,7 @@ function calculateAll() {
     <tr>
         <td>Alabama</td>
         <td>5%</td>
-        <td>Tax Foundation</td>
+        <td>Alabama Code §§ 40-18-1 et seq.</td>
     </tr>
     <tr>
         <td>Alaska</td>
@@ -297,7 +297,7 @@ function calculateAll() {
     <tr>
         <td>Arizona</td>
         <td>2.5%</td>
-        <td>Tax Foundation</td>
+        <td>Arizona Revised Statutes § 43-1011</td>
     </tr>
     <tr>
         <td>Arkansas</td>
@@ -307,22 +307,22 @@ function calculateAll() {
     <tr>
         <td>California</td>
         <td>13.3%</td>
-        <td>Tax Foundation</td>
+        <td>California Revenue and Taxation Code §§ 17041-17043</td>
     </tr>
     <tr>
         <td>Colorado</td>
         <td>4.4%</td>
-        <td>Tax Foundation</td>
+        <td>C.R.S § 39-22-104</td>
     </tr>
     <tr>
         <td>Connecticut</td>
-        <td>6.99%</td>
-        <td>Tax Foundation</td>
+        <td>9.6%</td>
+        <td>Conn. Gen. Stat. § 12-506</td>
     </tr>
     <tr>
         <td>Delaware</td>
         <td>6.6%</td>
-        <td>Tax Foundation</td>
+        <td>Delaware Code § 1124</td>
     </tr>
     <tr>
         <td>Florida</td>
@@ -332,92 +332,92 @@ function calculateAll() {
     <tr>
         <td>Georgia</td>
         <td>5.39%</td>
-        <td>Tax Foundation</td>
+        <td>Georgia Code § 48‑7‑20</td>
     </tr>
     <tr>
         <td>Hawaii</td>
         <td>7.25%</td>
-        <td>Tax Foundation</td>
+        <td>Hawaii Revised Stat. § 235‑51(f)</td>
     </tr>
     <tr>
         <td>Idaho</td>
-        <td>5.69%</td>
-        <td>Tax Foundation</td>
+        <td>5.3%</td>
+        <td>Idaho Code § 63‑3024</td>
     </tr>
     <tr>
         <td>Illinois</td>
         <td>4.95%</td>
-        <td>Tax Foundation</td>
+        <td>35 ILCS 5/201</td>
     </tr>
     <tr>
         <td>Indiana</td>
         <td>3%</td>
-        <td>Tax Foundation</td>
+        <td>Indiana Code § 6‑3‑2‑1</td>
     </tr>
     <tr>
         <td>Iowa</td>
         <td>3.8%</td>
-        <td>Tax Foundation</td>
+        <td>Iowa Code § 422.5</td>
     </tr>
     <tr>
         <td>Kansas</td>
         <td>5.58%</td>
-        <td>Tax Foundation</td>
+        <td>K.S.A. 79‑32,110</td>
     </tr>
     <tr>
         <td>Kentucky</td>
         <td>4%</td>
-        <td>Tax Foundation</td>
+        <td>Kentucky Revised Statutes § 141.020</td>
     </tr>
     <tr>
         <td>Louisiana</td>
-        <td>3%</td>
-        <td>Tax Foundation</td>
+        <td>4.25%</td>
+        <td>Louisiana Revised Statutes § 47:32</td>
     </tr>
     <tr>
         <td>Maine</td>
         <td>7.15%</td>
-        <td>Tax Foundation</td>
+        <td>36 M.R.S.A. § 5111</td>
     </tr>
     <tr>
         <td>Maryland</td>
         <td>5.75%</td>
-        <td>Tax Foundation</td>
+        <td>Maryland Code Tax‑Gen. § 10‑105</td>
     </tr>
     <tr>
         <td>Massachusetts</td>
-        <td>9%</td>
-        <td>Tax Foundation</td>
+        <td>16%</td>
+        <td>Massachusetts General Laws c. 62 § 4</td>
     </tr>
     <tr>
         <td>Michigan</td>
         <td>4.25%</td>
-        <td>Tax Foundation</td>
+        <td>Michigan Compiled Laws § 206.51</td>
     </tr>
     <tr>
         <td>Minnesota</td>
         <td>9.85%</td>
-        <td>Tax Foundation</td>
+        <td>Minnesota Statutes § 290.06</td>
     </tr>
     <tr>
         <td>Mississippi</td>
         <td>4.4%</td>
-        <td>Tax Foundation</td>
+        <td>Mississippi Code § 27‑7‑5</td>
     </tr>
     <tr>
         <td>Missouri</td>
-        <td>4.7%</td>
-        <td>Tax Foundation</td>
+        <td>4.95%</td>
+        <td>Missouri Revised Statutes § 143.011</td>
     </tr>
     <tr>
         <td>Montana</td>
-        <td>5.9%</td>
-        <td>Tax Foundation</td>
+        <td>4.1%</td>
+        <td>Montana Code Annotated § 15‑30‑2103</td>
     </tr>
     <tr>
         <td>Nebraska</td>
         <td>5.2%</td>
-        <td>Tax Foundation</td>
+        <td>Nebraska Revised Statute § 77‑2715.03</td>
     </tr>
     <tr>
         <td>Nevada</td>
@@ -432,57 +432,57 @@ function calculateAll() {
     <tr>
         <td>New Jersey</td>
         <td>10.75%</td>
-        <td>Tax Foundation</td>
+        <td>N.J. Stat. § 54A:2‑1</td>
     </tr>
     <tr>
         <td>New Mexico</td>
         <td>5.9%</td>
-        <td>Tax Foundation</td>
+        <td>N.M. Stat. Ann. § 7-2-7</td>
     </tr>
     <tr>
         <td>New York</td>
         <td>10.9%</td>
-        <td>Tax Foundation</td>
+        <td>New York Tax Law § 601</td>
     </tr>
     <tr>
         <td>North Carolina</td>
-        <td>4.25%</td>
-        <td>Tax Foundation</td>
+        <td>4.5%</td>
+        <td>N.C. Gen. Stat. § 105‑153.7</td>
     </tr>
     <tr>
         <td>North Dakota</td>
         <td>2.5%</td>
-        <td>Tax Foundation</td>
+        <td>North Dakota Century Code § 57-38-30.3</td>
     </tr>
     <tr>
         <td>Ohio</td>
         <td>3.5%</td>
-        <td>Tax Foundation</td>
+        <td>Ohio Revised Code § 5747.02</td>
     </tr>
     <tr>
         <td>Oklahoma</td>
         <td>4.75%</td>
-        <td>Tax Foundation</td>
+        <td>Oklahoma Statutes § 68-2355</td>
     </tr>
     <tr>
         <td>Oregon</td>
         <td>9.9%</td>
-        <td>Tax Foundation</td>
+        <td>Oregon Revised Statutes § 316.037</td>
     </tr>
     <tr>
         <td>Pennsylvania</td>
         <td>3.07%</td>
-        <td>Tax Foundation</td>
+        <td>72 P.S. § 7302 (a)</td>
     </tr>
     <tr>
         <td>Rhode Island</td>
         <td>5.99%</td>
-        <td>Tax Foundation</td>
+        <td>Rhode Island General Laws § 44-30-2.6</td>
     </tr>
     <tr>
         <td>South Carolina</td>
-        <td>6.2%</td>
-        <td>Tax Foundation</td>
+        <td>3.58%</td>
+        <td>South Carolina Code § 12‑6‑510</td>
     </tr>
     <tr>
         <td>South Dakota</td>
@@ -502,37 +502,37 @@ function calculateAll() {
     <tr>
         <td>Utah</td>
         <td>4.55%</td>
-        <td>Tax Foundation</td>
+        <td>Utah Code § 59-10-104</td>
     </tr>
     <tr>
         <td>Vermont</td>
         <td>8.75%</td>
-        <td>Tax Foundation</td>
+        <td>32 V.S.A. § 5822</td>
     </tr>
     <tr>
         <td>Virginia</td>
         <td>5.75%</td>
-        <td>Tax Foundation</td>
+        <td>Code of Virginia § 58.1-320</td>
     </tr>
     <tr>
         <td>Washington D.C.</td>
-        <td>10.75%</td>
-        <td>Tax Foundation</td>
+        <td>9%</td>
+        <td>D.C. Code § 47‑1806.03</td>
     </tr>
     <tr>
         <td>Washington</td>
-        <td>7%</td>
-        <td>Tax Foundation</td>
+        <td>9.9%</td>
+        <td>RCW 82.87.040</td>
     </tr>
     <tr>
         <td>West Virginia</td>
-        <td>4.82%</td>
-        <td>Tax Foundation</td>
+        <td>5.12%</td>
+        <td>West Virginia Code § 11‑21‑4i</td>
     </tr>
     <tr>
         <td>Wisconsin</td>
         <td>7.65%</td>
-        <td>Tax Foundation</td>
+        <td>Wis. Stat. § 71.01</td>
     </tr>
     <tr>
         <td>Wyoming</td>
@@ -541,13 +541,13 @@ function calculateAll() {
     </tr>
 </table>
 
-
+<hr>
 
 <table>
     <tr>
-        <td></td>
-        <td>Capital Gains</td>
-        <td>Source</td>
+        <th></th>
+        <th>Capital Gains</th>
+        <th>Source</th>
     </tr>
     <tr>
         <td>France - Financial Assets</td>
@@ -560,8 +560,5 @@ function calculateAll() {
         <td>Service-Public.fr</td>
     </tr>
 </table>
-
-"></option>
-      <option value="0.362">
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
