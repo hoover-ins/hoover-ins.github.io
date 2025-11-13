@@ -235,7 +235,7 @@ function calculateAll() {
     resultHTML += "<strong>France Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
     resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
   } else if (isNYC) {
-    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + (cityRate * 100) + "%<br>";
+    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + Math.round((cityRate * 100) * 100) / 100 + "%<br>";
     resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
     resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
     resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
@@ -489,7 +489,7 @@ function calculateAll() {
     <tr>
         <td>Pennsylvania</td>
         <td>3.07%</td>
-        <td><a href="">72 P.S. § 7302 (a)</a></td>
+        <td><a href="https://www.pa.gov/agencies/revenue/resources/tax-types-and-information/personal-income-tax">72 P.S. § 7302 (a)</a></td>
     </tr>
     <tr>
         <td>Rhode Island</td>
