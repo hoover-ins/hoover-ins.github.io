@@ -111,6 +111,7 @@ Input values for the following parameters:
       <option value="0.1075">New Jersey</option>
       <option value="0.059">New Mexico</option>
       <option value="0.109">New York</option>
+      <option value="0.1430">New York City</option>
       <option value="0.045">North Carolina</option>
       <option value="0.025">North Dakota</option>
       <option value="0.035">Ohio</option>
@@ -177,8 +178,18 @@ function calculateAll() {
   var stateSelect = document.getElementById('state');
   var selectedStateName = stateSelect.options[stateSelect.selectedIndex].text;
   
-  // Check if France is selected
+  // Check if France or NYC is selected
   var isFrance = selectedStateName.indexOf("France") !== -1;
+  var isNYC = selectedStateName.indexOf("New York City") !== -1;
+  
+  // For NYC, separate city and state rates
+  var cityRate = 0;
+  var actualStateRate = stateCapGainsRate;
+  
+  if (isNYC) {
+    cityRate = 0.034; // 3.4% NYC tax
+    actualStateRate = 0.109; // 10.9% NY state tax
+  }
   
   // Federal capital gains and NIIT (constants) - only for US
   var federalCapGains = isFrance ? 0 : 0.20;
@@ -197,8 +208,8 @@ function calculateAll() {
   // Calculate base equivalent tax rate
   var tBase = (1 - ((r * (1 - theta)) / (r + theta))) * 100;
   
-  // Calculate combined tax (base + state + federal + NIIT, all in percentage)
-  var combinedTax = tBase + (stateCapGainsRate * 100) + (federalCapGains * 100) + (niit * 100);
+  // Calculate combined tax (base + city + state + federal + NIIT, all in percentage)
+  var combinedTax = tBase + (cityRate * 100) + (actualStateRate * 100) + (federalCapGains * 100) + (niit * 100);
   
   // Calculate rho using the combined tax rate
   var tCombinedDecimal = combinedTax / 100;
@@ -217,11 +228,17 @@ function calculateAll() {
   combinedTax = Math.round(combinedTax * 1000) / 1000;
   rho = Math.round((rho * 100) * 1000) / 1000;
   
-  // Display results - different format for France
+  // Display results - different format for France, NYC, and regular states
   var resultHTML = "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>";
   
   if (isFrance) {
     resultHTML += "<strong>France Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
+    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
+  } else if (isNYC) {
+    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + (cityRate * 100) + "%<br>";
+    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
+    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
+    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
     resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
   } else {
     resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
@@ -287,257 +304,270 @@ function calculateAll() {
     <tr>
         <td>Alabama</td>
         <td>5%</td>
-        <td>Alabama Code §§ 40-18-1 et seq.</td>
+        <td><a href="https://www.revenue.alabama.gov/tax-types/individual-income-tax/">Alabama Code §§ 40-18-1 et seq.</a></td>
     </tr>
     <tr>
         <td>Alaska</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>Arizona</td>
         <td>2.5%</td>
-        <td>Arizona Revised Statutes § 43-1011</td>
+        <td><a href="https://www.azleg.gov/ars/43/01011.htm">Arizona Revised Statutes § 43-1011</a></td>
     </tr>
     <tr>
         <td>Arkansas</td>
         <td>3.9%</td>
-        <td>Tax Foundation</td>
+        <td><a href="https://www.arkansasedc.com/why-arkansas/business-climate/tax-structure/personal-income-tax">Tax Foundation</td>
     </tr>
     <tr>
         <td>California</td>
         <td>13.3%</td>
-        <td>California Revenue and Taxation Code §§ 17041-17043</td>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=17041.&lawCode=RTC">California Revenue and Taxation Code §§ 17041-17043</a></td>
     </tr>
     <tr>
         <td>Colorado</td>
         <td>4.4%</td>
-        <td>C.R.S § 39-22-104</td>
+        <td><a href="https://tax.colorado.gov/sites/tax/files/documents/Individual_Income_Tax_Guide_Mar_2024.pdf">C.R.S § 39-22-104</a></td>
     </tr>
     <tr>
         <td>Connecticut</td>
         <td>9.6%</td>
-        <td>Conn. Gen. Stat. § 12-506</td>
+        <td><a href="https://search.cga.state.ct.us/r/statute/dtsearch.asp?cmd=getdoc&DocId=8109&Index=I%3a%5czindex%5csurs&HitCount=2&hits=cf+d0+&hc=18&req=%28number+contains+12%2D506%2A%29&Item=0">Conn. Gen. Stat. § 12-506</a></td>
     </tr>
     <tr>
         <td>Delaware</td>
         <td>6.6%</td>
-        <td>Delaware Code § 1124</td>
+        <td><a href="https://delcode.delaware.gov/title30/c011/sc01/index.html">Delaware Code § 1124</a></td>
     </tr>
     <tr>
         <td>Florida</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>Georgia</td>
         <td>5.39%</td>
-        <td>Georgia Code § 48‑7‑20</td>
+        <td><a href="https://www.legis.ga.gov/api/document/docs/default-source/legislative-counsel-document-library/25sumdoc.pdf?sfvrsn=95973fc9_4">Georgia Code § 48‑7‑20</a></td>
     </tr>
     <tr>
         <td>Hawaii</td>
         <td>7.25%</td>
-        <td>Hawaii Revised Stat. § 235‑51(f)</td>
+        <td><a href="https://files.hawaii.gov/tax/legal/hrs/hrs_235.pdf">Hawaii Revised Stat. § 235‑51(f)</a></td>
     </tr>
     <tr>
         <td>Idaho</td>
         <td>5.3%</td>
-        <td>Idaho Code § 63‑3024</td>
+        <td><a href="https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3024/">Idaho Code § 63‑3024</a></td>
     </tr>
     <tr>
         <td>Illinois</td>
         <td>4.95%</td>
-        <td>35 ILCS 5/201</td>
+        <td><a href="https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K201.htm">35 ILCS 5/201</a></td>
     </tr>
     <tr>
         <td>Indiana</td>
         <td>3%</td>
-        <td>Indiana Code § 6‑3‑2‑1</td>
+        <td><a href="https://iga.in.gov/laws/2024/ic/titles/6#6-3-2.1">Indiana Code § 6‑3‑2‑1</a></td>
     </tr>
     <tr>
         <td>Iowa</td>
         <td>3.8%</td>
-        <td>Iowa Code § 422.5</td>
+        <td><a href="https://www.legis.iowa.gov/docs/ico/chapter/422.pdf">Iowa Code § 422.5</a></td>
     </tr>
     <tr>
         <td>Kansas</td>
         <td>5.58%</td>
-        <td>K.S.A. 79‑32,110</td>
+        <td><a href="https://www.kslegislature.gov/li_2024/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0110_section/079_032_0110_k/">K.S.A. 79‑32,110</a></td>
     </tr>
     <tr>
         <td>Kentucky</td>
         <td>4%</td>
-        <td>Kentucky Revised Statutes § 141.020</td>
+        <td><a href="https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56339">Kentucky Revised Statutes § 141.020</a></td>
     </tr>
     <tr>
         <td>Louisiana</td>
         <td>4.25%</td>
-        <td>Louisiana Revised Statutes § 47:32</td>
+        <td><a href="https://www.legis.la.gov/legis/Law.aspx?p=y&d=101946">Louisiana Revised Statutes § 47:32</a></td>
     </tr>
     <tr>
         <td>Maine</td>
         <td>7.15%</td>
-        <td>36 M.R.S.A. § 5111</td>
+        <td><a href="https://legislature.maine.gov/statutes/36/title36sec5111.html">36 M.R.S.A. § 5111</a></td>
     </tr>
     <tr>
         <td>Maryland</td>
         <td>5.75%</td>
-        <td>Maryland Code Tax‑Gen. § 10‑105</td>
+        <td><a href="https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-105&enactments=false">Maryland Code Tax‑Gen. § 10‑105</a></td>
     </tr>
     <tr>
         <td>Massachusetts</td>
         <td>16%</td>
-        <td>Massachusetts General Laws c. 62 § 4</td>
+        <td><a href="https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/section4">Massachusetts General Laws c. 62 § 4</a></td>
     </tr>
     <tr>
         <td>Michigan</td>
         <td>4.25%</td>
-        <td>Michigan Compiled Laws § 206.51</td>
+        <td><a href="https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-51#:~:text=206.51%20Tax%20rate%20on%20taxable,including%20items%20of%20income%20and">Michigan Compiled Laws § 206.51</a></td>
     </tr>
     <tr>
         <td>Minnesota</td>
         <td>9.85%</td>
-        <td>Minnesota Statutes § 290.06</td>
+        <td><a href="https://www.revisor.mn.gov/statutes/cite/290.06">Minnesota Statutes § 290.06</a></td>
     </tr>
     <tr>
         <td>Mississippi</td>
         <td>4.4%</td>
-        <td>Mississippi Code § 27‑7‑5</td>
+        <td><a href="https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=b59466b9-22c5-461b-86ed-22e7f848bff8&nodeid=AAPAAFAABAAD&nodepath=%2FROOT%2FAAP%2FAAPAAF%2FAAPAAFAAB%2FAAPAAFAABAAD&level=4&haschildren=&populated=false&title=%C2%A7+27-7-5.+Imposition+of+the+tax.&config=00JABhZDIzMTViZS04NjcxLTQ1MDItOTllOS03MDg0ZTQxYzU4ZTQKAFBvZENhdGFsb2f8inKxYiqNVSihJeNKRlUp&pddocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A6FG8-VHX3-SBN1-P36K-00008-00&ecomp=6gf5kkk&prid=ef6cdf66-5f51-4584-bf45-0c3b636c1a0a">Mississippi Code § 27‑7‑5</a></td>
     </tr>
     <tr>
         <td>Missouri</td>
         <td>4.95%</td>
-        <td>Missouri Revised Statutes § 143.011</td>
+        <td><a href="https://revisor.mo.gov/main/OneSection.aspx?section=143.011">Missouri Revised Statutes § 143.011</a></td>
     </tr>
     <tr>
         <td>Montana</td>
         <td>4.1%</td>
-        <td>Montana Code Annotated § 15‑30‑2103</td>
+        <td><a href="https://archive.legmt.gov/bills/mca/title_0150/chapter_0300/part_0210/section_0030/0150-0300-0210-0030.html">Montana Code Annotated § 15‑30‑2103</a></td>
     </tr>
     <tr>
         <td>Nebraska</td>
         <td>5.2%</td>
-        <td>Nebraska Revised Statute § 77‑2715.03</td>
+        <td><a href="https://www.nebraskalegislature.gov/laws/statutes.php?statute=77-2715.03">Nebraska Revised Statute § 77‑2715.03</a></td>
     </tr>
     <tr>
         <td>Nevada</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>New Hampshire</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>New Jersey</td>
         <td>10.75%</td>
-        <td>N.J. Stat. § 54A:2‑1</td>
+        <td><a href="https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/53131/53135?f=templates$fn=document-frameset.htm$q=%5Brank,100%3A%5Bdomain%3A%5Band%3A54A%3A2-1%20Imposition%20of%20tax.%5D%5D%20%5Bsum%3A54A%3A2-1%20Imposition%20of%20tax.%5D%20%5D%20$x=server$3.0#LPHit1">N.J. Stat. § 54A:2‑1</a></td>
     </tr>
     <tr>
         <td>New Mexico</td>
         <td>5.9%</td>
-        <td>N.M. Stat. Ann. § 7-2-7</td>
+        <td><a href="https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/fd8f3075-42e7-4cdd-88db-7cab84ef72de/PIT%20rates_2005_2025.pdf">N.M. Stat. Ann. § 7-2-7</a></td>
     </tr>
     <tr>
         <td>New York</td>
         <td>10.9%</td>
-        <td>New York Tax Law § 601</td>
+        <td><a href="https://www.nysenate.gov/legislation/laws/TAX/601">New York Tax Law § 601</a></td>
     </tr>
     <tr>
         <td>North Carolina</td>
         <td>4.5%</td>
-        <td>N.C. Gen. Stat. § 105‑153.7</td>
+        <td><a href=" https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_105/GS_105-153.7.pdf">N.C. Gen. Stat. § 105‑153.7</a></td>
     </tr>
     <tr>
         <td>North Dakota</td>
         <td>2.5%</td>
-        <td>North Dakota Century Code § 57-38-30.3</td>
+        <td><a href="https://ndlegis.gov/cencode/t57c38.pdf">North Dakota Century Code § 57-38-30.3</a></td>
     </tr>
     <tr>
         <td>Ohio</td>
         <td>3.5%</td>
-        <td>Ohio Revised Code § 5747.02</td>
+        <td><a href="https://codes.ohio.gov/ohio-revised-code/section-5747.02">Ohio Revised Code § 5747.02</a></td>
     </tr>
     <tr>
         <td>Oklahoma</td>
         <td>4.75%</td>
-        <td>Oklahoma Statutes § 68-2355</td>
+        <td><a href=" https://oksenate.gov/sites/default/files/2019-12/os68.pdf">Oklahoma Statutes § 68-2355</a></td>
     </tr>
     <tr>
         <td>Oregon</td>
         <td>9.9%</td>
-        <td>Oregon Revised Statutes § 316.037</td>
+        <td><a href="https://www.oregonlegislature.gov/bills_laws/ors/ors316.html">Oregon Revised Statutes § 316.037</a></td>
     </tr>
     <tr>
         <td>Pennsylvania</td>
         <td>3.07%</td>
-        <td>72 P.S. § 7302 (a)</td>
+        <td><a href="">72 P.S. § 7302 (a)</a></td>
     </tr>
     <tr>
         <td>Rhode Island</td>
         <td>5.99%</td>
-        <td>Rhode Island General Laws § 44-30-2.6</td>
+        <td><a href="https://tax.ri.gov/sites/g/files/xkgbur541/files/2024-10/ADV_2024_26_Inflation_Adjustments.pdf">Rhode Island General Laws § 44-30-2.6</a></td>
     </tr>
     <tr>
         <td>South Carolina</td>
         <td>3.58%</td>
-        <td>South Carolina Code § 12‑6‑510</td>
+        <td><a href="https://www.scstatehouse.gov/code/t12c006.php">South Carolina Code § 12‑6‑510</a></td>
     </tr>
     <tr>
         <td>South Dakota</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>Tennessee</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>Texas</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
     </tr>
     <tr>
         <td>Utah</td>
         <td>4.55%</td>
-        <td>Utah Code § 59-10-104</td>
+        <td><a href="https://le.utah.gov/xcode/Title59/Chapter10/59-10-S104.html">Utah Code § 59-10-104</a></td>
     </tr>
     <tr>
         <td>Vermont</td>
         <td>8.75%</td>
-        <td>32 V.S.A. § 5822</td>
+        <td><a href="https://legislature.vermont.gov/statutes/section/32/151/05822">32 V.S.A. § 5822</a></td>
     </tr>
     <tr>
         <td>Virginia</td>
         <td>5.75%</td>
-        <td>Code of Virginia § 58.1-320</td>
+        <td><a href="https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-320/#:~:text=Imposition%20of%20tax.&text=31%2C%201989%3B%20and-,Five%20and%20three%2Dquarters%20percent%20on%20income%20in%20excess%20of,%2D151.011%3B%201971%2C%20Ex.">Code of Virginia § 58.1-320</a></td>
     </tr>
     <tr>
         <td>Washington D.C.</td>
         <td>9%</td>
-        <td>D.C. Code § 47‑1806.03</td>
+        <td><a href="https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.03">D.C. Code § 47‑1806.03</a></td>
     </tr>
     <tr>
         <td>Washington</td>
         <td>9.9%</td>
-        <td>RCW 82.87.040</td>
+        <td><a href="https://app.leg.wa.gov/RCW/default.aspx?cite=82.87.040">RCW 82.87.040</a></td>
     </tr>
     <tr>
         <td>West Virginia</td>
         <td>5.12%</td>
-        <td>West Virginia Code § 11‑21‑4i</td>
+        <td><a href="https://code.wvlegislature.gov/11-21-4I/">West Virginia Code § 11‑21‑4i</a></td>
     </tr>
     <tr>
         <td>Wisconsin</td>
         <td>7.65%</td>
-        <td>Wis. Stat. § 71.01</td>
+        <td><a href="https://docs.legis.wisconsin.gov/statutes/statutes/71/iv/27">Wis. Stat. § 71.01</a></td>
     </tr>
     <tr>
         <td>Wyoming</td>
         <td>0%</td>
-        <td>Tax Foundation</td>
+        <td></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th></th>
+        <th>Capital Gains</th>
+        <th>Source</th>
+    </tr>
+    <tr>
+        <td>New York City</td>
+        <td>3.4%</td>
+        <td><a href="https://www.nysenate.gov/legislation/laws/TAX/1304">N.Y. Tax Law § 1304</a></td>
     </tr>
 </table>
 
@@ -550,13 +580,15 @@ function calculateAll() {
     <tr>
         <td>France - Financial Assets</td>
         <td>30%</td>
-        <td>Service-Public.fr,</td>
+        <td><a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F21618?lang=en">Service-Public.fr</a></td>
     </tr>
     <tr>
         <td>France - Real Estate (under 22 years)</td>
         <td>36.2%</td>
-        <td>Service-Public.fr</td>
+        <td><a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F21618?lang=en">Service-Public.fr</a></td>
     </tr>
 </table>
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
+
+<p>Page last updated November 13, 2025.</p>
