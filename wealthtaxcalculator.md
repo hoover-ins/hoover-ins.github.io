@@ -117,6 +117,7 @@ Input values for the following parameters:
       <option value="0.035">Ohio</option>
       <option value="0.0475">Oklahoma</option>
       <option value="0.099">Oregon</option>
+      <option value="0.139">Portland, Oregon</option>
       <option value="0.0307">Pennsylvania</option>
       <option value="0.0599">Rhode Island</option>
       <option value="0.0358">South Carolina</option>
@@ -178,17 +179,28 @@ function calculateAll() {
   var stateSelect = document.getElementById('state');
   var selectedStateName = stateSelect.options[stateSelect.selectedIndex].text;
   
-  // Check if France or NYC is selected
+  // Check if France, NYC, or Portland is selected
   var isFrance = selectedStateName.indexOf("France") !== -1;
   var isNYC = selectedStateName.indexOf("New York City") !== -1;
+  var isPortland = selectedStateName.indexOf("Portland, Oregon") !== -1;
   
-  // For NYC, separate city and state rates
+  // For NYC and Portland, separate city and state rates
   var cityRate = 0;
+  var metroRate = 0;
+  var pfaRate = 0;
   var actualStateRate = stateCapGainsRate;
   
   if (isNYC) {
     cityRate = 0.034; // 3.4% NYC tax
     actualStateRate = 0.109; // 10.9% NY state tax
+  }
+
+  // For Portland, separate city and state rates
+  if (isPortland) {
+    metroRate = 0.01; // 1% Metro Tax
+    pfaRate = 0.03; // 3% Preschool for All Tax
+    cityRate = metroRate + pfaRate; // 4% total city tax
+    actualStateRate = 0.099; // 9.9% Oregon state tax
   }
   
   // Federal capital gains and NIIT (constants) - only for US
@@ -228,13 +240,19 @@ function calculateAll() {
   combinedTax = Math.round(combinedTax * 1000) / 1000;
   rho = Math.round((rho * 100) * 1000) / 1000;
   
-  // Display results - different format for France, NYC, and regular states
+  // Display results - different format for France, NYC, Portland, and regular states
   var resultHTML = "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>";
   
   if (isFrance) {
     resultHTML += "<strong>France Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
     resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
   } else if (isNYC) {
+    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + Math.round((cityRate * 100) * 100) / 100 + "%<br>";
+    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
+    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
+    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
+    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
+  } else if (isPortland) {
     resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + Math.round((cityRate * 100) * 100) / 100 + "%<br>";
     resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
     resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
@@ -569,6 +587,11 @@ function calculateAll() {
         <td>3.4%</td>
         <td><a href="https://www.nysenate.gov/legislation/laws/TAX/1304">N.Y. Tax Law § 1304</a></td>
     </tr>
+    <tr>
+        <td>Portland, Oregon</td>
+        <td>4.0%</td>
+        <td><a href="https://www.oregonmetro.gov/sites/default/files/2025/10/16/Metro-Code-complete-effective-20250924.pdf">Metro Code § 7.06.040</a>; <a href = "https://multco.us/file/preschool_for_all_personal_income_tax_code/download">Multnomah County Code § 11.512</a></td>
+    </tr>
 </table>
 
 <table>
@@ -591,4 +614,4 @@ function calculateAll() {
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
 
-<p>Page last updated November 13, 2025.</p>
+<p>Page last updated November 14, 2025.</p>
