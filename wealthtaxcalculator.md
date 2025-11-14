@@ -167,7 +167,7 @@ Input values for the following parameters:
 
   <div style="margin: 20px 0;">
     <label for="r1" style="display: block; margin-bottom: 5px;">
-      <strong>Risk Free Rate (r) in %:</strong>
+      <strong>Risk Free Rate (r):</strong>
     </label>
     <input type="number" id="r1" step="0.001" value="" min="-100" max="100"
            style="width: 100%; padding: 8px; font-size: 16px;">
