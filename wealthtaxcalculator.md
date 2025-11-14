@@ -49,7 +49,7 @@ To see how this works in practice, here are actual wealth tax proposals you can 
 
 Input values for the following parameters:
 
-<p><strong>Expropriation Risk - Wealth Tax Rate (θ):</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
+<p><strong>Wealth Tax Rate (θ) - Expropriation Risk:</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
 
 <p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk-free rate of return seldom exceeds 5 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A risk-free rate of 5% should be entered as 5. Acceptable range of values is between -100 and 100 (-100% to 100%).</p>
 
@@ -139,7 +139,7 @@ Input values for the following parameters:
 
   <div style="margin: 20px 0;">
     <label for="theta1" style="display: block; margin-bottom: 5px;">
-      <strong>Expropriation Risk - Wealth Tax Rate (θ) in %:</strong>
+      <strong>Wealth Tax Rate (θ) - Expropriation Risk:</strong>
     </label>
     <input type="number" id="theta1" step="0.001" value="" min="0" max="100"
            style="width: 100%; padding: 8px; font-size: 16px;">
@@ -579,7 +579,7 @@ function calculateAll() {
 <table>
     <tr>
         <th></th>
-        <th>Capital Gains</th>
+        <th>Top Capital Gains Rate</th>
         <th>Source</th>
     </tr>
     <tr>
