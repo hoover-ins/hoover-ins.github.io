@@ -312,7 +312,6 @@ function calculateAll() {
 
 
 <p><em>For a complete theoretical derivation and policy analysis, please refer to the accompanying academic paper.</em></p>
-
 <table>
     <tr>
         <th>State</th>
@@ -337,7 +336,7 @@ function calculateAll() {
     <tr>
         <td>Arkansas</td>
         <td>3.9%</td>
-        <td><a href="https://www.arkansasedc.com/why-arkansas/business-climate/tax-structure/personal-income-tax">Tax Foundation</td>
+        <td><a href="https://www.arkansasedc.com/why-arkansas/business-climate/tax-structure/personal-income-tax">Tax Foundation</a></td>
     </tr>
     <tr>
         <td>California</td>
