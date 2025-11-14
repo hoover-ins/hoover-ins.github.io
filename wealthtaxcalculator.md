@@ -40,7 +40,7 @@ To see how this works in practice, here are actual wealth taxes and wealth tax p
         <td>*</td>
     </tr>
 </table>
-<p><em>Note: Switzerland levies Wealth taxes at the Canton and municipal level.</em></p>
+<p><em>Note: Switzerland levies wealth taxes at the canton and municipal levels.</em></p>
 
 <table>
     <tr>
