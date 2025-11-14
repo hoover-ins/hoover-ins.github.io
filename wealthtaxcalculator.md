@@ -18,9 +18,29 @@ This calculator quantifies the equivalent capital income tax rate (t*) of a weal
 
 <img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
 
-<h2 style="text-align: center;">Real-Life Proposals</h2>
+<h2 style="text-align: center;">Real-Life Wealth Taxes and Proposals</h2>
 
-To see how this works in practice, here are actual wealth tax proposals you can test in the calculator:
+To see how this works in practice, here are actual wealth taxes and wealth tax proposals you can test in the calculator:
+
+<table>
+    <tr>
+        <th>Wealth Tax</th>
+        <th>Top Wealth Tax Rate (θ)</th>
+    </tr>
+    <tr>
+        <td>Norway's "Formuesskatt"</td>
+        <td>1.1%</td>
+    </tr>
+    <tr>
+        <td>Spain's "Impuesto sobre el Patrimonio"</td>
+        <td>3.5%</td>
+    </tr>
+    <tr>
+        <td>Switzerland</td>
+        <td>*</td>
+    </tr>
+</table>
+<p><em>Note: Switzerland levies Wealth taxes at the Canton and municipal level.</em></p>
 
 <table>
     <tr>
