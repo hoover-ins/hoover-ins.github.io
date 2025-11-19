@@ -32,6 +32,10 @@ To see how this works in practice, here are actual wealth taxes and wealth tax p
         <td>1.1%</td>
     </tr>
     <tr>
+        <td>Colombia's "Impuesto al Patrimonio"</td>
+        <td>1.5%</td>
+    </tr>
+    <tr>
         <td>Spain's "Impuesto sobre el Patrimonio"</td>
         <td>3.5%</td>
     </tr>
