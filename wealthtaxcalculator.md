@@ -50,22 +50,27 @@ To see how this works in practice, here are actual wealth taxes and wealth tax p
     <tr>
         <th>Proposal</th>
         <th>Wealth Tax Rate (θ)</th>
+        <th>Implementation</th>
     </tr>
     <tr>
         <td>State of Washington's Proposed Wealth Tax</td>
         <td>1%</td>
+        <td>Permanent</td>
     </tr>
     <tr>
         <td>France's Proposed "Zucman Tax"</td>
         <td>2%</td>
+        <td>Permanent</td>
     </tr>
     <tr>
         <td>California Ballot Initiative, "2026 Billionaire Tax Act"</td>
         <td>5%</td>
+        <td>One-time</td>
     </tr>
     <tr>
         <td>Bernie Sanders' Proposed Wealth Tax Top Bracket</td>
         <td>8%</td>
+        <td>Permananent</td>
     </tr>
 </table>
 
@@ -258,6 +263,11 @@ function calculateAll() {
   }
   
   var rho = r / (1 - tCombinedDecimal);
+
+  // Make rho nonnegative
+  if (rho < 0) {
+    rho = 0;
+  }
   
   // Round to 3 decimal places
   tBase = Math.round(tBase * 1000) / 1000;
