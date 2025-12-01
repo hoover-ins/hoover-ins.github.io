@@ -16,7 +16,7 @@ main_nav: true
 <p>This file is based on publicly available survey data, which is weighted to hit IRS Statistics of Income targets. The data are then grown out to hit aggregate forecasts through the time horizon available in Tax-Calculator (approximately the next 10 years). All the files required to use this prepared data option are included in the Tax-Calculator package.</p>
 
 
-<h4 style="text-align: center:;">2011 IRS Public Use File (puf.csv)</h4>
+<h4 style="text-align: center;">2011 IRS Public Use File (puf.csv)</h4>
 <p>The taxdata repository also produces a weights file and growth factors file for use with the 2011 IRS-SOI Public Use File (PUF). For users who have purchased their own version of the 2011 PUF, the puf.csv, puf_weights.csv.gz and puf_ratios.csv files from the taxdata repository, can be used by Tax-Calculator using the Records.puf_constructor(...) static method.</p>
 
 <h2 style="text-align: center;">Policy Parameters</h2>
