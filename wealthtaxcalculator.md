@@ -642,4 +642,4 @@ function calculateAll() {
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
 
-<p>Page last updated November 14, 2025.</p>
+<p>Page last updated December 1, 2025.</p>
