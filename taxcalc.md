@@ -207,8 +207,6 @@ main_nav: true
       <p><strong>ACTC_c:</strong> This refundable credit is applied to child dependents and phases out exactly like the CTC amount.</p>
       <p>Known Values: 2013: 1000.0 2014: 1000.0 2015: 1000.0 2016: 1000.0 2017: 1000.0 2018: 1400.0 2019: 1400.0 2020: 1400.0 2021: 1400.0 2022: 1500.0 2023: 1500.0 2024: 1500.0 2025: 1600.0 2026: 1000.0 Valid Range: min = 0 and max = CTC_c Out-of-Range Action: error</p>
       <p><strong>ACTC_rt:</strong> This is the fraction of earnings used in calculating the ACTC, which is a partially refundable credit that supplements the CTC for some taxpayers.</p>
-      <p>Known Values: 2013: 1000.0 2014: 1000.0 2015: 1000.0 2016: 1000.0 2017: 1000.0 2018: 1400.0 2019: 1400.0 2020: 1400.0 2021: 1400.0 2022: 1500.0 2023: 1500.0 2024: 1500.0 2025: 1600.0 2026: 1000.0 Valid Range: min = 0 and max = CTC_c Out-of-Range Action: error</p>
-      <p><strong>ACTC_rt:</strong> This is the fraction of earnings used in calculating the ACTC, which is a partially refundable credit that supplements the CTC for some taxpayers.</p>
       <p>Known Values: 2013: 0.15 2014: 0.15 2015: 0.15 2016: 0.15 2017: 0.15 2018: 0.15 2019: 0.15 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>ACTC_rt_bonus_under6family:</strong> For families with qualifying children under 6 years old, this bonus rate is added to the fraction of earnings (additional child tax credit rate) used in calculating the ACTC.</p>
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.0 2019: 0.0 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
@@ -288,7 +286,7 @@ main_nav: true
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 1.0 2019: 1.0 2020: 1.0 2021: 1.0 2022: 1.0 2023: 1.0 2024: 1.0 2025: 1.0 2026: 0.0 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>ID_Miscellaneous_c:</strong> The amount of miscellaneous expense deduction is limited to this dollar amount.</p>
       <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2014: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2015: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2016: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2017: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2018: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2019: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] Valid Range: min = 0 and max = 9e+99 Out-of-Range Action: error</p>
-      <h4></h4>
+      <h4>State And Local Income And Sales Taxes</h4>
       <p><strong>ID_StateLocalTax_hc:</strong> This decimal fraction reduces the state and local income and sales tax deduction.</p>
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.0 2019: 0.0 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>ID_StateLocalTax_crt:</strong> The total deduction for state and local taxes is capped at this fraction of AGI.</p>
@@ -380,8 +378,6 @@ main_nav: true
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.025 2019: 0.025 2020: 0.025 2021: 0.025 2022: 0.025 2023: 0.025 2024: 0.025 2025: 0.025 2026: 0.0 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>PT_qbid_ps:</strong> QBID begins to decrease when pre-QBID taxable income is above this level.</p>
       <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2014: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2015: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2016: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2017: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2018: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2019: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] Valid Range: min = 0 and max = 9e+99 Out-of-Range Action: error</p>
-      <p><strong>PT_qbid_prt:</strong> QBID begins to decrease when pre-QBID taxable income is above this level.</p>
-      <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2014: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2015: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2016: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2017: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2018: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2019: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] Valid Range: min = 0 and max = 9e+99 Out-of-Range Action: error</p>
       <p><strong>PT_qbid_prt:</strong> QBID will decrease at this rate for each dollar of taxable income exceeding QBID phaseout start.</p>
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.0 2019: 0.0 Valid Range: min = 0 and max = 9e+99 Out-of-Range Action: error</p>
       <h4>Regular: Non-AMT</h4>
@@ -409,7 +405,7 @@ main_nav: true
       <p>Known Values: 2013: 0.35 2014: 0.35 2015: 0.35 2016: 0.35 2017: 0.35 2018: 0.35 2019: 0.35 2020: 0.35 2021: 0.35 2022: 0.35 2023: 0.35 2024: 0.35 2025: 0.35 2026: 0.35 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>II_brk6:</strong> Income below this threshold and above tax bracket 5 is taxed at tax rate 6.</p>
       <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [400000.0, 450000.0, 225000.0, 425000.0, 450000.0] 2014: [406750.0, 457600.0, 228800.0, 432200.0, 457600.0] 2015: [413200.0, 464850.0, 232425.0, 439000.0, 464850.0] 2016: [415050.0, 466950.0, 233475.0, 441000.0, 466950.0] 2017: [418400.0, 470700.0, 235350.0, 444550.0, 470700.0] 2018: [500000.0, 600000.0, 300000.0, 500000.0, 600000.0] 2019: [510300.0, 612350.0, 306175.0, 510300.0, 612350.0] 2020: [518158.62, 621780.19, 310890.1, 518158.62, 621780.19] 2021: [521941.18, 626319.19, 313159.6, 521941.18, 626319.19] 2022: [526899.62, 632269.22, 316134.62, 526899.62, 632269.22] 2023: [535224.63, 642259.07, 321129.55, 535224.63, 642259.07] 2024: [545554.47, 654654.67, 327327.35, 545554.47, 654654.67] 2025: [556465.56, 667747.76, 333873.9, 556465.56, 667747.76] 2026: [484651.0, 545233.0, 272616.0, 514942.0, 545233.0] Valid Range: min = II_brk5 and max = II_brk7 Out-of-Range Action: error</p>
-      <p>II_rt7<strong>:</strong> The tax rate applied to the portion of taxable income below tax bracket 7 and above tax bracket 6.</p>
+      <p><strong>II_rt7:</strong> The tax rate applied to the portion of taxable income below tax bracket 7 and above tax bracket 6.</p>
       <p>Known Values: 2013: 0.396 2014: 0.396 2015: 0.396 2016: 0.396 2017: 0.396 2018: 0.37 2019: 0.37 2020: 0.37 2021: 0.37 2022: 0.37 2023: 0.37 2024: 0.37 2025: 0.37 2026: 0.396 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>II_brk7:</strong> Income below this threshold and above tax bracket 6 is taxed at tax rate 7; income above this threshold is taxed at tax rate 8. Default value is essentially infinity.</p>
       <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2014: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2015: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2016: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2017: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2018: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2019: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] Valid Range: min = II_brk6 and max = 9e+99 Out-of-Range Action: error</p>
@@ -502,7 +498,8 @@ main_nav: true
       <h4>Lump-Sum Tax</h4>
       <p><strong>LST:</strong> The lump-sum tax is levied on every member of a tax filing unit. The lump-sum tax is included only in combined taxes; it is not included in income or payroll taxes.</p>
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.0 2019: 0.0 Valid Range: min = -9e+99 and max = 9e+99 Out-of-Range Action: error</p>
-      <p><strong>New AGI Surtax:</strong> AGI_surtax_trt</p>
+      <h4>New AGI Surtax</h4>
+      <p><strong>AGI_surtax_trt:</strong> The surtax rate is applied to the portion of Adjusted Gross Income above the AGI surtax threshold.</p>
       <p>Known Values: 2013: 0.0 2014: 0.0 2015: 0.0 2016: 0.0 2017: 0.0 2018: 0.0 2019: 0.0 Valid Range: min = 0 and max = 1 Out-of-Range Action: error</p>
       <p><strong>AGI_surtax_thd:</strong> The aggregate gross income above this AGI surtax threshold is taxed at surtax rate on AGI.</p>
       <p>Known Values: for: [single, mjoint, mseparate, headhh, widow] 2013: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2014: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2015: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2016: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2017: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2018: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] 2019: [9e+99, 9e+99, 9e+99, 9e+99, 9e+99] Valid Range: min = 0 and max = 9e+99 Out-of-Range Action: error</p>
