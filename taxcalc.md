@@ -605,6 +605,6 @@ main_nav: true
 });
 </script>
 
-The academic content, calculator methodology, and associated research are © 2025 Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
+The academic content, calculator methodology, and associated research are © 2015–2025 Martin Holmer, Matt Jensen, Jason DeBacker, Amy Xu, Sean Wang, Max Ghenis, and others. Additions and updates are © 2025 Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
 
-<p>Page last updated December 1, 2025.</p>
+<p>Page last updated December 2, 2025.</p>
