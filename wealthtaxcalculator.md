@@ -165,16 +165,22 @@ Input values for the following parameters:
     <label for="theta1" style="display: block; margin-bottom: 5px;">
       <strong>Wealth Tax Rate (θ) - Expropriation Risk:</strong>
     </label>
-    <input type="number" id="theta1" step="0.001" value="" min="0" max="100"
-           style="width: 100%; padding: 8px; font-size: 16px;">
+    <div style="position: relative;">
+      <input type="number" id="theta1" step="0.001" value="" min="0" max="100"
+             style="width: 100%; padding: 8px 30px 8px 8px; font-size: 16px;">
+      <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #666;">%</span>
+    </div>
   </div>
 
   <div style="margin: 20px 0;">
     <label for="r1" style="display: block; margin-bottom: 5px;">
       <strong>Risk Free Rate (r):</strong>
     </label>
-    <input type="number" id="r1" step="0.001" value="" min="-100" max="100"
-           style="width: 100%; padding: 8px; font-size: 16px;">
+    <div style="position: relative;">
+      <input type="number" id="r1" step="0.001" value="" min="-100" max="100"
+             style="width: 100%; padding: 8px 30px 8px 8px; font-size: 16px;">
+      <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #666;">%</span>
+    </div>
   </div>
 
   <button onclick="calculateAll()" 
@@ -642,4 +648,4 @@ function calculateAll() {
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
 
-<p>Page last updated December 1, 2025.</p>
+<p>Page last updated January 30, 2026.</p>
