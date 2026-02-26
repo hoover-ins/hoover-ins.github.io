@@ -97,9 +97,11 @@ Input values for the following parameters:
 
 <p>Beyond calculating the equivalent capital income tax rate, this calculator also determines the required pre-tax return on assets (ρ) that investors would demand to compensate for the expropriation risk created by a wealth tax combined with the existing federal and state capital gains tax rates. This metric is critical for communicating investment tradeoffs to owners of capital in the adopting jurisdiction. The required return calculations are meant to support economic theory and historical experience that substantial industry outmigration becomes likely, as investors seek jurisdictions where their capital can earn competitive after-tax returns without the recurring burden of wealth confiscation.</p>
 
+<div id="calculator"></div>
+
 <hr style="margin: 40px 0; border: 1px solid #ddd;">
 
-<div id="calculator">
+
 <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
   <h2 style="text-align: center;">Input Your Parameters Below</h2>
   
@@ -203,7 +205,6 @@ Input values for the following parameters:
     <h3 style="margin-top: 0;">Results:</h3>
     <p id="resultText1" style="font-size: 18px;"></p>
   </div>
-</div>
 </div>
 
 <script>
