@@ -29,6 +29,13 @@ We decided to do calculations of our own, and we found much different results...
 <h4 style="text-align: left;">First Contact With Reality: The California Billionaire Tax <a href="https://libertylensecon.substack.com/p/first-contact-with-reality-the-california">[Liberty Lens - An Economics Substack]</a></h4>
 <p>My opening remarks at Stanford in the recent debate with California Billionaire Tax architect and UC Berkeley Professor Emmanuel Saez... </p>
 
+<h4 style="text-align: left;">The ‘billionaire tax’ is a nightmare for California’s finances — and that’s only the beginning <a href="https://nypost.com/2026/03/16/opinion/california-could-lose-money-thru-billionaire-tax/">[New York Post]</a></h4>
+<p>California’s proposed “billionaire tax”  will collect less than half of what is promised — with a net fiscal effect that will leave the state in worse shape.
+
+The state is attempting a crazy fiscal experiment: seeing how much revenue it can raise by aiming a large tax at a small group of people who are superbly well-equipped to move themselves — and their money — somewhere else.
+
+The result isn’t likely to be positive — in the literal sense of the word — for the mad fiscal scientists pushing the idea... </p>
+
 <hr>
 
 <h4 style="text-align: left;">California Wealth Tax <a href="https://www.youtube.com/watch?v=H54P6j7ER28">[SIEPR Economic Summit 2026]</a></h4>
