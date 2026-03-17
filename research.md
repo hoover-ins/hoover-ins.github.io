@@ -26,9 +26,14 @@ main_nav: true
 
 We decided to do calculations of our own, and we found much different results... </p>
 
-
-
+<h4 style="text-align: left;">First Contact With Reality: The California Billionaire Tax <a href="https://libertylensecon.substack.com/p/first-contact-with-reality-the-california">[Liberty Lens - An Economics Substack]</a></h4>
+<p>My opening remarks at Stanford in the recent debate with California Billionaire Tax architect and UC Berkeley Professor Emmanuel Saez... </p>
 
 <hr>
 
-<p>Page last updated March 5, 2026.</p>
+<h4 style="text-align: left;">California Wealth Tax <a href="https://www.youtube.com/watch?v=H54P6j7ER28">[SIEPR Economic Summit 2026]</a></h4>
+<p>Hoover Institution Senior Fellow Joshua Rauh and UC Berkley Professor Emmanuel Saez debate the proposed California Billionaire Tax Act. Debate moderated by the Wall Street Journal tax policy reporter Richard Rubin. </p>
+
+<hr>
+
+<p>Page last updated March 17, 2026.</p>
