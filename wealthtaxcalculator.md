@@ -208,6 +208,37 @@ Input values for the following parameters:
 </div>
 
 <script>
+// Treasury Data
+function fetchTreasuryYield() {
+    document.getElementById('r1').value = 'Loading...';
+    document.getElementById('r1').disabled = true;
+    // Fetch from Treasury.gov API
+    fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?filter=security_desc:eq:Treasury Bonds&sort=-record_date&page[size]=1')
+    .then(response => response.json())
+    .then(data => {
+        if (data.data && data.data.length > 0) {
+            // Get most recent 30-year rate
+            var rate = parseFloat(data.data[0].avg_interest_rate_amt);
+            document.getElementById('r1').value = rate.toFixed(3);
+        } else {
+            document.getElementById('r1').value = '';
+            alert('Could not fetch Treasury yield. Please enter manually');
+        }
+        document.getElementById('r1').disabled = false;
+    })
+    .catch(error => {
+        console.error('Error fetching Treasury yield:', error);
+        document.getElementById('r1').value = '';
+        document.getElementById('r1').disabled = false;
+        alert('Could not fetch Treasury yield. Please enter manually.')
+    });
+}
+
+// Call when page loads
+window.onload = function() {
+    fetchTreasuryYield();
+};
+
 function calculateAll() {
   // Get input values and convert percentages to decimals
   var theta = parseFloat(document.getElementById('theta1').value) / 100;
@@ -657,4 +688,4 @@ function calculateAll() {
 
 The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
 
-<p>Page last updated February 26, 2026.</p>
+<p>Page last updated April 7, 2026.</p>
