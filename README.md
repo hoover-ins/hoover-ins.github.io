@@ -1,18 +1,28 @@
-## License
+# hoover-ins.github.io
 
-This is the source code for the Hoover Institution Wealth Tax Calculator, built using the **Centrarium Jekyll theme** by **Ben Centra**.
+GitHub Pages site for the Hoover Institution Fiscal Policy Initiative.
 
-### Credits
+**Live Site:** [https://hoover-ins.github.io](https://hoover-ins.github.io)
 
-**Website Development:** Created by [johnrdoran](https://github.com/johnrdoran)  
-**Website Maintenance:** [bjaros20](https://github.com/bjaros20)
+## About
 
-The theme and layout were originally developed by Ben Centra and are licensed under the MIT License. See the [original Centrarium repository](https://github.com/bencentra/centrarium) for more information and documentation.
+This site hosts interactive tools and resources from the Hoover Institution's fiscal policy research, including:
 
-### Contact
+- **Wealth Tax Calculator** — Computes the equivalent capital income tax rate of a wealth tax, making the economic tradeoffs transparent and comparable to familiar income tax benchmarks.
+
+## Technical Details
+
+Built with [Jekyll](https://jekyllrb.com/) using the [Centrarium](https://github.com/bencentra/centrarium) theme by Ben Centra. Hosted on GitHub Pages.
+
+## Credits
+
+- **Website Development:** [johnrdoran](https://github.com/johnrdoran)
+- **Website Maintenance:** [bjaros20](https://github.com/bjaros20)
+
+## Contact
 
 For inquiries regarding the calculator or research: hooverfpi@stanford.edu
 
-### Content License
+## License
 
-Full MIT License text: [LICENSE.MD](https://github.com/bencentra/centrarium/blob/master/LICENSE.md)
+MIT. See [LICENSE.md](LICENSE.md). The Centrarium theme is also MIT licensed — see the [original Centrarium repository](https://github.com/bencentra/centrarium).

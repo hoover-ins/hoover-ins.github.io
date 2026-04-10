@@ -5,33 +5,579 @@ permalink: /wealthtaxcalculator/
 main_nav: true
 ---
 <style>
+  /* Wealth Tax Calculator */
   html { scroll-behavior: smooth; }
+
+  .wtc-lede {
+    font-size: 1.05rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .wtc-card {
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafafa;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .wtc-card h2 { margin-top: 0; text-align: center; }
+
+  .wtc-card-sub {
+    text-align: center;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .wtc-field { margin: 1rem 0; }
+
+  .wtc-field label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .wtc-help {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: normal;
+    margin-top: 0.15rem;
+  }
+
+  .wtc-input-wrap { position: relative; }
+
+  .wtc-card select,
+  .wtc-card input[type="number"] {
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fff;
+  }
+
+  .wtc-card input[type="number"] { padding-right: 2rem; }
+
+  .wtc-suffix {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+  }
+
+  .wtc-status {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 0.25rem;
+    min-height: 1em;
+  }
+
+  .wtc-status.is-error { color: #B3173C; }
+
+  .wtc-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .wtc-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .wtc-btn-primary {
+    background-color: #B3173C;
+    color: #fff;
+  }
+
+  .wtc-btn-primary:hover { background-color: #8C1515; }
+
+  .wtc-btn-secondary {
+    background-color: transparent;
+    color: #B3173C;
+    border: 1px solid #B3173C;
+  }
+
+  .wtc-btn-secondary:hover { background-color: #fbe6eb; }
+
+  .wtc-error {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: #fdecef;
+    border-left: 4px solid #B3173C;
+    color: #8C1515;
+    border-radius: 4px;
+    display: none;
+  }
+
+  .wtc-error.is-visible { display: block; }
+
+  .wtc-results {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    display: none;
+  }
+
+  .wtc-results.is-visible { display: block; }
+
+  .wtc-headline {
+    text-align: center;
+    margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .wtc-headline-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin-bottom: 0.25rem;
+  }
+
+  .wtc-headline-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #B3173C;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wtc-breakdown {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .wtc-breakdown td {
+    padding: 0.35rem 0.5rem;
+    border: none;
+  }
+
+  .wtc-breakdown td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .wtc-breakdown tr.is-total td {
+    border-top: 1px solid #ddd;
+    font-weight: 700;
+    padding-top: 0.55rem;
+  }
+
+  .wtc-rho {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .wtc-rho-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #B3173C;
+    font-variant-numeric: tabular-nums;
+    margin-top: 0.25rem;
+  }
+
+  .wtc-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .wtc-sources { margin-top: 2rem; }
+
+  .wtc-sources summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 600px) {
+    .wtc-card { padding: 1rem; }
+    .wtc-headline-value { font-size: 1.6rem; }
+    .wtc-buttons { flex-direction: column; }
+  }
 </style>
 
-<a href="#calculator"><strong>Jump to Calculator</strong></a>
+<p class="wtc-lede">
+  This tool quantifies the <strong>equivalent capital income tax rate (t*)</strong> of a wealth tax — the income-tax rate on capital that would produce the same economic outcome as living under a given wealth tax — and reports the <strong>required pre-tax return (ρ)</strong> investors must demand to compensate for the recurring expropriation risk. State and federal capital gains taxes are layered in optionally.
+</p>
 
-<h2 style="text-align: center;">Introduction</h2>
+<div id="calculator"></div>
+
+<section class="wtc-card" aria-labelledby="wtc-calc-heading">
+  <h2 id="wtc-calc-heading">Calculator</h2>
+  <p class="wtc-card-sub">Pick a jurisdiction, enter a wealth tax rate and a risk-free rate. Results update as you type.</p>
+
+  <div class="wtc-field">
+    <label for="state">
+      Jurisdiction
+      <span class="wtc-help">Determines the state, city, and federal capital gains tax layered on top of t*.</span>
+    </label>
+    <select id="state">
+      <optgroup label="Quick selects">
+        <option value="0">United States (federal only)</option>
+        <option value="0.0522">U.S. national average</option>
+      </optgroup>
+      <optgroup label="U.S. states">
+        <option value="0.05">Alabama</option>
+        <option value="0">Alaska</option>
+        <option value="0.025">Arizona</option>
+        <option value="0.039">Arkansas</option>
+        <option value="0.133">California</option>
+        <option value="0.044">Colorado</option>
+        <option value="0.096">Connecticut</option>
+        <option value="0.066">Delaware</option>
+        <option value="0">Florida</option>
+        <option value="0.0539">Georgia</option>
+        <option value="0.0725">Hawaii</option>
+        <option value="0.053">Idaho</option>
+        <option value="0.0495">Illinois</option>
+        <option value="0.03">Indiana</option>
+        <option value="0.038">Iowa</option>
+        <option value="0.0558">Kansas</option>
+        <option value="0.04">Kentucky</option>
+        <option value="0.0425">Louisiana</option>
+        <option value="0.0715">Maine</option>
+        <option value="0.0575">Maryland</option>
+        <option value="0.16">Massachusetts</option>
+        <option value="0.0425">Michigan</option>
+        <option value="0.0985">Minnesota</option>
+        <option value="0.044">Mississippi</option>
+        <option value="0.0495">Missouri</option>
+        <option value="0.041">Montana</option>
+        <option value="0.052">Nebraska</option>
+        <option value="0">Nevada</option>
+        <option value="0">New Hampshire</option>
+        <option value="0.1075">New Jersey</option>
+        <option value="0.059">New Mexico</option>
+        <option value="0.109">New York</option>
+        <option value="0.045">North Carolina</option>
+        <option value="0.025">North Dakota</option>
+        <option value="0.035">Ohio</option>
+        <option value="0.0475">Oklahoma</option>
+        <option value="0.099">Oregon</option>
+        <option value="0.0307">Pennsylvania</option>
+        <option value="0.0599">Rhode Island</option>
+        <option value="0.0358">South Carolina</option>
+        <option value="0">South Dakota</option>
+        <option value="0">Tennessee</option>
+        <option value="0">Texas</option>
+        <option value="0.0455">Utah</option>
+        <option value="0.0875">Vermont</option>
+        <option value="0.0575">Virginia</option>
+        <option value="0.09">Washington D.C.</option>
+        <option value="0.099">Washington State</option>
+        <option value="0.0512">West Virginia</option>
+        <option value="0.0765">Wisconsin</option>
+        <option value="0">Wyoming</option>
+      </optgroup>
+      <optgroup label="U.S. cities">
+        <option value="0.1430">New York City</option>
+        <option value="0.139">Portland, Oregon</option>
+      </optgroup>
+      <optgroup label="International">
+        <option value="0.3">France — financial assets</option>
+        <option value="0.362">France — real estate (under 22 years)</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div class="wtc-field">
+    <label for="theta1">
+      Wealth tax rate (θ)
+      <span class="wtc-help">The annual tax on accumulated wealth. Enter 1 for 1%. Range 0–100.</span>
+    </label>
+    <div class="wtc-input-wrap">
+      <input type="number" id="theta1" step="0.001" min="0" max="100" inputmode="decimal" placeholder="e.g. 2">
+      <span class="wtc-suffix">%</span>
+    </div>
+  </div>
+
+  <div class="wtc-field">
+    <label for="r1">
+      Risk-free rate (r)
+      <span class="wtc-help">Reference return on capital, e.g. the 30-year U.S. Treasury yield. Auto-fills on load. Range −100 to 100.</span>
+    </label>
+    <div class="wtc-input-wrap">
+      <input type="number" id="r1" step="0.001" min="-100" max="100" inputmode="decimal" placeholder="e.g. 4.5">
+      <span class="wtc-suffix">%</span>
+    </div>
+    <span id="r1-status" class="wtc-status"></span>
+  </div>
+
+  <div class="wtc-buttons">
+    <button type="button" id="wtc-calc-btn" class="wtc-btn wtc-btn-primary" onclick="calculateAll()">Calculate</button>
+    <button type="button" id="wtc-reset-btn" class="wtc-btn wtc-btn-secondary" onclick="resetCalculator()">Reset</button>
+  </div>
+
+  <div id="error1" class="wtc-error" role="alert"></div>
+
+  <div id="result1" class="wtc-results" aria-live="polite">
+    <div class="wtc-headline">
+      <span class="wtc-headline-label">Comparable combined tax on capital income</span>
+      <span class="wtc-headline-value" id="wtc-headline-value">—</span>
+    </div>
+    <table class="wtc-breakdown">
+      <tbody id="wtc-breakdown-body"></tbody>
+    </table>
+    <div class="wtc-rho">
+      Required pre-tax return on assets to compensate for expropriation risk (ρ):
+      <span class="wtc-rho-value" id="wtc-rho-value">—</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var stateEl, thetaEl, rEl, errorEl, resultEl, headlineEl, breakdownEl, rhoEl, rStatusEl;
+
+  function fmt(n, dp) {
+    if (dp === undefined) dp = 2;
+    if (!isFinite(n)) return '—';
+    return n.toFixed(dp).replace(/\.?0+$/, function (m) {
+      return m.indexOf('.') === 0 ? '' : m;
+    });
+  }
+
+  function fmtPct(n, dp) {
+    return fmt(n, dp == null ? 2 : dp) + '%';
+  }
+
+  function fetchTreasuryYield() {
+    rStatusEl.textContent = 'Fetching latest 30-year Treasury rate…';
+    rStatusEl.classList.remove('is-error');
+    rEl.disabled = true;
+    fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?filter=security_desc:eq:Treasury Bonds&sort=-record_date&page[size]=1')
+      .then(function (response) { return response.json(); })
+      .then(function (data) {
+        rEl.disabled = false;
+        if (data && data.data && data.data.length > 0) {
+          var rate = parseFloat(data.data[0].avg_interest_rate_amt);
+          rEl.value = rate.toFixed(3);
+          rStatusEl.textContent = 'Auto-filled with the most recent 30-year Treasury bond average rate.';
+          rStatusEl.classList.remove('is-error');
+          recalc();
+        } else {
+          rStatusEl.textContent = 'Could not fetch Treasury yield — please enter a value manually.';
+          rStatusEl.classList.add('is-error');
+        }
+      })
+      .catch(function (err) {
+        console.error('Error fetching Treasury yield:', err);
+        rEl.disabled = false;
+        rStatusEl.textContent = 'Could not reach Treasury API — please enter a value manually.';
+        rStatusEl.classList.add('is-error');
+      });
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add('is-visible');
+    resultEl.classList.remove('is-visible');
+  }
+
+  function clearError() {
+    errorEl.classList.remove('is-visible');
+  }
+
+  function calculateAll() {
+    clearError();
+
+    var thetaRaw = thetaEl.value;
+    var rRaw = rEl.value;
+
+    if (thetaRaw === '' || rRaw === '') {
+      resultEl.classList.remove('is-visible');
+      return;
+    }
+
+    var thetaPct = parseFloat(thetaRaw);
+    var rPct = parseFloat(rRaw);
+
+    if (isNaN(thetaPct) || thetaPct < 0 || thetaPct > 100) {
+      showError('Wealth tax rate (θ) must be a number between 0 and 100.');
+      return;
+    }
+    if (isNaN(rPct) || rPct < -100 || rPct > 100) {
+      showError('Risk-free rate (r) must be a number between −100 and 100.');
+      return;
+    }
+
+    var theta = thetaPct / 100;
+    var r = rPct / 100;
+    var stateCapGainsRate = parseFloat(stateEl.value);
+    var selectedStateName = stateEl.options[stateEl.selectedIndex].text;
+
+    var isFrance = selectedStateName.indexOf('France') !== -1;
+    var isNYC = selectedStateName.indexOf('New York City') !== -1;
+    var isPortland = selectedStateName.indexOf('Portland') !== -1;
+
+    var cityRate = 0;
+    var actualStateRate = stateCapGainsRate;
+    var cityLabel = '';
+
+    if (isNYC) {
+      cityRate = 0.034;
+      actualStateRate = 0.109;
+      cityLabel = 'New York City capital gains';
+    } else if (isPortland) {
+      cityRate = 0.04; // 1% Metro + 3% PFA
+      actualStateRate = 0.099;
+      cityLabel = 'Portland city (Metro + PFA)';
+    }
+
+    var federalCapGains = isFrance ? 0 : 0.20;
+    var niit = isFrance ? 0 : 0.038;
+
+    // Base equivalent capital income tax rate
+    var tBase = (1 - ((r * (1 - theta)) / (r + theta))) * 100;
+    if (!isFinite(tBase)) {
+      showError('Cannot evaluate at these inputs (division by zero in t*).');
+      return;
+    }
+
+    var combinedTax = tBase + (cityRate * 100) + (actualStateRate * 100) + (federalCapGains * 100) + (niit * 100);
+    var tCombinedDecimal = combinedTax / 100;
+
+    if (tCombinedDecimal >= 2) {
+      showError('Combined tax rate equals or exceeds 200% — calculation not possible.');
+      return;
+    }
+
+    var rho = r / (1 - tCombinedDecimal);
+    if (rho < 0) rho = 0;
+    var rhoPct = rho * 100;
+
+    // Build breakdown rows
+    var rows = [];
+    rows.push(['Base equivalent capital income tax rate (t*)', fmtPct(tBase, 3)]);
+
+    if (isFrance) {
+      rows.push(['France capital gains rate', fmtPct(stateCapGainsRate * 100, 2)]);
+    } else {
+      if (cityRate > 0) {
+        rows.push([cityLabel, fmtPct(cityRate * 100, 2)]);
+      }
+      rows.push(['Top state capital gains rate', fmtPct(actualStateRate * 100, 2)]);
+      rows.push(['Top federal capital gains rate', '20%']);
+      rows.push(['Net Investment Income Tax (NIIT)', '3.8%']);
+    }
+
+    var bodyHTML = '';
+    for (var i = 0; i < rows.length; i++) {
+      bodyHTML += '<tr><td>' + rows[i][0] + '</td><td>' + rows[i][1] + '</td></tr>';
+    }
+    bodyHTML += '<tr class="is-total"><td>Combined tax on capital income</td><td>' + fmtPct(combinedTax, 3) + '</td></tr>';
+
+    breakdownEl.innerHTML = bodyHTML;
+    headlineEl.textContent = fmtPct(combinedTax, 2);
+    rhoEl.textContent = fmtPct(rhoPct, 2);
+    resultEl.classList.add('is-visible');
+  }
+
+  function recalc() {
+    // Live recalc on input change
+    if (thetaEl.value !== '' && rEl.value !== '') {
+      calculateAll();
+    } else {
+      clearError();
+      resultEl.classList.remove('is-visible');
+    }
+  }
+
+  function resetCalculator() {
+    thetaEl.value = '';
+    rEl.value = '';
+    stateEl.selectedIndex = 0;
+    clearError();
+    resultEl.classList.remove('is-visible');
+    fetchTreasuryYield();
+  }
+
+  // Initialize immediately — this script tag is positioned after the form,
+  // so all referenced elements are already in the DOM.
+  stateEl = document.getElementById('state');
+  thetaEl = document.getElementById('theta1');
+  rEl = document.getElementById('r1');
+  errorEl = document.getElementById('error1');
+  resultEl = document.getElementById('result1');
+  headlineEl = document.getElementById('wtc-headline-value');
+  breakdownEl = document.getElementById('wtc-breakdown-body');
+  rhoEl = document.getElementById('wtc-rho-value');
+  rStatusEl = document.getElementById('r1-status');
+
+  stateEl.addEventListener('change', recalc);
+  thetaEl.addEventListener('input', recalc);
+  rEl.addEventListener('input', recalc);
+
+  // Expose for inline onclick handlers on the buttons
+  window.calculateAll = calculateAll;
+  window.resetCalculator = resetCalculator;
+
+  fetchTreasuryYield();
+})();
+</script>
+
+<hr style="margin: 40px 0; border: 1px solid #ddd;">
+
+<h2 style="text-align: center;">Background</h2>
 
 <p>The recent interest in wealth taxes highlights the importance of clarifying their tradeoffs, since the absence of a familiar benchmark leads to misanchored judgments about their costs and benefits. The apparent simplicity of taxing accumulated assets conceals the effects these policies impose on economic behavior and property rights, ultimately trading short-term fiscal gains for long-term economic costs. For example, the "Zucman Tax," a 2 percent wealth tax in France and Washington state's recently proposed 1 percent wealth tax in the United States have gained traction by appealing to fairness and these taxes as a source of redistributive public sector revenue.</p>
 
 <p>Surveys suggest that a non-trivial portion of the electorate would support a wealth tax levied on individuals with assets over a certain dollar threshold. However, extrapolation from that self-reported support generally rests on the assumption that citizens and business leaders are able to appropriately anchor the costs and benefits of a wealth tax, for which they do not have a comparable tax experience. The support for these measures therefore rests less on a concrete understanding of their incidence than on the perception that a wealth tax set at a seemingly low rate would impose minimal distortions, particularly when targeted at the wealthiest households. This disconnect between the political appeal of wealth taxes and the absence of a meaningful benchmark underscores the necessity of a framework that quantifies their true economic tradeoffs in a way that is relatable and tangible to a larger portion of citizens and policymakers.</p>
 
-This calculator provides that framework. For those interested in the theoretical foundation and detailed analysis behind these calculations, please refer to the accompanying academic paper (citation to paper). For everyone else, the calculator below makes the economic tradeoffs of wealth taxation transparent and tangible.
+<p>This calculator provides that framework. For those interested in the theoretical foundation and detailed analysis behind these calculations, please refer to the accompanying academic paper (citation to paper).</p>
 
-<h2 style="text-align: center;">Purpose</h2>
+<h3 style="text-align: center;">Purpose</h3>
 
-This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax. It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?
+<p>This calculator quantifies the equivalent capital income tax rate (t*) of a wealth tax. It addresses the question: <em>What rate of income taxation on capital yields the same economic outcome as living under a wealth tax?</em></p>
 
 <img src="{{ site.baseurl }}/assets/tstarformula.jpg" alt="t-star Formula" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
 
+<h3 style="text-align: center;">Adjusting for State and Federal Capital Gains Taxes</h3>
+
+<p>The calculator also allows for the application of capital gains rates by state and the federal tax on capital gains. It addresses: <em>What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state those gains are realized in?</em></p>
+
+<p><em>Note: Capital gains consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</em></p>
+
+<h3 style="text-align: center;">Required Returns</h3>
+
+<p>Beyond calculating the equivalent capital income tax rate, the calculator also determines the required pre-tax return on assets (ρ) that investors would demand to compensate for the expropriation risk created by a wealth tax combined with the existing federal and state capital gains tax rates. This metric is critical for communicating investment tradeoffs to owners of capital in the adopting jurisdiction. The required return calculations support economic theory and historical experience that substantial industry outmigration becomes likely, as investors seek jurisdictions where their capital can earn competitive after-tax returns without the recurring burden of wealth confiscation.</p>
+
 <h2 style="text-align: center;">Real-Life Wealth Taxes and Proposals</h2>
 
-To see how this works in practice, here are actual wealth taxes and wealth tax proposals you can test in the calculator:
+<p>Actual wealth taxes and proposals you can test in the calculator above:</p>
 
+<div class="wtc-table-scroll">
 <table>
     <tr>
-        <th>Wealth Tax</th>
-        <th>Top Wealth Tax Rate (θ)</th>
+        <th>Wealth tax</th>
+        <th>Top wealth tax rate (θ)</th>
     </tr>
     <tr>
         <td>Norway's "Formuesskatt"</td>
@@ -50,306 +596,33 @@ To see how this works in practice, here are actual wealth taxes and wealth tax p
         <td>*</td>
     </tr>
 </table>
+</div>
 <p><em>Note: Switzerland levies wealth taxes at the canton and municipal levels.</em></p>
 
+<div class="wtc-table-scroll">
 <table>
     <tr>
         <th>Proposal</th>
-        <th>Wealth Tax Rate (θ)</th>
+        <th>Wealth tax rate (θ)</th>
     </tr>
     <tr>
-        <td>State of Washington's Proposed Wealth Tax</td>
+        <td>State of Washington's proposed wealth tax</td>
         <td>1%</td>
     </tr>
     <tr>
-        <td>France's Proposed "Zucman Tax"</td>
+        <td>France's proposed "Zucman Tax"</td>
         <td>2%</td>
     </tr>
     <tr>
-        <td>California Ballot Initiative's one-time "2026 Billionaire Tax Act"</td>
+        <td>California ballot initiative's one-time "2026 Billionaire Tax Act"</td>
         <td>5%</td>
     </tr>
     <tr>
-        <td>Bernie Sanders' Proposed Wealth Tax Top Bracket</td>
+        <td>Bernie Sanders' proposed wealth tax top bracket</td>
         <td>8%</td>
     </tr>
 </table>
-
-<h2 style="text-align: center;">How to Use the Calculator</h2>
-
-Input values for the following parameters:
-
-<p><strong>Wealth Tax Rate (θ) - Expropriation Risk:</strong> A wealth tax of 1% should be entered as 1. Acceptable range of values is between 0 and 100 (0-100%).</p>
-
-<p><strong>Risk Free Rate (r):</strong> This reflects the return to capital in the economy. For reference, the risk-free rate of return seldom exceeds 5 (e.g., yield of 30-year U.S. Treasury bond). Returns vary more widely among sectors. A risk-free rate of 5% should be entered as 5. Acceptable range of values is between -100 and 100 (-100% to 100%).</p>
-
-<h3 style="text-align: center;">Adjusting for State and Federal Capital Gains Taxes</h3>
-
-<p>This calculator also allows for the application of capital gains rates by state and the federal tax on capital gains. It addresses the question: What rate of income taxation on capital yields the same economic outcome as living under a wealth tax, when adjusting for the state those gains are realized in?</p>
-
-<p><em>Note: Capital gains consists of the top capital gains rate per selected state plus the top federal capital gains rate of 20% plus the Net Investment Income Tax (NIIT) of 3.8% applied on all investment income exceeding $250,000 for taxpayers married filing jointly ($125,000 filing separately).</em></p>
-
-
-
-
-
-<h2 style="text-align: center;">Understanding Required Returns</h2>
-
-<p>Beyond calculating the equivalent capital income tax rate, this calculator also determines the required pre-tax return on assets (ρ) that investors would demand to compensate for the expropriation risk created by a wealth tax combined with the existing federal and state capital gains tax rates. This metric is critical for communicating investment tradeoffs to owners of capital in the adopting jurisdiction. The required return calculations are meant to support economic theory and historical experience that substantial industry outmigration becomes likely, as investors seek jurisdictions where their capital can earn competitive after-tax returns without the recurring burden of wealth confiscation.</p>
-
-<div id="calculator"></div>
-
-<hr style="margin: 40px 0; border: 1px solid #ddd;">
-
-
-<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2 style="text-align: center;">Input Your Parameters Below</h2>
-  
-  <div style="margin: 20px 0;">
-    <label for="state" style="display: block; margin-bottom: 5px;">
-      <strong>Select State:</strong>
-    </label>
-    <select id="state" style="width: 100%; padding: 8px; font-size: 16px;">
-      <option value="0">United States (Federal Only)</option>
-      <option value="0.0522">National Average</option>
-      <option value="0.05">Alabama</option>
-      <option value="0">Alaska</option>
-      <option value="0.025">Arizona</option>
-      <option value="0.039">Arkansas</option>
-      <option value="0.133">California</option>
-      <option value="0.044">Colorado</option>
-      <option value="0.096">Connecticut</option>
-      <option value="0.066">Delaware</option>
-      <option value="0">Florida</option>
-      <option value="0.0539">Georgia</option>
-      <option value="0.0725">Hawaii</option>
-      <option value="0.053">Idaho</option>
-      <option value="0.0495">Illinois</option>
-      <option value="0.03">Indiana</option>
-      <option value="0.038">Iowa</option>
-      <option value="0.0558">Kansas</option>
-      <option value="0.04">Kentucky</option>
-      <option value="0.0425">Louisiana</option>
-      <option value="0.0715">Maine</option>
-      <option value="0.0575">Maryland</option>
-      <option value="0.16">Massachusetts</option>
-      <option value="0.0425">Michigan</option>
-      <option value="0.0985">Minnesota</option>
-      <option value="0.044">Mississippi</option>
-      <option value="0.0495">Missouri</option>
-      <option value="0.041">Montana</option>
-      <option value="0.052">Nebraska</option>
-      <option value="0">Nevada</option>
-      <option value="0">New Hampshire</option>
-      <option value="0.1075">New Jersey</option>
-      <option value="0.059">New Mexico</option>
-      <option value="0.109">New York</option>
-      <option value="0.1430">New York City</option>
-      <option value="0.045">North Carolina</option>
-      <option value="0.025">North Dakota</option>
-      <option value="0.035">Ohio</option>
-      <option value="0.0475">Oklahoma</option>
-      <option value="0.099">Oregon</option>
-      <option value="0.139">Portland, Oregon</option>
-      <option value="0.0307">Pennsylvania</option>
-      <option value="0.0599">Rhode Island</option>
-      <option value="0.0358">South Carolina</option>
-      <option value="0">South Dakota</option>
-      <option value="0">Tennessee</option>
-      <option value="0">Texas</option>
-      <option value="0.0455">Utah</option>
-      <option value="0.0875">Vermont</option>
-      <option value="0.0575">Virginia</option>
-      <option value="0.09">Washington D.C.</option>
-      <option value="0.099">Washington State</option>
-      <option value="0.0512">West Virginia</option>
-      <option value="0.0765">Wisconsin</option>
-      <option value="0">Wyoming</option>
-      <option value="0.3">France - Financial Assets</option>
-      <option value="0.362">France - Real Estate (under 22 years)</option>   
-    </select>
-  </div>
-
-  <div style="margin: 20px 0;">
-    <label for="theta1" style="display: block; margin-bottom: 5px;">
-      <strong>Wealth Tax Rate (θ) - Expropriation Risk:</strong>
-    </label>
-    <div style="position: relative;">
-      <input type="number" id="theta1" step="0.001" value="" min="0" max="100"
-             style="width: 100%; padding: 8px 30px 8px 8px; font-size: 16px;">
-      <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #666;">%</span>
-    </div>
-  </div>
-
-  <div style="margin: 20px 0;">
-    <label for="r1" style="display: block; margin-bottom: 5px;">
-      <strong>Risk Free Rate (r):</strong>
-    </label>
-    <div style="position: relative;">
-      <input type="number" id="r1" step="0.001" value="" min="-100" max="100"
-             style="width: 100%; padding: 8px 30px 8px 8px; font-size: 16px;">
-      <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #666;">%</span>
-    </div>
-  </div>
-
-  <button onclick="calculateAll()" 
-          style="width: 100%; padding: 12px; font-size: 18px; background-color: #0DAC50; color: white; border: none; cursor: pointer; margin: 20px 0;">
-    Calculate
-  </button>
-
-  <div id="error1" style="margin-top: 20px; padding: 20px; background-color: #ffcccc; border-radius: 5px; display: none; color: #cc0000;">
-    <strong>Unacceptable values entered.</strong>
-  </div>
-
-  <div id="result1" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px; display: none;">
-    <h3 style="margin-top: 0;">Results:</h3>
-    <p id="resultText1" style="font-size: 18px;"></p>
-  </div>
 </div>
-
-<script>
-// Treasury Data
-function fetchTreasuryYield() {
-    document.getElementById('r1').value = 'Loading...';
-    document.getElementById('r1').disabled = true;
-    // Fetch from Treasury.gov API
-    fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?filter=security_desc:eq:Treasury Bonds&sort=-record_date&page[size]=1')
-    .then(response => response.json())
-    .then(data => {
-        if (data.data && data.data.length > 0) {
-            // Get most recent 30-year rate
-            var rate = parseFloat(data.data[0].avg_interest_rate_amt);
-            document.getElementById('r1').value = rate.toFixed(3);
-        } else {
-            document.getElementById('r1').value = '';
-            alert('Could not fetch Treasury yield. Please enter manually');
-        }
-        document.getElementById('r1').disabled = false;
-    })
-    .catch(error => {
-        console.error('Error fetching Treasury yield:', error);
-        document.getElementById('r1').value = '';
-        document.getElementById('r1').disabled = false;
-        alert('Could not fetch Treasury yield. Please enter manually.')
-    });
-}
-
-// Call when page loads
-window.onload = function() {
-    fetchTreasuryYield();
-};
-
-function calculateAll() {
-  // Get input values and convert percentages to decimals
-  var theta = parseFloat(document.getElementById('theta1').value) / 100;
-  var r = parseFloat(document.getElementById('r1').value) / 100;
-  var stateCapGainsRate = parseFloat(document.getElementById('state').value);
-  
-  // Get selected state name
-  var stateSelect = document.getElementById('state');
-  var selectedStateName = stateSelect.options[stateSelect.selectedIndex].text;
-  
-  // Check if France, NYC, or Portland is selected
-  var isFrance = selectedStateName.indexOf("France") !== -1;
-  var isNYC = selectedStateName.indexOf("New York City") !== -1;
-  var isPortland = selectedStateName.indexOf("Portland, Oregon") !== -1;
-  
-  // For NYC and Portland, separate city and state rates
-  var cityRate = 0;
-  var metroRate = 0;
-  var pfaRate = 0;
-  var actualStateRate = stateCapGainsRate;
-  
-  if (isNYC) {
-    cityRate = 0.034; // 3.4% NYC tax
-    actualStateRate = 0.109; // 10.9% NY state tax
-  }
-
-  // For Portland, separate city and state rates
-  if (isPortland) {
-    metroRate = 0.01; // 1% Metro Tax
-    pfaRate = 0.03; // 3% Preschool for All Tax
-    cityRate = metroRate + pfaRate; // 4% total city tax
-    actualStateRate = 0.099; // 9.9% Oregon state tax
-  }
-  
-  // Federal capital gains and NIIT (constants) - only for US
-  var federalCapGains = isFrance ? 0 : 0.20;
-  var niit = isFrance ? 0 : 0.038;
-  
-  // Hide previous messages
-  document.getElementById('error1').style.display = 'none';
-  document.getElementById('result1').style.display = 'none';
-  
-  // Validate inputs
-  if (isNaN(theta) || isNaN(r) || theta < 0 || theta > 1 || r < -1 || r > 1) {
-    document.getElementById('error1').style.display = 'block';
-    return;
-  }
-  
-  // Calculate base equivalent tax rate
-  var tBase = (1 - ((r * (1 - theta)) / (r + theta))) * 100;
-  
-  // Calculate combined tax (base + city + state + federal + NIIT, all in percentage)
-  var combinedTax = tBase + (cityRate * 100) + (actualStateRate * 100) + (federalCapGains * 100) + (niit * 100);
-  
-  // Calculate rho using the combined tax rate
-  var tCombinedDecimal = combinedTax / 100;
-  
-  // Check for division by zero
-  if (tCombinedDecimal >= 2) {
-    document.getElementById('error1').style.display = 'block';
-    document.getElementById('error1').innerHTML = '<strong>Error: Combined tax rate equals or exceeds 200% (calculation not possible).</strong>';
-    return;
-  }
-  
-  var rho = r / (1 - tCombinedDecimal);
-
-  // Make rho nonnegative
-  if (rho < 0) {
-    rho = 0;
-  }
-  
-  // Round to 3 decimal places
-  tBase = Math.round(tBase * 1000) / 1000;
-  combinedTax = Math.round(combinedTax * 1000) / 1000;
-  rho = Math.round((rho * 100) * 1000) / 1000;
-  
-  // Display results - different format for France, NYC, Portland, and regular states
-  var resultHTML = "<strong>Base Equivalent Capital Income Tax Rate:</strong> " + tBase + "%<br>";
-  
-  if (isFrance) {
-    resultHTML += "<strong>France Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
-    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
-  } else if (isNYC) {
-    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + Math.round((cityRate * 100) * 100) / 100 + "%<br>";
-    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
-    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
-    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
-    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
-  } else if (isPortland) {
-    resultHTML += "<strong>Top City Capital Gains Tax Rate:</strong> " + Math.round((cityRate * 100) * 100) / 100 + "%<br>";
-    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + (actualStateRate * 100) + "%<br>";
-    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
-    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
-    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
-  } else {
-    resultHTML += "<strong>Top State Capital Gains Tax Rate:</strong> " + Math.round((stateCapGainsRate * 100) * 100) / 100 + "%<br>";
-    resultHTML += "<strong>Top Federal Capital Gains Tax Rate:</strong> 20%<br>";
-    resultHTML += "<strong>Net Investment Income Tax:</strong> 3.8%<br>";
-    resultHTML += "<strong>Comparable Combined Tax on Capital Income:</strong> " + combinedTax + "%<br><br>";
-  }
-  
-  resultHTML += "A required pre-tax return on assets of <strong>" + rho + "%</strong> is needed to compensate for the expropriation risk.";
-  
-  document.getElementById('resultText1').innerHTML = resultHTML;
-  document.getElementById('result1').style.display = 'block';
-}
-</script>
-
-
-
-<hr style="margin: 40px 0; border: 1px solid #ddd;">
 
 <h2 style="text-align: center;">Understanding the Calculations</h2>
 
@@ -385,8 +658,14 @@ function calculateAll() {
 
 <p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. The insecurity of property rights generated under a wealth tax regime can functionally deter internal and external direct investment. For example, California's proposed 5 percent wealth tax would require investors to demand a 48.1 percent pre-tax return—nine to ten times the risk-free rate—to compensate for expropriation risk. This exorbitant required return dwarfs the total market return on invested capital of 7.64 percent and exceeds the returns of 91 out of 94 publicly traded industry asset classes, serving as a substantial barrier to capital investment in the adopting jurisdiction.</p>
 
-
 <p><em>For a complete theoretical derivation and policy analysis, please refer to the accompanying academic paper.</em></p>
+
+<details class="wtc-sources">
+<summary>Data sources: capital gains tax rates by jurisdiction</summary>
+
+<p>The capital gains rates used in the calculator dropdown are sourced as follows.</p>
+
+<div class="wtc-table-scroll">
 <table>
     <tr>
         <th>State</th>
@@ -486,7 +765,7 @@ function calculateAll() {
     <tr>
         <td>Maine</td>
         <td>7.15%</td>
-        <td><a href="https://legislature.maine.gov/statutes/36/title36sec5111.html">36 M.R.S.A. § 5111</a></td>
+        <td><a href="https://legislature.maine.gov/statutes/36/title36sec5111.html">36 M.R.S.A. § 5111</a></td>
     </tr>
     <tr>
         <td>Maryland</td>
@@ -506,12 +785,12 @@ function calculateAll() {
     <tr>
         <td>Minnesota</td>
         <td>9.85%</td>
-        <td><a href="https://www.revisor.mn.gov/statutes/cite/290.06">Minnesota Statutes § 290.06</a></td>
+        <td><a href="https://www.revisor.mn.gov/statutes/cite/290.06">Minnesota Statutes § 290.06</a></td>
     </tr>
     <tr>
         <td>Mississippi</td>
         <td>4.4%</td>
-        <td><a href="https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=b59466b9-22c5-461b-86ed-22e7f848bff8&nodeid=AAPAAFAABAAD&nodepath=%2FROOT%2FAAP%2FAAPAAF%2FAAPAAFAAB%2FAAPAAFAABAAD&level=4&haschildren=&populated=false&title=%C2%A7+27-7-5.+Imposition+of+the+tax.&config=00JABhZDIzMTViZS04NjcxLTQ1MDItOTllOS03MDg0ZTQxYzU4ZTQKAFBvZENhdGFsb2f8inKxYiqNVSihJeNKRlUp&pddocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A6FG8-VHX3-SBN1-P36K-00008-00&ecomp=6gf5kkk&prid=ef6cdf66-5f51-4584-bf45-0c3b636c1a0a">Mississippi Code § 27‑7‑5</a></td>
+        <td><a href="https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=b59466b9-22c5-461b-86ed-22e7f848bff8&nodeid=AAPAAFAABAAD&nodepath=%2FROOT%2FAAP%2FAAPAAFAAB%2FAAPAAFAABAAD&level=4&haschildren=&populated=false&title=%C2%A7+27-7-5.+Imposition+of+the+tax.&config=00JABhZDIzMTViZS04NjcxLTQ1MDItOTllOS03MDg0ZTQxYzU4ZTQKAFBvZENhdGFsb2f8inKxYiqNVSihJeNKRlUp&pddocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A6FG8-VHX3-SBN1-P36K-00008-00&ecomp=6gf5kkk&prid=ef6cdf66-5f51-4584-bf45-0c3b636c1a0a">Mississippi Code § 27‑7‑5</a></td>
     </tr>
     <tr>
         <td>Missouri</td>
@@ -649,10 +928,12 @@ function calculateAll() {
         <td></td>
     </tr>
 </table>
+</div>
 
+<div class="wtc-table-scroll">
 <table>
     <tr>
-        <th></th>
+        <th>City</th>
         <th>Top Capital Gains Rate</th>
         <th>Source</th>
     </tr>
@@ -664,28 +945,31 @@ function calculateAll() {
     <tr>
         <td>Portland, Oregon</td>
         <td>4.0%</td>
-        <td><a href="https://www.oregonmetro.gov/sites/default/files/2025/10/16/Metro-Code-complete-effective-20250924.pdf">Metro Code § 7.06.040</a>; <a href = "https://multco.us/file/preschool_for_all_personal_income_tax_code/download">Multnomah County Code § 11.512</a></td>
+        <td><a href="https://www.oregonmetro.gov/sites/default/files/2025/10/16/Metro-Code-complete-effective-20250924.pdf">Metro Code § 7.06.040</a>; <a href="https://multco.us/file/preschool_for_all_personal_income_tax_code/download">Multnomah County Code § 11.512</a></td>
     </tr>
 </table>
+</div>
 
+<div class="wtc-table-scroll">
 <table>
     <tr>
-        <th></th>
+        <th>International</th>
         <th>Capital Gains</th>
         <th>Source</th>
     </tr>
     <tr>
-        <td>France - Financial Assets</td>
+        <td>France — Financial Assets</td>
         <td>30%</td>
         <td><a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F21618?lang=en">Service-Public.fr</a></td>
     </tr>
     <tr>
-        <td>France - Real Estate (under 22 years)</td>
+        <td>France — Real Estate (under 22 years)</td>
         <td>36.2%</td>
         <td><a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F21618?lang=en">Service-Public.fr</a></td>
     </tr>
 </table>
+</div>
 
-The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: hooverfpi@stanford.edu.
+</details>
 
-<p>Page last updated April 7, 2026.</p>
+<p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">The academic content, calculator methodology, and associated research are © 2025 William Dougan and Benjamin Jaros. For inquiries regarding the research or calculator, please contact: <a href="mailto:hooverfpi@stanford.edu">hooverfpi@stanford.edu</a>.</p>
