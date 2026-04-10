@@ -1,25 +1,23 @@
 # External plugins
-# See http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html for making `jekyll archives` work.
 plugins:
-  - jekyll-archives # Sorry, not GitHub pages friendly!
   - jekyll-sitemap
-  - jekyll-paginate-v2
 
 exclude:
   - "/vendor/"
 
 # Site settings
 title: Hoover Institution
-subtitle: "GitHub Landing Page"
+subtitle: "Fiscal Policy Initiative"
 name: Hoover Institution
 email: hooverfpi@stanford.edu
-description: > 
- Fiscal Policy Initiative
+description: >
+  GitHub landing page for the Hoover Institution Fiscal Policy Initiative
+  and State & Local Governance Initiative.
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "https://hoover-ins.github.io" # the base hostname & protocol for your site
 cover: "/assets/FPILogo.jpg"
 logo: "/assets/HooverLogo.jpg"
 
@@ -28,37 +26,8 @@ markdown: kramdown
 inter_post_navigation: false
 highlightjs_theme: "monokai-sublime"
 
-# Pagination Settings
-# https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
-pagination:
-  enabled: true
-  per_page: 5
-  permalink: "/page/:num/"
-  sort_reverse: true
-
-# Archive settings (see https://github.com/jekyll/jekyll-archives/)
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layout: 'archive'
-  permalinks:
-    category: '/category/:name/'
-    tag: '/tag/:name/'
-
-# Disqus comments
-# disqus_shortname: bencentra
-
 # Google analytics
 # ga_tracking_id: "UA-XXXX-1"
-
-# Category descriptions (for archive pages)
-descriptions:
-  - cat: jekyll
-    desc: "Posts describing Jekyll setup techniques."
-
-  - cat: dummy
-    desc: "Just some placeholder posts, lorem ipsum and the rest."
 
 # Social icons and sharing options
 #
