@@ -224,7 +224,7 @@ main_nav: true
 </style>
 
 <p class="wtc-lede">
-  This tool quantifies the <strong>equivalent capital income tax rate (t*)</strong> of a wealth tax — the income-tax rate on capital that would produce the same economic outcome as living under a given wealth tax — and reports the <strong>required pre-tax return (ρ)</strong> investors must demand to compensate for the recurring expropriation risk. State and federal capital gains taxes are layered in optionally.
+  This tool quantifies the <strong>equivalent capital income tax rate (t*)</strong> of a wealth tax — the income-tax rate on capital that would produce the comparable economic outcome as living under a given wealth tax — and reports the <strong>required pre-tax return (ρ)</strong> investors would demand to compensate for the recurring expropriation risk. State and federal capital gains taxes are layered in optionally.
 </p>
 
 <div id="calculator"></div>
@@ -614,7 +614,7 @@ main_nav: true
         <td>2%</td>
     </tr>
     <tr>
-        <td>California ballot initiative's one-time "2026 Billionaire Tax Act"</td>
+        <td>Federal "Make Billionaires Pay Their Fair Share Act"</td>
         <td>5%</td>
     </tr>
     <tr>
@@ -656,7 +656,7 @@ main_nav: true
   <li><strong>t</strong> = the combined capital income tax rate (t* plus existing capital gains taxes)</li>
 </ul>
 
-<p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. The insecurity of property rights generated under a wealth tax regime can functionally deter internal and external direct investment. For example, California's proposed 5 percent wealth tax would require investors to demand a 48.1 percent pre-tax return—nine to ten times the risk-free rate—to compensate for expropriation risk. This exorbitant required return dwarfs the total market return on invested capital of 7.64 percent and exceeds the returns of 91 out of 94 publicly traded industry asset classes, serving as a substantial barrier to capital investment in the adopting jurisdiction.</p>
+<p>This formula reveals how wealth taxes fundamentally alter investment incentives by requiring higher returns to compensate for the recurring claim on accumulated assets. The insecurity of property rights generated under a wealth tax regime can functionally deter internal and external direct investment. For example, the proposed federal "Make Billionaires Pay Their Fair Share Act" — a 5 percent wealth tax — would be equivalent to a 52.5 percent capital income tax rate. Combined with the 23.8 percent federal long-term capital gains rate (20 percent top statutory rate plus 3.8 percent NIIT), the total combined tax on capital income reaches 76.3 percent. Investors would demand a 21.1 percent before-tax return — four times the risk-free rate — to compensate for the expropriation risk. Compared to the total market return on invested capital of about 7.64 percent, nearly half of publicly traded industry asset classes have a lower return on invested capital, serving as a substantial barrier to capital investment in the United States.</p>
 
 <p><em>For a complete theoretical derivation and policy analysis, please refer to the accompanying academic paper.</em></p>
 
