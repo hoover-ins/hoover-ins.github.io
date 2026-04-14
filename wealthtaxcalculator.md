@@ -101,11 +101,11 @@ main_nav: true
   }
 
   .wtc-btn-primary {
-    background-color: #B3173C;
+    background-color: #2e7d32;
     color: #fff;
   }
 
-  .wtc-btn-primary:hover { background-color: #8C1515; }
+  .wtc-btn-primary:hover { background-color: #1b5e20; }
 
   .wtc-btn-secondary {
     background-color: transparent;
