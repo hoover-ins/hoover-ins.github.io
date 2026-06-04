@@ -24,10 +24,23 @@ Prior to his academic career, Dr. Rauh was an associate economist at Goldman Sac
 <hr>
 <h1 style="text-align: center;">Fiscal Policy Initiative</h1>
 <hr>
-![alt text]({{ site.baseurl }}/assets/HeadshotBenJaros.jpg "Profile Picture"){:.profile}
+![alt text]({{ site.baseurl }}/assets/HeadshotBenJaros.jpeg "Profile Picture"){:.profile}
 <h2 style="text-align: center;">Benjamin Jaros</h2>
 <h4 style="text-align: center;">Research Fellow</h4>
-Benjamin Jaros is an economist and research fellow at the Hoover Institution. Jaros specializes in public finance, financial economics, and economic history, with a focus on federal, state, and local taxation. His recent research examines taxpayer behavioral responses to income tax changes, state corporate income tax apportionment formula reforms, and colonial-era tobacco tariffs. He has previously worked at the Tax Foundation and served as a research assistant in academic, policy, and private-sector settings. Jaros received his BS in economics, magna cum laude, from Seton Hall University, and his MA and PhD in economics from Clemson University.
+Benjamin Jaros is an economist and research fellow at the Hoover Institution. He specializes in public finance, financial economics, and economic history, with a focus on federal, state, and local taxation. His recent research examines wealth taxation, budget scoring, taxpayer behavioral responses to income tax changes, state corporate income tax apportionment formula reforms, and colonial-era tobacco tariffs. He produces revenue estimates and fiscal impact analyses of state and federal tax policy.
+
+His research and commentary have appeared in The Wall Street Journal, the New York Post, and RealClearPolitics. He has previously worked at the Tax Foundation and served as a research assistant in academic, policy, and private-sector settings. Jaros received his BS in economics, magna cum laude, from Seton Hall University and his MA and PhD in economics from Clemson University.
+
+![alt text]({{ site.baseurl }}/assets/HeadshotTomChurch.jpg "Profile Picture"){:.profile}
+<h2 style="text-align: center;">Tom Church</h2>
+<h4 style="text-align: center;">Policy Fellow</h4>
+Tom Church is a policy fellow at the Hoover Institution. He studies health care policy, entitlement reform, income inequality, poverty, and the federal budget.
+
+Church’s research interests include tax-advantaged savings accounts for health care, the fiscal effects of a federal public option, state-based regulatory reform, pro-growth federal tax policy, and the distributional effects of entitlement spending reform.
+
+He has researched the fiscal effects of major health care proposals and is a co-author of Choices for All, a set of common-sense health care reforms. He contributes to Hoover’s Healthcare Policy Working Group, the Fiscal Policy Initiative, and the Tennenbaum Program for Fact-Based Policy.
+
+Church received his master’s degree in public policy with honors from Pepperdine University, specializing in economics and international relations. He has a bachelor’s degree in mathematics and political science from the University of Michigan.
 
 ![alt text]({{ site.baseurl }}/assets/HeadshotJohnDoran.jpg "Profile Picture"){:.profile}
 <h2 style="text-align: center;">John Doran</h2>
