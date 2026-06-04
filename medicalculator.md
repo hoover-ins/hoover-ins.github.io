@@ -47,6 +47,10 @@ main_nav: true
 }
 </style>
 
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<div id="mc-map" style="height:450px;width:100%"></div>
+
 <p class="mc-lede">
   This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely the introduction of work and community engagement requirements for able-bodied individuals and new limits to provider taxes. Upon selecting your desired state from the dropdown, the calculator will automatically populate the state's associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA. This tool is derived from research presented in <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act</a>.
 </p>
@@ -129,7 +133,7 @@ main_nav: true
     <!-- Static Text-->
 <h2 style="text-align: center;">Use and Interpretation</h2>
 
-<p>Upon selecting your desired state, a short dashboard of key projections will populate, including the state's 10-year federal budget reduction due to the OBBBA and the impact on the state budget under two scenarios. Scenario (i) projects the budget impact if the state chooses not to backfill the difference to providers, causing a larger loss for providers and patients while resulting in greater savings to the state. Scenario (ii) projects the budget impact if the state chooses to backfill the difference to providers, providing a smaller loss for providers and patients while resulting in a greater expenses for the state. The projected range for the budget impact on Medicaid providers and patients is provided as well. Whether the selected state is an “Expansion State” or “Non-Expansion State” is demarcated at the top of the page next to the state name.</p>
+<p>Upon selecting your desired state, a short dashboard of key projections populate, including the state's 10-year federal budget reduction due to the OBBBA and the impact on the state budget under two scenarios. Scenario (i) projects the budget impact if the state chooses not to backfill the difference to providers, causing a larger loss for providers and patients while resulting in greater savings to the state. Scenario (ii) projects the budget impact if the state chooses to backfill the difference to providers, providing a smaller loss for providers and patients while resulting in greater expenses for the state. The projected range for the budget impact on Medicaid providers and patients is provided as well. Whether the selected state is an “Expansion State” or “Non-Expansion State” is demarcated at the top of the page next to the state name.</p>
 
 <p><strong>“Annual Federal Reductions”</strong> lays out the annual breakdown of federal Medicaid reductions by states, with additional columns depicting its cumulative impact over the 10-year outlook period and the share of total funds by year.</p>
 
@@ -173,6 +177,83 @@ main_nav: true
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
 <script>
+
+    const STATE_ABBREV = {
+        'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
+        'Colorado':'CO','Connecticut':'CT','Delaware':'DE','DC':'DC','Florida':'FL',
+        'Georgia':'GA','Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN',
+        'Iowa':'IA','Kansas':'KS','Kentucky':'KY','Louisiana':'LA','Maine':'ME',
+        'Maryland':'MD','Massachusetts':'MA','Michigan':'MI','Minnesota':'MN',
+        'Mississippi':'MS','Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV',
+        'New Hampshire':'NH','New Jersey':'NJ','New Mexico':'NM','New York':'NY',
+        'North Carolina':'NC','North Dakota':'ND','Ohio':'OH','Oklahoma':'OK',
+        'Oregon':'OR','Pennsylvania':'PA','Rhode Island':'RI','South Carolina':'SC',
+        'South Dakota':'SD','Tennessee':'TN','Texas':'TX','Utah':'UT','Vermont':'VT',
+        'Virginia':'VA','Washington':'WA','West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY'
+    };
+    const ABBREV_STATE = Object.fromEntries(Object.entries(STATE_ABBREV).map(([k,v])=>[v,k]));
+
+    let allStateTotals = {};
+
+    function precomputeAll() {
+        for (const state of Object.keys(STATE_PARAMS)) {
+            allStateTotals[state] = compute(state).totals;
+        }
+    }
+
+    let mcMap = null;
+
+    function renderMap(selectedState) {
+        const locations = [], values = [], text = [];
+
+        for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
+            if (!allStateTotals[state]) continue;
+            const fed = allStateTotals[state].fed / 1000; //billions
+            locations.push(abbrev);
+            values.push(+fed.toFixed(2));
+            text.push(`<b>${state}</b><br>Federal reduction: ${(fed).toFixed(2)}B`);
+        }
+    
+    const trace = {
+        type: 'choropleth',
+        locationmode: 'USA-states',
+        locations,
+        z: values,
+        text,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#d6eaf8'],[1,'#1a5276']],
+        colorbar: { title: '10-yr ($B)', thickness: 15},
+        marker: {
+            line: {
+                color: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                ),
+                width: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                )
+            }
+        }
+    }
+
+    const layout = {
+        geo: { scope: 'usa', showlakes: false},
+        margin: { t: 10, b: 0, l: 0, r: 0 },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+
+    if (mcMap) {
+        Plotly.react('mc-map', [trace], layout);
+    } else {
+        Plotly.newPlot('mc-map', [trace], layout, { displayModeBar: false });
+        document.getElementById('mc-map').on('plotly_click', data => {
+            const abbrev = data.points[0].location;
+            const state = ABBREV_STATE[abbrev];
+        });
+        mcMap = true;
+    }
+}
+
 let STATE_PARAMS = null;
 let CBO_SCORES   = null;
 
@@ -182,10 +263,12 @@ Promise.all([
     fetch('/medicalculator_population.json').then(r => r.json())
 ])
 .then(([stateParams, cboScores, populationData]) => {
-    STATE_PARAMS      = stateParams;
-    CBO_SCORES        = cboScores;
+    STATE_PARAMS = stateParams;
+    CBO_SCORES = cboScores;
     window.populationData = populationData;
     populateDropdown();
+    precomputeAll();
+    renderMap(null);
 })
 .catch(err => {
     document.getElementById('mc-status').textContent = 'Error loading data: ' + err.message; 
@@ -407,6 +490,7 @@ function computeFigureXX2(stateName) {
 
 function onStateChange(stateName) {
     if (!stateName) return;
+    renderMap(stateName);
     const { rows, sections, params, totals } = compute(stateName);
 
     // State heading
@@ -522,16 +606,16 @@ function onStateChange(stateName) {
         </tr>`;
     });
     document.getElementById('mc-tb-sections').innerHTML = secHtml;
+
 }
 
 
 </script>
 
-<p><strong>"Section-by-Section Federal Impact”</strong>> outlines each section of the One Big Beautiful Bill Act’s impact on the Medicaid program for the selected state and delineates what population it applies to, whether it be All Populations, Long-Term Services and Supports (LTSS) Recipients, Medicaid Expansion Population, Medicare Savings Programs (MSP) Population, or State Directed Payments (SDP) States. It also classifies each section’s effect as resulting either in savings, loss, or having an indeterminate impact. The state share and 10-year federal impact is applied on a section-by-section basis.</p>
+<p><strong>"Section-by-Section Federal Impact”</strong> outlines each section of the One Big Beautiful Bill Act’s impact on the Medicaid program for the selected state and delineates what population it applies to, whether it be All Populations, Long-Term Services and Supports (LTSS) Recipients, Medicaid Expansion Population, Medicare Savings Programs (MSP) Population, or State Directed Payments (SDP) States. It also classifies each section’s effect as resulting either in savings, losses, or having an indeterminate impact. The state share and 10-year federal impact is applied on a section-by-section basis.</p>
 
 <p>This display is complemented by a listing of the OBBBA provision sections sorted by their effect type, which provides an easy reference to what provisions of the OBBBA reduce federal spending (resulting in savings), increase federal costs, or have an indeterminate impact.</p>
 
 <hr>
-
 
 <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">The academic content <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">[Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act]</a>, calculator methodology, and associated research are © 2026 Joshua Rauh, Tom Church, Daniel Heil, Benjamin Jaros, and John Doran. For inquiries regarding the research or calculator, please contact: <a href="mailto:hooverfpi@stanford.edu">hooverfpi@stanford.edu</a>.</p>
