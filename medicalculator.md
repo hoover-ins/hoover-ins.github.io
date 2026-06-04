@@ -49,7 +49,14 @@ main_nav: true
 
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
+<h3 style="text-align:center">Federal Medicaid Reduction by State (10-yr, 2025–2034)</h3>
 <div id="mc-map" style="height:450px;width:100%"></div>
+
+<h3 style="text-align:center">Federal Medicaid Reduction by Expansion State (10-yr, 2025–2034)</h3>
+<div id="mc-map3" style="height:450px;width:100%"></div>
+
+<h3 style="text-align:center">Federal Medicaid Reduction by Non-Expansion State (10-yr, 2025–2034)</h3>
+<div id="mc-map4" style="height:450px;width:100%"></div>
 
 <h3 style="text-align:center">MCO Spending as % of Total Medicaid Spending (FY 2024)</h3>
 <div id="mc-map2" style="height:450px;width:100%"></div>
@@ -321,6 +328,144 @@ main_nav: true
         }
     }
 
+    let mcMap3 = null;
+
+function renderExpansionMap(selectedState) {
+    const locData = [], valData = [], textData = [];
+    const locGray = [], textGray = [];
+
+    for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
+        if (!allStateTotals[state]) continue;
+        const fed = allStateTotals[state].fed / 1000;
+        const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
+        if (isExp) {
+            locData.push(abbrev);
+            valData.push(+fed.toFixed(2));
+            textData.push(`<b>${state}</b><br>Federal reduction: ${fed.toFixed(2)}B`);
+        } else {
+            locGray.push(abbrev);
+            textGray.push(`<b>${state}</b><br>Non-expansion state`);
+        }
+    }
+
+    const traceData = {
+        type: 'choropleth', locationmode: 'USA-states',
+        locations: locData, z: valData, text: textData,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorbar: { title: '10-yr ($B)', thickness: 15 },
+        marker: {
+            line: {
+                color: locData.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                ),
+                width: locData.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                )
+            }
+        }
+    };
+
+    const traceGray = {
+        type: 'choropleth', locationmode: 'USA-states',
+        locations: locGray, z: locGray.map(() => 0), text: textGray,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
+        zmin: 0, zmax: 1, showscale: false,
+        marker: { line: { color: '#fff', width: 0.5 } }
+    };
+
+    const layout = {
+        geo: { scope: 'usa', showlakes: false },
+        margin: { t: 10, b: 0, l: 0, r: 0 },
+        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+
+    if (mcMap3) {
+        Plotly.react('mc-map3', [traceData, traceGray], layout);
+    } else {
+        Plotly.newPlot('mc-map3', [traceData, traceGray], layout, { displayModeBar: false });
+        document.getElementById('mc-map3').on('plotly_click', data => {
+            const abbrev = data.points[0].location;
+            const state = ABBREV_STATE[abbrev];
+            if (state && STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion) {
+                document.getElementById('mc-state-select').value = state;
+                onStateChange(state);
+            }
+        });
+        mcMap3 = true;
+    }
+}
+
+let mcMap4 = null;
+
+function renderNonExpansionMap(selectedState) {
+    const locData = [], valData = [], textData = [];
+    const locGray = [], textGray = [];
+
+    for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
+        if (!allStateTotals[state]) continue;
+        const fed = allStateTotals[state].fed / 1000;
+        const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
+        if (!isExp) {
+            locData.push(abbrev);
+            valData.push(+fed.toFixed(2));
+            textData.push(`<b>${state}</b><br>Federal reduction: ${fed.toFixed(2)}B`);
+        } else {
+            locGray.push(abbrev);
+            textGray.push(`<b>${state}</b><br>Expansion state`);
+        }
+    }
+
+    const traceData = {
+        type: 'choropleth', locationmode: 'USA-states',
+        locations: locData, z: valData, text: textData,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorbar: { title: '10-yr ($B)', thickness: 15 },
+        marker: {
+            line: {
+                color: locData.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                ),
+                width: locData.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                )
+            }
+        }
+    };
+
+    const traceGray = {
+        type: 'choropleth', locationmode: 'USA-states',
+        locations: locGray, z: locGray.map(() => 0), text: textGray,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
+        zmin: 0, zmax: 1, showscale: false,
+        marker: { line: { color: '#fff', width: 0.5 } }
+    };
+
+    const layout = {
+        geo: { scope: 'usa', showlakes: false },
+        margin: { t: 10, b: 0, l: 0, r: 0 },
+        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+
+    if (mcMap4) {
+        Plotly.react('mc-map4', [traceData, traceGray], layout);
+    } else {
+        Plotly.newPlot('mc-map4', [traceData, traceGray], layout, { displayModeBar: false });
+        document.getElementById('mc-map4').on('plotly_click', data => {
+            const abbrev = data.points[0].location;
+            const state = ABBREV_STATE[abbrev];
+            if (state && STATE_PARAMS[state] && !STATE_PARAMS[state].is_expansion) {
+                document.getElementById('mc-state-select').value = state;
+                onStateChange(state);
+            }
+        });
+        mcMap4 = true;
+    }
+}
+
 let STATE_PARAMS = null;
 let CBO_SCORES   = null;
 
@@ -337,6 +482,8 @@ Promise.all([
     precomputeAll();
     renderMap(null);
     renderMCOMap();
+    renderExpansionMap(null);
+    renderNonExpansionMap(null);
 })
 .catch(err => {
     document.getElementById('mc-status').textContent = 'Error loading data: ' + err.message; 
@@ -559,6 +706,8 @@ function computeFigureXX2(stateName) {
 function onStateChange(stateName) {
     if (!stateName) return;
     renderMap(stateName);
+    renderExpansionMap(stateName);
+    renderNonExpansionMap(stateName);
     const { rows, sections, params, totals } = compute(stateName);
 
     // State heading
