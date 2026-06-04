@@ -12,7 +12,7 @@ main_nav: true
   }
 
   /* Space between tables */
-#mc-results h4 {
+#mc-results-top h4, #mc-results-bottom h4 {
     margin-top: 2em;
 }
 
@@ -32,7 +32,7 @@ main_nav: true
 #mc-tbl-sections td:nth-child(3) { width: 18%; }  /* Population */
 
 #mc-tbl-sections th:nth-child(4),
-#mc-tbl-sections td:nth-child(4) { width: 14%; }  /* Effect */
+#mc-tbl-sections td:nth-child(4) { width: 18%; }  /* Effect */
 
 #mc-tbl-sections th:nth-child(5),
 #mc-tbl-sections td:nth-child(5) { width: 14%; }  /* State Share */
@@ -48,7 +48,7 @@ main_nav: true
 </style>
 
 <p class="mc-lede">
-  This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely new limits to provider taxes and the introduction of work and community engagement requirements for able-bodied individuals. Upon selecting your desired state from the dropdown, the calculator will automatically populate its associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA.
+  This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely the introduction of work and community engagement requirements for able-bodied individuals and new limits to provider taxes. Upon selecting your desired state from the dropdown, the calculator will automatically populate the state's associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA. This tool is derived from research presented in <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act</a>.
 </p>
 
 <hr>
@@ -63,7 +63,7 @@ main_nav: true
         <span id="mc-status"></span>
     </div>
     <!-- RESULTS (hide until a State is selected) -->
-    <div id="mc-results" style="display:none">
+    <div id="mc-results-top" style="display:none">
         <h3 id="mc-state-heading"></h3>
         <!-- Headline Metrics -->
         <div id="mc-metrics">
@@ -72,12 +72,12 @@ main_nav: true
                 <div class="mc-metric-value" id="mc-m-fed"></div>
             </div>
             <div class="mc-metric">
-                <div class="mc-metric-label">State Budget - Best Case</div>
-                <div class="mc-metric-value" id="mc-m-slb"></div>
+                <div class="mc-metric-label">State Budget Scenario (i): Policy goes into effect and state does not backfill the difference. </div>
+                <div class="mc-metric-value" id="mc-m-sub"></div>
             </div>
             <div class="mc-metric">
-                <div class="mc-metric-label">State Budget - Worst Case</div>
-                <div class="mc-metric-value" id="mc-m-sub"></div>
+                <div class="mc-metric-label">State Budget Scenario (ii): Policy goes into effect and state backfills the difference. </div>
+                <div class="mc-metric-value" id="mc-m-slb"></div>
             </div>
             <div class="mc-metric">
                 <div class="mc-metric-label">Providers &amp; Patients (range)</div>
@@ -98,7 +98,7 @@ main_nav: true
             <tbody id="mc-tb-annual"></tbody>
         </table>
         <!-- Distributional Table -->
-        <h4>Distributional Effects</h4>
+        <h4>Allocating the Effects</h4>
         <table id="mc-tbl-dist">
             <thead>
                 <tr>
@@ -113,7 +113,35 @@ main_nav: true
             <tbody id="mc-tb-dist"></tbody>
         </table>
         <!-- Section-by-Section Table -->
-        <h4>Section-by-Section Federal Impact</h4>
+    <!-- Pre vs Post OBBBA federal spending -->
+    <h4>Federal Medicaid Spending: Pre- vs. Post-OBBBA</h4>
+    <p id="mc-chart-note" style="font-size:0.85rem;color:#555"></p>
+    <canvas id="mc-chart" style="max-height:400px"></canvas>
+    <!-- Total Medicaid Spending -->
+    <h4>Total Medicaid Spending: Pre- vs. Post-OBBBA (Federal + State)</h4>
+    <p id="mc-chart2-note" style="font-size:0.85rem;color:#555"></p>
+    <canvas id="mc-chart2" style="max-height:400px"></canvas>
+    </div><!-- /mc-results -->
+   
+</div><!-- /mc-container -->
+
+<div id="mc-static">
+    <!-- Static Text-->
+<h2 style="text-align: center;">Use and Interpretation</h2>
+
+<p>Upon selecting your desired state, a short dashboard of key projections will populate, including the state's 10-year federal budget reduction due to the OBBBA and the impact on the state budget under two scenarios. Scenario (i) projects the budget impact if the state chooses not to backfill the difference to providers, causing a larger loss for providers and patients while resulting in greater savings to the state. Scenario (ii) projects the budget impact if the state chooses to backfill the difference to providers, providing a smaller loss for providers and patients while resulting in a greater expenses for the state. The projected range for the budget impact on Medicaid providers and patients is provided as well. Whether the selected state is an “Expansion State” or “Non-Expansion State” is demarcated at the top of the page next to the state name.</p>
+
+<p><strong>“Annual Federal Reductions”</strong> lays out the annual breakdown of federal Medicaid reductions by states, with additional columns depicting its cumulative impact over the 10-year outlook period and the share of total funds by year.</p>
+
+<p><strong>“Allocating the Effects”</strong> lists the annual breakdown of the OBBBA’s impact on the state budget and Medicaid providers under Scenarios (i) and (ii). Scenario (i) implies the State Budget Low ($B) and Providers High ($B) results. Scenario (ii) implies the State Budget High ($B) and Providers Low ($B) results.</p>
+
+<p>Medi-Calculator also populates twin visualizations presenting the OBBBA’s 10-year impact on (1) federal Medicaid spending and (2) total (federal and state) Medicaid spending, relative to the pre-OBBBA baseline.</p>
+
+</div>
+
+<div id="mc-results-bottom" style="display:none">
+    <!-- mc-chart2 (Figure xx2) and anything else below -->
+    <h4>Section-by-Section Federal Impact</h4>
         <table id="mc-tbl-sections">
             <thead>
                 <tr>
@@ -140,17 +168,7 @@ main_nav: true
         </thead>
         <tbody id="mc-tb-grouped"></tbody>
     </table>
-    <!-- Pre vs Post OBBBA federal spending -->
-    <h4>Federal Medicaid Spending: Pre- vs. Post-OBBBA</h4>
-    <p id="mc-chart-note" style="font-size:0.85rem;color:#555"></p>
-    <canvas id="mc-chart" style="max-height:400px"></canvas>
-    <!-- Total Medicaid Spending -->
-    <h4>Total Medicaid Spending: Pre- vs. Post-OBBBA (Federal + State)</h4>
-    <p id="mc-chart2-note" style="font-size:0.85rem;color:#555"></p>
-    <canvas id="mc-chart2" style="max-height:400px"></canvas>
-    </div><!-- /mc-results -->
-   
-</div><!-- /mc-container -->
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
@@ -402,7 +420,8 @@ function onStateChange(stateName) {
     document.getElementById('mc-m-prov').textContent = fmt(totals.plb) + ' to ' + fmt(totals.pub);
 
     // show results
-    document.getElementById('mc-results').style.display = 'block';
+    document.getElementById('mc-results-top').style.display = 'block';
+    document.getElementById('mc-results-bottom').style.display = 'block';
 
     // Annual table
     let annualHtml = '';
@@ -508,20 +527,11 @@ function onStateChange(stateName) {
 
 </script>
 
-<hr>
-
-<h2 style="text-align: center;">Use and Interpretation</h2>
-
-<p>Upon selecting your desired state, a short dashboard of key projections will populate, including the state's 10-year federal budget reduction due to the OBBBA, the best case and worst case scenarios for the impact on the state’s budget, as well as the projected range for its impact on Medicaid providers and patients. Whether the selected state is an “Expansion State” or “Non-Expansion State” will be demarcated at the top of the page next to the state name.</p>
-
-<p><strong>“Annual Federal Reductions”</strong> lays out the annual breakdown of federal Medicaid reductions by states, with additional columns depicting its cumulative impact over the 10-year outlook period and the share of total funds by year.</p>
-
-<p><strong>“Distributional Effects”</strong> lists the annual breakdown of the OBBBA’s impact on the state budget and Medicaid providers under best case (low) and worst case (high) scenarios. The best case scenario for the state budget implies the worst case for the providers, and the best case scenario for the providers implies the worst case for the state budget.</p>
-
 <p><strong>"Section-by-Section Federal Impact”</strong>> outlines each section of the One Big Beautiful Bill Act’s impact on the Medicaid program for the selected state and delineates what population it applies to, whether it be All Populations, Long-Term Services and Supports (LTSS) Recipients, Medicaid Expansion Population, Medicare Savings Programs (MSP) Population, or State Directed Payments (SDP) States. It also classifies each section’s effect as resulting either in savings, loss, or having an indeterminate impact. The state share and 10-year federal impact is applied on a section-by-section basis.</p>
 
 <p>This display is complemented by a listing of the OBBBA provision sections sorted by their effect type, which provides an easy reference to what provisions of the OBBBA reduce federal spending (resulting in savings), increase federal costs, or have an indeterminate impact.</p>
 
-<p>The final items that Medi-Calculator populates upon selecting your desired state are twin visualizations presenting the OBBBA’s 10-year impact on (1) federal Medicaid spending and (2) total (federal and state) Medicaid spending, relative to the pre-OBBBA baseline.</p>
+<hr>
 
-<p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">The academic content, calculator methodology, and associated research are © 2026 Joshua Rauh, Tom Church, Daniel Heil, Benjamin Jaros, and John Doran. For inquiries regarding the research or calculator, please contact: <a href="mailto:hooverfpi@stanford.edu">hooverfpi@stanford.edu</a>.</p>
+
+<p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">The academic content <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">[Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act]</a>, calculator methodology, and associated research are © 2026 Joshua Rauh, Tom Church, Daniel Heil, Benjamin Jaros, and John Doran. For inquiries regarding the research or calculator, please contact: <a href="mailto:hooverfpi@stanford.edu">hooverfpi@stanford.edu</a>.</p>
