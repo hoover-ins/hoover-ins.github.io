@@ -51,6 +51,10 @@ main_nav: true
 
 <div id="mc-map" style="height:450px;width:100%"></div>
 
+<h3 style="text-align:center">MCO Spending as % of Total Medicaid Spending (FY 2024)</h3>
+<div id="mc-map2" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Source: KFF State Health Facts, FY 2024. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs.</p>
+
 <p class="mc-lede">
   This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely the introduction of work and community engagement requirements for able-bodied individuals and new limits to provider taxes. Upon selecting your desired state from the dropdown, the calculator will automatically populate the state's associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA. This tool is derived from research presented in <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act</a>.
 </p>
@@ -178,6 +182,22 @@ main_nav: true
 
 <script>
 
+    const MCO_PCT = {
+    'Alabama': null, 'Alaska': null, 'Arizona': 82.0, 'Arkansas': 9.0,
+    'California': 45.0, 'Colorado': 3.0, 'Connecticut': null, 'Delaware': 78.0,
+    'DC': 43.0, 'Florida': 65.0, 'Georgia': 37.0, 'Hawaii': 80.0,
+    'Idaho': null, 'Illinois': 69.0, 'Indiana': 42.0, 'Iowa': 91.0,
+    'Kansas': 90.0, 'Kentucky': 70.0, 'Louisiana': 72.0, 'Maine': null,
+    'Maryland': 38.0, 'Massachusetts': 42.0, 'Michigan': 49.0, 'Minnesota': 45.0,
+    'Mississippi': 50.0, 'Missouri': 29.0, 'Montana': null, 'Nebraska': 58.0,
+    'Nevada': 48.0, 'New Hampshire': 35.0, 'New Jersey': 63.0, 'New Mexico': 77.0,
+    'New York': 53.0, 'North Carolina': 57.0, 'North Dakota': 14.0, 'Ohio': 45.0,
+    'Oklahoma': 18.0, 'Oregon': 56.0, 'Pennsylvania': 67.0, 'Rhode Island': 60.0,
+    'South Carolina': 57.0, 'South Dakota': null, 'Tennessee': 67.0, 'Texas': 62.0,
+    'Utah': 41.0, 'Vermont': null, 'Virginia': 54.0, 'Washington': 36.0,
+    'West Virginia': 43.0, 'Wisconsin': 25.0, 'Wyoming': null
+};
+
     const STATE_ABBREV = {
         'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
         'Colorado':'CO','Connecticut':'CT','Delaware':'DE','DC':'DC','Florida':'FL',
@@ -249,10 +269,57 @@ main_nav: true
         document.getElementById('mc-map').on('plotly_click', data => {
             const abbrev = data.points[0].location;
             const state = ABBREV_STATE[abbrev];
+            if (state) {
+                document.getElementById('mc-state-select').value = state;
+                onStateChange(state);
+            }
         });
         mcMap = true;
     }
 }
+
+    let mcMCOMap = null;
+
+    function renderMCOMap() {
+        const locations = [], values = [], text = [];
+
+        for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
+            const pct = MCO_PCT[state];
+            locations.push(abbrev);
+            values.push(pct !== null ? pct : -1);
+            text.push(pct !== null
+                ? `<b>${state}</b><br>MCO spending: ${pct}% of total Medicaid`
+                : `<b>${state}</b><br>No MCO contracts (N/A)`
+            );
+        }
+        
+        const trace = {
+            type: 'choropleth',
+            locationmode: 'USA-states',
+            locations,
+            z: values,
+            text,
+            hovertemplate: '%{text}<extra></extra>',
+            colorscale: [[0, '#fadbd8'], [1, '#7b241c']],
+            zmin: 0, zmax: 100,
+            colorbar: { title: '% MCO', thickness: 15 },
+            marker: { line: { color: '#fff', width: 0.5}}
+        };
+
+        const layout = {
+            geo: { scope: 'usa', showlakes: false },
+            margin: { t: 10, b: 0, l: 0, r: 0 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)'
+        };
+
+        if (mcMCOMap) {
+            Plotly.react('mc-map2', [trace], layout);
+        } else {
+            Plotly.newPlot('mc-map2', [trace], layout, { displayModeBar: false});
+            mcMCOMap = true;
+        }
+    }
 
 let STATE_PARAMS = null;
 let CBO_SCORES   = null;
@@ -269,6 +336,7 @@ Promise.all([
     populateDropdown();
     precomputeAll();
     renderMap(null);
+    renderMCOMap();
 })
 .catch(err => {
     document.getElementById('mc-status').textContent = 'Error loading data: ' + err.message; 
