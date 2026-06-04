@@ -51,12 +51,15 @@ main_nav: true
 
 <h3 style="text-align:center">Federal Medicaid Reduction by State (10-yr, 2025–2034)</h3>
 <div id="mc-map" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Click any state to populate the calculator below.</p>
 
 <h3 style="text-align:center">Federal Medicaid Reduction by Expansion State (10-yr, 2025–2034)</h3>
 <div id="mc-map3" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Gray states have not adopted Medicaid expansion.</p>
 
 <h3 style="text-align:center">Federal Medicaid Reduction by Non-Expansion State (10-yr, 2025–2034)</h3>
 <div id="mc-map4" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Gray states have adopted Medicaid expansion.</p>
 
 <h3 style="text-align:center">MCO Spending as % of Total Medicaid Spending (FY 2024)</h3>
 <div id="mc-map2" style="height:450px;width:100%"></div>
@@ -248,7 +251,10 @@ main_nav: true
         z: values,
         text,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'],[1,'#1a5276']],
+        colorscale: [
+            [0, '#1a5276'],
+            [0.5, '#f5f5f5']
+            [1,'#7b241c']],
         colorbar: { title: '10-yr ($B)', thickness: 15},
         marker: {
             line: {
@@ -352,7 +358,9 @@ function renderExpansionMap(selectedState) {
         type: 'choropleth', locationmode: 'USA-states',
         locations: locData, z: valData, text: textData,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorscale:[
+            [0, '#d6eaf8'],
+            [1, '#1a5276']],
         colorbar: { title: '10-yr ($B)', thickness: 15 },
         marker: {
             line: {
@@ -370,7 +378,7 @@ function renderExpansionMap(selectedState) {
         type: 'choropleth', locationmode: 'USA-states',
         locations: locGray, z: locGray.map(() => 0), text: textGray,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
+        colorscale: 'Inferno',
         zmin: 0, zmax: 1, showscale: false,
         marker: { line: { color: '#fff', width: 0.5 } }
     };
@@ -421,7 +429,7 @@ function renderNonExpansionMap(selectedState) {
         type: 'choropleth', locationmode: 'USA-states',
         locations: locData, z: valData, text: textData,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorscale: 'RdBu',
         colorbar: { title: '10-yr ($B)', thickness: 15 },
         marker: {
             line: {
