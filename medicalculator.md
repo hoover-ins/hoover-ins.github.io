@@ -47,27 +47,27 @@ main_nav: true
 }
 </style>
 
+<p class="mc-lede">
+  This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely the introduction of work and community engagement requirements for able-bodied individuals and new limits to provider taxes. Upon selecting your desired state from the dropdown, the calculator will automatically populate the state's associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA. This tool is derived from research presented in <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act</a>.
+</p>
+
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
 <h3 style="text-align:center">Federal Medicaid Reduction by State (10-yr, 2025–2034)</h3>
 <div id="mc-map" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Click any state to populate the calculator below.</p>
+<p style="font-size:0.85rem;color:#555">Notes: Projected change in annual federal Medicaid outlays under the OBBBA, by state. Darker shading indicates larger reductions in federal spending. Authors' calculations based on CBO, KFF, and MACPAC data. Click any state to populate the calculator below.</p>
 
 <h3 style="text-align:center">Federal Medicaid Reduction by Expansion State (10-yr, 2025–2034)</h3>
 <div id="mc-map3" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Gray states have not adopted Medicaid expansion.</p>
+<p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions among the 40 states (and the District of Columbia) that have adopted Medicaid expansion under the Affordable Care Act (ACA). Gray states have not adopted Medicaid expansion. Authors' calculations based on CBO, KFF, and MACPAC data. </p>
 
 <h3 style="text-align:center">Federal Medicaid Reduction by Non-Expansion State (10-yr, 2025–2034)</h3>
 <div id="mc-map4" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Source: Authors' calculations based on CBO, KFF, and MACPAC data. Gray states have adopted Medicaid expansion.</p>
+<p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions among the 10 states that have not adopted Medicaid expansion. Gray states have adopted Medicaid expansion. Authors' calculations based on CBO, KFF, and MACPAC data. </p>
 
 <h3 style="text-align:center">MCO Spending as % of Total Medicaid Spending (FY 2024)</h3>
 <div id="mc-map2" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Source: KFF State Health Facts, FY 2024. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs.</p>
-
-<p class="mc-lede">
-  This tool quantifies the impact of the <strong>One Big Beautiful Bill Act (OBBBA)</strong> on federal Medicaid outlays going forward. The Act included 22 sections that made substantial alterations to the program, namely the introduction of work and community engagement requirements for able-bodied individuals and new limits to provider taxes. Upon selecting your desired state from the dropdown, the calculator will automatically populate the state's associated <strong>10-year Medicaid fiscal outlook projection</strong> information as a result of the OBBBA. This tool is derived from research presented in <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6833362">Medi-Cal and One Big Beautiful Bill: Federal Medicaid Reforms and the Fiscal Premise of California's Billionaire Tax Act</a>.
-</p>
+<p style="font-size:0.85rem;color:#555">Notes: Share of state Medicaid financing derived from managed care organization (MCO) taxes and provider taxes, by state. Darker shading indicates greater reliance on provider tax financing mechanisms. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs. KFF State Health Facts, FY 2024.</p>
 
 <hr>
 
@@ -151,7 +151,7 @@ main_nav: true
 
 <p><strong>“Annual Federal Reductions”</strong> lays out the annual breakdown of federal Medicaid reductions by states, with additional columns depicting its cumulative impact over the 10-year outlook period and the share of total funds by year.</p>
 
-<p><strong>“Allocating the Effects”</strong> lists the annual breakdown of the OBBBA’s impact on the state budget and Medicaid providers under Scenarios (i) and (ii). Scenario (i) implies the State Budget Low ($B) and Providers High ($B) results. Scenario (ii) implies the State Budget High ($B) and Providers Low ($B) results.</p>
+<p><strong>“Allocating the Effects”</strong> lists the annual breakdown of the OBBBA’s impact on the state budget and Medicaid providers under Scenarios (i) and (ii). Scenario (i) reflects the State Budget Low ($B) and Providers High ($B) results. Scenario (ii) reflects the State Budget High ($B) and Providers Low ($B) results.</p>
 
 <p>Medi-Calculator also populates twin visualizations presenting the OBBBA’s 10-year impact on (1) federal Medicaid spending and (2) total (federal and state) Medicaid spending, relative to the pre-OBBBA baseline.</p>
 
