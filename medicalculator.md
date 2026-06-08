@@ -260,7 +260,7 @@ main_nav: true
         z: values,
         text,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorscale: [[0, '#1a5276'], [1, '#d6eaf8']],
         colorbar: { title: '10-yr ($B)', thickness: 15},
         marker: {
             line: {
