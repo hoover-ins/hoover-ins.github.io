@@ -261,9 +261,8 @@ main_nav: true
         text,
         hovertemplate: '%{text}<extra></extra>',
         colorscale: [
-            [0, '#1a5276'],
-            [0.5, '#f5f5f5']
-            [1,'#7b241c']],
+            [[0, '#d6eaf8'], [1, '#1a5276']]
+            ],
         colorbar: { title: '10-yr ($B)', thickness: 15},
         marker: {
             line: {
@@ -389,13 +388,22 @@ function renderExpansionMap(selectedState) {
     };
 
     const traceGray = {
-        type: 'choropleth', locationmode: 'USA-states',
-        locations: locGray, z: locGray.map(() => 0), text: textGray,
-        hovertemplate: '%{text}<extra></extra>',
-        colorscale: 'Inferno',
-        zmin: 0, zmax: 1, showscale: false,
-        marker: { line: { color: '#fff', width: 0.5 } }
-    };
+    type: 'choropleth', locationmode: 'USA-states',
+    locations: locGray, z: locGray.map(() => 0), text: textGray,
+    hovertemplate: '%{text}<extra></extra>',
+    colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
+    zmin: 0, zmax: 1, showscale: false,
+    marker: {
+        line: {
+            color: locGray.map(a =>
+                selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+            ),
+            width: locGray.map(a =>
+                selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+            )
+        }
+    }
+};
 
     const layout = {
         geo: { scope: 'usa', showlakes: false },
@@ -458,13 +466,22 @@ function renderNonExpansionMap(selectedState) {
     };
 
     const traceGray = {
-        type: 'choropleth', locationmode: 'USA-states',
-        locations: locGray, z: locGray.map(() => 0), text: textGray,
-        hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
-        zmin: 0, zmax: 1, showscale: false,
-        marker: { line: { color: '#fff', width: 0.5 } }
-    };
+    type: 'choropleth', locationmode: 'USA-states',
+    locations: locGray, z: locGray.map(() => 0), text: textGray,
+    hovertemplate: '%{text}<extra></extra>',
+    colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
+    zmin: 0, zmax: 1, showscale: false,
+    marker: {
+        line: {
+            color: locGray.map(a =>
+                selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+            ),
+            width: locGray.map(a =>
+                selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+            )
+        }
+    }
+};
 
     const layout = {
         geo: { scope: 'usa', showlakes: false },
