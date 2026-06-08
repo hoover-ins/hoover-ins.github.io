@@ -339,6 +339,13 @@ main_nav: true
             Plotly.react('mc-map2', [trace], layout);
         } else {
             Plotly.newPlot('mc-map2', [trace], layout, { displayModeBar: false});
+            document.getElementById('mc-map2').on('plotly_click', data => {
+                const abbrev = data.points[0].location;
+                const state = ABBREV_STATE[abbrev];
+                if (state) {
+                    document.getElementById('mc-state-select').value = state;
+                    onStateChange(state);
+                    }});
             mcMCOMap = true;
         }
     }
@@ -403,11 +410,11 @@ function renderExpansionMap(selectedState) {
         document.getElementById('mc-map3').on('plotly_click', data => {
             const abbrev = data.points[0].location;
             const state = ABBREV_STATE[abbrev];
-            if (state && STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion) {
+            if (state) {
                 document.getElementById('mc-state-select').value = state;
                 onStateChange(state);
-            }
-        });
+                }
+            });
         mcMap3 = true;
     }
 }
@@ -472,11 +479,11 @@ function renderNonExpansionMap(selectedState) {
         document.getElementById('mc-map4').on('plotly_click', data => {
             const abbrev = data.points[0].location;
             const state = ABBREV_STATE[abbrev];
-            if (state && STATE_PARAMS[state] && !STATE_PARAMS[state].is_expansion) {
+            if (state) {
                 document.getElementById('mc-state-select').value = state;
                 onStateChange(state);
-            }
-        });
+                }
+            });
         mcMap4 = true;
     }
 }
