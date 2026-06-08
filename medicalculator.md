@@ -260,9 +260,7 @@ main_nav: true
         z: values,
         text,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [
-            [[0, '#d6eaf8'], [1, '#1a5276']]
-            ],
+        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
         colorbar: { title: '10-yr ($B)', thickness: 15},
         marker: {
             line: {
@@ -301,7 +299,7 @@ main_nav: true
 
     let mcMCOMap = null;
 
-    function renderMCOMap() {
+    function renderMCOMap(selectedState) {
         const locations = [], values = [], text = [];
 
         for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
@@ -324,7 +322,16 @@ main_nav: true
             colorscale: [[0, '#fadbd8'], [1, '#7b241c']],
             zmin: 0, zmax: 100,
             colorbar: { title: '% MCO', thickness: 15 },
-            marker: { line: { color: '#fff', width: 0.5}}
+            marker: {
+                line: {
+                    color: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                    ),
+                    width: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                    )
+                }
+            }
         };
 
         const layout = {
@@ -520,7 +527,7 @@ Promise.all([
     populateDropdown();
     precomputeAll();
     renderMap(null);
-    renderMCOMap();
+    renderMCOMap(null);
     renderExpansionMap(null);
     renderNonExpansionMap(null);
 })
@@ -745,6 +752,7 @@ function computeFigureXX2(stateName) {
 function onStateChange(stateName) {
     if (!stateName) return;
     renderMap(stateName);
+    renderMCOMap(stateName);
     renderExpansionMap(stateName);
     renderNonExpansionMap(stateName);
     const { rows, sections, params, totals } = compute(stateName);
