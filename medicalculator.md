@@ -406,6 +406,7 @@ function renderFedPctMap(selectedState) {
         locations.push(abbrev);
         values.push(pct);
         text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
+    }
 
     const trace = {
         type: 'choropleth',
