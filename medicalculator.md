@@ -58,25 +58,25 @@ main_nav: true
 
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
-<h3 style="text-align:center">The National Picture: Federal Medicaid Reduction by State (10-yr, 2025–2034)</h3>
-<p>This map shows the projected change in annual federal Medicaid outlays received by each state resulting from the OBBBA. Darker shading indicates larger reductions in federal spending. Click any state to populate the calculator below.</p>
-<div id="mc-map" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: Projected change in annual federal Medicaid outlays under the OBBBA, by state. Darker shading indicates larger reductions in federal spending. Authors' calculations based on CBO, KFF, and MACPAC data. Click any state to populate the calculator below.</p>
-
-<h3 style="text-align:center">Federal Medicaid Reduction by Expansion State (10-yr, 2025–2034)</h3>
-<p>This map shows projected federal Medicaid spending reductions among the 40 states (and the District of Columbia) that have adopted Medicaid expansion under the Affordable Care Act (ACA). Gray states have not expanded Medicaid.</p>
-<div id="mc-map3" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions among the 40 states (and the District of Columbia) that have adopted Medicaid expansion under the Affordable Care Act (ACA). Gray states have not adopted Medicaid expansion. Authors' calculations based on CBO, KFF, and MACPAC data. </p>
-
-<h3 style="text-align:center">Federal Medicaid Reduction by Non-Expansion State (10-yr, 2025–2034)</h3>
-<p>This map shows projected federal Medicaid spending reductions among the 10 states that have not adopted Medicaid expansion. Gray states expanded Medicaid.</p>
-<div id="mc-map4" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions among the 10 states that have not adopted Medicaid expansion. Gray states have adopted Medicaid expansion. Authors' calculations based on CBO, KFF, and MACPAC data. </p>
+<h3 style="text-align:center">Federal Medicaid Reduction by Expansion Status (10-yr, 2025–2034)</h3>
+<p>This map shows the projected change in annual federal Medicaid outlays received by each state resulting from the OBBBA. Darker shading indicates larger reductions in federal spending. Click any state to populate the calculator below. Expansion states are green and non-expansion states are blue.</p>
+<div id="mc-map5" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions by state. Green shading indicates Medicaid expansion states; blue shading indicates non-expansion states. Darker shading indicates larger reductions. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
 
 <h3 style="text-align:center">MCO Spending as Share of Total Medicaid Spending (FY 2024)</h3>
 <p>This map shows the share of each state's Medicaid financing derived from managed care organization (MCO) taxes and provider taxes. Darker shading indicates greater reliance on these tax financing mechanisms, which the OBBBA limits. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs.</p>
 <div id="mc-map2" style="height:450px;width:100%"></div>
 <p style="font-size:0.85rem;color:#555">Notes: Share of state Medicaid financing derived from managed care organization (MCO) taxes and provider taxes, by state. Darker shading indicates greater reliance on provider tax financing mechanisms. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs. KFF State Health Facts, FY 2024.</p>
+
+<h3 style="text-align:center">Federal Reduction as % of Baseline Federal Medicaid Spending (10-yr, 2025–2034)</h3>
+<p>This map shows each state's projected 10-year federal Medicaid reduction as a percentage of its total baseline federal Medicaid spending over the same period.</p>
+<div id="mc-map6" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Notes: 10-year federal Medicaid reduction as a share of baseline federal Medicaid spending, by state. Darker shading indicates a larger relative reduction. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
+
+<h3 style="text-align:center">Federal Reduction as % of Total Baseline Medicaid Spending (10-yr, 2025–2034)</h3>
+<p>This map shows each state's projected 10-year federal Medicaid reduction as a percentage of its total baseline Medicaid spending (federal + state) over the same period.</p>
+<div id="mc-map7" style="height:450px;width:100%"></div>
+<p style="font-size:0.85rem;color:#555">Notes: 10-year federal Medicaid reduction as a share of total baseline Medicaid spending (federal + state), by state. Darker shading indicates a larger relative reduction. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
 
 <hr>
 
@@ -240,62 +240,20 @@ main_nav: true
         }
     }
 
-    let mcMap = null;
-
-    function renderMap(selectedState) {
-        const locations = [], values = [], text = [];
-
-        for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
-            if (!allStateTotals[state]) continue;
-            const fed = allStateTotals[state].fed / 1000; //billions
-            locations.push(abbrev);
-            values.push(+fed.toFixed(2));
-            text.push(`<b>${state}</b><br>Federal reduction: ${(fed).toFixed(2)}B`);
-        }
+    let allFedBaseline = {};
+    let allTotalBaseline = {};
     
-    const trace = {
-        type: 'choropleth',
-        locationmode: 'USA-states',
-        locations,
-        z: values,
-        text,
-        hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#1a5276'], [1, '#d6eaf8']],
-        colorbar: { title: '10-yr ($B)', thickness: 15},
-        marker: {
-            line: {
-                color: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-                ),
-                width: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-                )
-            }
+    function precomputeBaselines() {
+        for (const state of Object.keys(STATE_PARAMS)) {
+            const { baseline } = computeBaseline(state);
+            // Sum years 2025-2034 (indices 1-10)
+            allFedBaseline[state] = baseline.slice(1).reduce((s, v) => s + v, 0);
+            
+            const { preArr } = computeFigureXX2(state);
+            allTotalBaseline[state] = preArr.slice(1).reduce((s, v) => s + v, 0);
         }
     }
 
-    const layout = {
-        geo: { scope: 'usa', showlakes: false},
-        margin: { t: 10, b: 0, l: 0, r: 0 },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)'
-    };
-
-    if (mcMap) {
-        Plotly.react('mc-map', [trace], layout);
-    } else {
-        Plotly.newPlot('mc-map', [trace], layout, { displayModeBar: false });
-        document.getElementById('mc-map').on('plotly_click', data => {
-            const abbrev = data.points[0].location;
-            const state = ABBREV_STATE[abbrev];
-            if (state) {
-                document.getElementById('mc-state-select').value = state;
-                onStateChange(state);
-            }
-        });
-        mcMap = true;
-    }
-}
 
     let mcMCOMap = null;
 
@@ -356,159 +314,139 @@ main_nav: true
         }
     }
 
-    let mcMap3 = null;
+let mcMap5 = null;
 
-function renderExpansionMap(selectedState) {
-    const locData = [], valData = [], textData = [];
-    const locGray = [], textGray = [];
+function renderCombinedMap(selectedState) {
+    const locExp = [], valExp = [], textExp = [];
+    const locNon = [], valNon = [], textNon = [];
 
     for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
         if (!allStateTotals[state]) continue;
         const fed = allStateTotals[state].fed / 1000;
         const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
         if (isExp) {
-            locData.push(abbrev);
-            valData.push(+fed.toFixed(2));
-            textData.push(`<b>${state}</b><br>Federal reduction: ${fed.toFixed(2)}B`);
+            locExp.push(abbrev);
+            valExp.push(+fed.toFixed(2));
+            textExp.push(`<b>${state}</b><br>Expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         } else {
-            locGray.push(abbrev);
-            textGray.push(`<b>${state}</b><br>Non-expansion state`);
+            locNon.push(abbrev);
+            valNon.push(+fed.toFixed(2));
+            textNon.push(`<b>${state}</b><br>Non-expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         }
     }
 
-    const traceData = {
+    const traceExp = {
         type: 'choropleth', locationmode: 'USA-states',
-        locations: locData, z: valData, text: textData,
+        locations: locExp, z: valExp, text: textExp,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: 'Greens',
-        colorbar: { title: '10-yr ($B)', thickness: 15 },
+        colorscale: [[0, '#d5f5e3'], [1, '#1e8449']],
+        colorbar: { title: 'Expansion ($B)', thickness: 15, x: 1.0 },
         marker: {
             line: {
-                color: locData.map(a =>
+                color: locExp.map(a =>
                     selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
                 ),
-                width: locData.map(a =>
+                width: locExp.map(a =>
                     selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
                 )
             }
         }
     };
 
-    const traceGray = {
-    type: 'choropleth', locationmode: 'USA-states',
-    locations: locGray, z: locGray.map(() => 0), text: textGray,
-    hovertemplate: '%{text}<extra></extra>',
-    colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
-    zmin: 0, zmax: 1, showscale: false,
-    marker: {
-        line: {
-            color: locGray.map(a =>
-                selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-            ),
-            width: locGray.map(a =>
-                selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-            )
+    const traceNon = {
+        type: 'choropleth', locationmode: 'USA-states',
+        locations: locNon, z: valNon, text: textNon,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.12 },
+        marker: {
+            line: {
+                color: locNon.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                ),
+                width: locNon.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                )
+            }
         }
-    }
-};
+    };
 
     const layout = {
         geo: { scope: 'usa', showlakes: false },
-        margin: { t: 10, b: 0, l: 0, r: 0 },
+        margin: { t: 10, b: 0, l: 0, r: 120 },
         paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
     };
 
-    if (mcMap3) {
-        Plotly.react('mc-map3', [traceData, traceGray], layout);
+    if (mcMap5) {
+        Plotly.react('mc-map5', [traceExp, traceNon], layout);
     } else {
-        Plotly.newPlot('mc-map3', [traceData, traceGray], layout, { displayModeBar: false });
-        document.getElementById('mc-map3').on('plotly_click', data => {
+        Plotly.newPlot('mc-map5', [traceExp, traceNon], layout, { displayModeBar: false });
+        document.getElementById('mc-map5').on('plotly_click', data => {
             const abbrev = data.points[0].location;
             const state = ABBREV_STATE[abbrev];
             if (state) {
                 document.getElementById('mc-state-select').value = state;
                 onStateChange(state);
-                }
-            });
-        mcMap3 = true;
+            }
+        });
+        mcMap5 = true;
     }
 }
 
-let mcMap4 = null;
+let mcMap6 = null;
 
-function renderNonExpansionMap(selectedState) {
-    const locData = [], valData = [], textData = [];
-    const locGray = [], textGray = [];
+function renderFedPctMap(selectedState) {
+    const locations = [], values = [], text = [];
 
     for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
-        if (!allStateTotals[state]) continue;
-        const fed = allStateTotals[state].fed / 1000;
-        const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
-        if (!isExp) {
-            locData.push(abbrev);
-            valData.push(+fed.toFixed(2));
-            textData.push(`<b>${state}</b><br>Federal reduction: ${fed.toFixed(2)}B`);
-        } else {
-            locGray.push(abbrev);
-            textGray.push(`<b>${state}</b><br>Expansion state`);
-        }
+        if (!allStateTotals[state] || !allFedBaseline[state]) continue;
+        const fed = allStateTotals[state].fed / 1000; // billions
+        const baseline = allFedBaseline[state];
+        const pct = baseline !== 0 ? +((fed / baseline) * 100).toFixed(1) : 0;
+        locations.push(abbrev);
+        values.push(pct);
+        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
     }
 
-    const traceData = {
-        type: 'choropleth', locationmode: 'USA-states',
-        locations: locData, z: valData, text: textData,
+    const trace = {
+        type: 'choropleth',
+        locationmode: 'USA-states',
+        locations, z: values, text,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: 'YIOrRd',
-        colorbar: { title: '10-yr ($B)', thickness: 15 },
+        colorscale: [[0, '#fdebd0'], [1, '#d35400']],
+        colorbar: { title: '% of Federal', thickness: 15 },
         marker: {
             line: {
-                color: locData.map(a =>
+                color: locations.map(a =>
                     selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
                 ),
-                width: locData.map(a =>
+                width: locations.map(a =>
                     selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
                 )
             }
         }
     };
 
-    const traceGray = {
-    type: 'choropleth', locationmode: 'USA-states',
-    locations: locGray, z: locGray.map(() => 0), text: textGray,
-    hovertemplate: '%{text}<extra></extra>',
-    colorscale: [[0, '#bdc3c7'], [1, '#bdc3c7']],
-    zmin: 0, zmax: 1, showscale: false,
-    marker: {
-        line: {
-            color: locGray.map(a =>
-                selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-            ),
-            width: locGray.map(a =>
-                selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-            )
-        }
-    }
-};
-
     const layout = {
         geo: { scope: 'usa', showlakes: false },
         margin: { t: 10, b: 0, l: 0, r: 0 },
-        paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
     };
 
-    if (mcMap4) {
-        Plotly.react('mc-map4', [traceData, traceGray], layout);
+    if (mcMap6) {
+        Plotly.react('mc-map6', [trace], layout);
     } else {
-        Plotly.newPlot('mc-map4', [traceData, traceGray], layout, { displayModeBar: false });
-        document.getElementById('mc-map4').on('plotly_click', data => {
+        Plotly.newPlot('mc-map6', [trace], layout, { displayModeBar: false });
+        document.getElementById('mc-map6').on('plotly_click', data => {
             const abbrev = data.points[0].location;
             const state = ABBREV_STATE[abbrev];
             if (state) {
                 document.getElementById('mc-state-select').value = state;
                 onStateChange(state);
-                }
-            });
-        mcMap4 = true;
+            }
+        });
+        mcMap6 = true;
     }
 }
 
@@ -526,10 +464,11 @@ Promise.all([
     window.populationData = populationData;
     populateDropdown();
     precomputeAll();
-    renderMap(null);
+    precomputeBaselines();
+    renderFedPctMap(null);
+    renderTotalPctMap(null);
     renderMCOMap(null);
-    renderExpansionMap(null);
-    renderNonExpansionMap(null);
+    renderCombinedMap(null);
 })
 .catch(err => {
     document.getElementById('mc-status').textContent = 'Error loading data: ' + err.message; 
@@ -716,6 +655,63 @@ function renderChart2(stateName) {
         document.getElementById('mc-tb-grouped').innerHTML = html;
     }
 
+let mcMap7 = null;
+
+function renderTotalPctMap(selectedState) {
+    const locations = [], values = [], text = [];
+
+    for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
+        if (!allStateTotals[state] || !allTotalBaseline[state]) continue;
+        const fed = allStateTotals[state].fed / 1000; // billions
+        const baseline = allTotalBaseline[state];
+        const pct = baseline !== 0 ? +((fed / baseline) * 100).toFixed(1) : 0;
+        locations.push(abbrev);
+        values.push(pct);
+        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of total baseline spending`);
+    }
+
+    const trace = {
+        type: 'choropleth',
+        locationmode: 'USA-states',
+        locations, z: values, text,
+        hovertemplate: '%{text}<extra></extra>',
+        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorbar: { title: '% of Total', thickness: 15 },
+        marker: {
+            line: {
+                color: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
+                ),
+                width: locations.map(a =>
+                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
+                )
+            }
+        }
+    };
+
+    const layout = {
+        geo: { scope: 'usa', showlakes: false },
+        margin: { t: 10, b: 0, l: 0, r: 0 },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
+    };
+
+    if (mcMap7) {
+        Plotly.react('mc-map7', [trace], layout);
+    } else {
+        Plotly.newPlot('mc-map7', [trace], layout, { displayModeBar: false });
+        document.getElementById('mc-map7').on('plotly_click', data => {
+            const abbrev = data.points[0].location;
+            const state = ABBREV_STATE[abbrev];
+            if (state) {
+                document.getElementById('mc-state-select').value = state;
+                onStateChange(state);
+            }
+        });
+        mcMap7 = true;
+    }
+}
+
 function computeFigureXX2(stateName) {
     const p = STATE_PARAMS[stateName];
     const bl = CBO_SCORES['_baseline'];
@@ -751,10 +747,10 @@ function computeFigureXX2(stateName) {
 
 function onStateChange(stateName) {
     if (!stateName) return;
-    renderMap(stateName);
     renderMCOMap(stateName);
-    renderExpansionMap(stateName);
-    renderNonExpansionMap(stateName);
+    renderCombinedMap(stateName);
+    renderFedPctMap(stateName);
+    renderTotalPctMap(stateName);
     const { rows, sections, params, totals } = compute(stateName);
 
     // State heading
