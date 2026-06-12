@@ -326,11 +326,11 @@ function renderCombinedMap(selectedState) {
         const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
         if (isExp) {
             locExp.push(abbrev);
-            valExp.push(+Math.abs(fed).toFixed(2));
+            valExp.push(+fed.toFixed(2));
             textExp.push(`<b>${state}</b><br>Expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         } else {
             locNon.push(abbrev);
-            valNon.push(+Math.abs(fed).toFixed(2));
+            valNon.push(+fed.toFixed(2));
             textNon.push(`<b>${state}</b><br>Non-expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         }
     }
@@ -339,7 +339,7 @@ function renderCombinedMap(selectedState) {
         type: 'choropleth', locationmode: 'USA-states',
         locations: locExp, z: valExp, text: textExp,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d5f5e3'], [1, '#1e8449']],
+        colorscale: [[0, '#1e8449'], [1, '#d5f5e3']],
         colorbar: { title: 'Expansion ($B)', thickness: 15, x: 1.02, len: 0.9 },
         marker: {
             line: {
@@ -357,7 +357,7 @@ function renderCombinedMap(selectedState) {
         type: 'choropleth', locationmode: 'USA-states',
         locations: locNon, z: valNon, text: textNon,
         hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
+        colorscale: [[0, '#1a5276'], [1, '#d6eaf8']],
         colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.25, len: 0.9 },
         marker: {
             line: {
