@@ -358,7 +358,7 @@ function renderCombinedMap(selectedState) {
         locations: locNon, z: valNon, text: textNon,
         hovertemplate: '%{text}<extra></extra>',
         colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
-        colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.18, len: 0.9 },
+        colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.25, len: 0.9 },
         marker: {
             line: {
                 color: locNon.map(a =>
@@ -373,7 +373,7 @@ function renderCombinedMap(selectedState) {
 
     const layout = {
         geo: { scope: 'usa', showlakes: false },
-        margin: { t: 10, b: 0, l: 0, r: 160 },
+        margin: { t: 10, b: 0, l: 0, r: 220 },
         paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
     };
 
