@@ -326,11 +326,11 @@ function renderCombinedMap(selectedState) {
         const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
         if (isExp) {
             locExp.push(abbrev);
-            valExp.push(+fed.toFixed(2));
+            valExp.push(+Math.abs(fed).toFixed(2));
             textExp.push(`<b>${state}</b><br>Expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         } else {
             locNon.push(abbrev);
-            valNon.push(+fed.toFixed(2));
+            valNon.push(+Math.abs(fed).toFixed(2));
             textNon.push(`<b>${state}</b><br>Non-expansion state<br>Federal reduction: ${fed.toFixed(2)}B`);
         }
     }
@@ -340,7 +340,7 @@ function renderCombinedMap(selectedState) {
         locations: locExp, z: valExp, text: textExp,
         hovertemplate: '%{text}<extra></extra>',
         colorscale: [[0, '#d5f5e3'], [1, '#1e8449']],
-        colorbar: { title: 'Expansion ($B)', thickness: 15, x: 1.0 },
+        colorbar: { title: 'Expansion ($B)', thickness: 15, x: 1.02, len: 0.9 },
         marker: {
             line: {
                 color: locExp.map(a =>
@@ -358,7 +358,7 @@ function renderCombinedMap(selectedState) {
         locations: locNon, z: valNon, text: textNon,
         hovertemplate: '%{text}<extra></extra>',
         colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
-        colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.12 },
+        colorbar: { title: 'Non-Exp ($B)', thickness: 15, x: 1.18, len: 0.9 },
         marker: {
             line: {
                 color: locNon.map(a =>
@@ -373,7 +373,7 @@ function renderCombinedMap(selectedState) {
 
     const layout = {
         geo: { scope: 'usa', showlakes: false },
-        margin: { t: 10, b: 0, l: 0, r: 120 },
+        margin: { t: 10, b: 0, l: 0, r: 160 },
         paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
     };
 
@@ -402,11 +402,10 @@ function renderFedPctMap(selectedState) {
         if (!allStateTotals[state] || !allFedBaseline[state]) continue;
         const fed = allStateTotals[state].fed / 1000; // billions
         const baseline = allFedBaseline[state];
-        const pct = baseline !== 0 ? +((fed / baseline) * 100).toFixed(1) : 0;
+        const pct = baseline !== 0 ? +((Math.abs(fed) / baseline) * 100).toFixed(1) : 0;
         locations.push(abbrev);
         values.push(pct);
         text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
-    }
 
     const trace = {
         type: 'choropleth',
@@ -664,10 +663,10 @@ function renderTotalPctMap(selectedState) {
         if (!allStateTotals[state] || !allTotalBaseline[state]) continue;
         const fed = allStateTotals[state].fed / 1000; // billions
         const baseline = allTotalBaseline[state];
-        const pct = baseline !== 0 ? +((fed / baseline) * 100).toFixed(1) : 0;
+        const pct = baseline !== 0 ? +((Math.abs(fed) / baseline) * 100).toFixed(1) : 0;
         locations.push(abbrev);
         values.push(pct);
-        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of total baseline spending`);
+        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
     }
 
     const trace = {
