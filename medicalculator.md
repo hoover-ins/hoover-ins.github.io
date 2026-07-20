@@ -67,6 +67,7 @@ main_nav: true
 #mc-provtax-sort button {
     font-size: 0.8rem; padding: 4px 10px; margin-right: 6px;
     border: 1px solid #ccc; border-radius: 3px; background: #fff; cursor: pointer;
+    color: #333;
 }
 #mc-provtax-sort button.active { background: #333; color: #fff; border-color: #333; }
 </style>
@@ -524,7 +525,7 @@ Promise.all([
     fetch('/medicalculator_state_params.json').then(r => r.json()),
     fetch('/medicalculator_cbo_scores.json').then(r => r.json()),
     fetch('/medicalculator_population.json').then(r => r.json()),
-    fetch('/medicalculator_providertax.json').then(r => r.json())
+    fetch('/medicalculator_providertax.json?v=' + Date.now()).then(r => r.json())
 ])
 .then(([stateParams, cboScores, populationData, providerTaxData]) => {
     STATE_PARAMS = stateParams;
