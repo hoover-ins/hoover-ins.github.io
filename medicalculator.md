@@ -45,6 +45,30 @@ main_nav: true
     word-wrap: break-word;
     vertical-align: top;
 }
+
+/* Provider tax heatmap */
+#mc-tbl-provtax { border-collapse: collapse; width: 100%; }
+#mc-tbl-provtax th, #mc-tbl-provtax td {
+    text-align: center;
+    padding: 6px 4px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+#mc-tbl-provtax th { font-weight: 600; border-bottom: 2px solid #333; }
+#mc-tbl-provtax td.state-name { text-align: left; white-space: nowrap; }
+#mc-tbl-provtax td.state-name .cnt { font-size: 0.75rem; color: #888; margin-left: 6px; }
+#mc-tbl-provtax .tax-cell { width: 28px; height: 20px; margin: 0 auto; border-radius: 2px; }
+#mc-tbl-provtax .tax-yes { background: #1a5276; }
+#mc-tbl-provtax .tax-no  { background: #eaeded; border: 1px solid #ddd; }
+#mc-tbl-provtax .tax-nr  { background: #f5b041; }
+#mc-provtax-legend { font-size: 0.85rem; color: #555; margin: 8px 0 4px; }
+#mc-provtax-legend span { display: inline-block; margin-right: 16px; }
+#mc-provtax-legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+#mc-provtax-sort button {
+    font-size: 0.8rem; padding: 4px 10px; margin-right: 6px;
+    border: 1px solid #ccc; border-radius: 3px; background: #fff; cursor: pointer;
+}
+#mc-provtax-sort button.active { background: #333; color: #fff; border-color: #333; }
 </style>
 
 <h2 style="text-align:center"><i>How the "Big Beautiful Bill" Actually Changes Medicaid Funding</i></h2>
@@ -77,6 +101,38 @@ main_nav: true
 <p>This map shows each state's projected 10-year federal Medicaid reduction as a percentage of its total baseline Medicaid spending (federal + state) over the same period.</p>
 <div id="mc-map7" style="height:450px;width:100%"></div>
 <p style="font-size:0.85rem;color:#555">Notes: 10-year federal Medicaid reduction as a share of total baseline Medicaid spending (federal + state), by state. Darker shading indicates a larger relative reduction. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
+
+<h3 style="text-align:center">Provider Tax Coverage by Type (SFY 2025)</h3>
+<p>States vary widely in how many provider types they tax — from none (Alaska) to all five tracked categories (Arkansas, California, Kentucky, Louisiana, Minnesota, Oklahoma, West Virginia). Broader coverage means more revenue exposed to the OBBBA's new provider tax restrictions.</p>
+
+<div id="mc-provtax-sort">
+    <button class="active" data-sort="count">Most taxed types first</button>
+    <button data-sort="alpha">Alphabetical</button>
+</div>
+
+<table id="mc-tbl-provtax">
+    <thead>
+        <tr>
+            <th style="text-align:left">State</th>
+            <th>Hospital</th>
+            <th>Nursing Facility</th>
+            <th>ICF/ID</th>
+            <th>MCO</th>
+            <th>Ambulance</th>
+        </tr>
+    </thead>
+    <tbody id="mc-tb-provtax"></tbody>
+</table>
+
+<div id="mc-provtax-legend">
+    <span><span class="sw" style="background:#1a5276"></span>Tax in place</span>
+    <span><span class="sw" style="background:#eaeded;border:1px solid #ddd"></span>No tax</span>
+    <span><span class="sw" style="background:#f5b041"></span>No survey response (FL, KS, MS — prior verified data used)</span>
+</div>
+<p style="font-size:0.85rem;color:#555">Source: KFF State Health Facts, "States Reporting Taxes by Provider Type, SFY 2025," analysis of the KFF/HMA/NAMD 50-State Medicaid Budget Survey. ICF/ID = intermediate care facility for individuals with intellectual disabilities. MCO = managed care organization.</p>
+
+
+
 
 <hr>
 
@@ -149,7 +205,17 @@ main_nav: true
     <p id="mc-chart2-note" style="font-size:0.85rem;color:#555"></p>
     <canvas id="mc-chart2" style="max-height:400px"></canvas>
     </div><!-- /mc-results -->
-   
+
+
+<h3 style="text-align:center">Sources of Variation:</h3>
+<p><strong>Provider tax rate levels:</strong> Rates imposed by provider taxes vary by state.</p>
+<p><strong>Provider tax breadth:</strong> The number of provider taxes levied by a state varies. Several different facilities or entities can be taxed: hospital providers, nursing facility providers, intermediate care facilities for those with intellectual disabilities (ICF/IDs) providers, managed care organization (MCO) providers, and ambulance providers.</p>
+<p><strong>Eligible population size:</strong> States with broader Medicaid eligibility have more enrollees, meaning the same percentage cut translates into more dollars lost.</p>
+<p><strong>Federal Medical Assistance Percentage (FMAP):</strong> Lower-income states receive a higher federal match rate, causing federal dollars to leverage state dollars more heavily. Losing that leverage increases the losses per state dollar spent.</p>
+<p><strong>Program size pre-federal reduction:</strong> Non-expansion states generally have smaller Medicaid programs overall, leaving a smaller amount of total funding at risk even before tax changes.</p>
+<p><strong>State fiscal choices post-federal reduction:</strong> Whether and how a state chooses to backfill shapes whether and how the federal reduction translates into a loss or is absorbed elsewhere.</p>
+
+
 </div><!-- /mc-container -->
 
 <div id="mc-static">
@@ -452,16 +518,19 @@ function renderFedPctMap(selectedState) {
 
 let STATE_PARAMS = null;
 let CBO_SCORES   = null;
+let PROVIDER_TAX = null;
 
 Promise.all([
     fetch('/medicalculator_state_params.json').then(r => r.json()),
     fetch('/medicalculator_cbo_scores.json').then(r => r.json()),
-    fetch('/medicalculator_population.json').then(r => r.json())
+    fetch('/medicalculator_population.json').then(r => r.json()),
+    fetch('/medicalculator_providertax.json').then(r => r.json())
 ])
-.then(([stateParams, cboScores, populationData]) => {
+.then(([stateParams, cboScores, populationData, providerTaxData]) => {
     STATE_PARAMS = stateParams;
     CBO_SCORES = cboScores;
     window.populationData = populationData;
+    PROVIDER_TAX = providerTaxData;
     populateDropdown();
     precomputeAll();
     precomputeBaselines();
@@ -469,6 +538,7 @@ Promise.all([
     renderTotalPctMap(null);
     renderMCOMap(null);
     renderCombinedMap(null);
+    renderProviderTaxTable('count');
 })
 .catch(err => {
     document.getElementById('mc-status').textContent = 'Error loading data: ' + err.message; 
@@ -744,6 +814,45 @@ function computeFigureXX2(stateName) {
     }
     return { years, preArr, postArr };
 }
+
+const TAX_CATEGORIES = ['hospital', 'nursing_facility', 'icf_id', 'mco', 'ambulance'];
+const TAX_LABELS = { hospital: 'Hospital', nursing_facility: 'Nursing Facility', icf_id: 'ICF/ID', mco: 'MCO', ambulance: 'Ambulance' };
+
+function countTaxed(row) {
+    return TAX_CATEGORIES.filter(c => row[c] === true).length;
+}
+
+function renderProviderTaxTable(sortMode) {
+    const entries = Object.entries(PROVIDER_TAX).filter(([k]) => k !== '_meta');
+    entries.sort((a, b) =>
+        sortMode === 'alpha'
+            ? a[0].localeCompare(b[0])
+            : countTaxed(b[1]) - countTaxed(a[1]) || a[0].localeCompare(b[0])
+    );
+
+    const tbody = document.getElementById('mc-tb-provtax');
+    tbody.innerHTML = '';
+    entries.forEach(([state, row]) => {
+        const tr = document.createElement('tr');
+        let html = `<td class="state-name">${state}<span class="cnt">${countTaxed(row)}/5</span></td>`;
+        TAX_CATEGORIES.forEach(cat => {
+            const v = row[cat];
+            const cls = v === true ? 'tax-yes' : v === false ? 'tax-no' : 'tax-nr';
+            const label = v === true ? 'Yes' : v === false ? 'No' : 'NR';
+            html += `<td><div class="tax-cell ${cls}" title="${TAX_LABELS[cat]}: ${label}"></div></td>`;
+        });
+        tr.innerHTML = html;
+        tbody.appendChild(tr);
+    });
+}
+
+document.querySelectorAll('#mc-provtax-sort button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#mc-provtax-sort button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProviderTaxTable(btn.dataset.sort);
+    });
+});
 
 function onStateChange(stateName) {
     if (!stateName) return;
