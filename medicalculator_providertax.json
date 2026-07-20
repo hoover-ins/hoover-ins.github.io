@@ -1,0 +1,525 @@
+{
+  "71101": {
+    "description": "Moratorium on Implementation of Rule Relating to Eligibility and Enrollment in Medicare Savings Programs",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -1668.0,
+      "2027": -5243.0,
+      "2028": -7318.0,
+      "2029": -7649.0,
+      "2030": -8044.0,
+      "2031": -8411.0,
+      "2032": -8796.0,
+      "2033": -9251.0,
+      "2034": -9628.0
+    },
+    "rules": {
+      "share_type": "share_msp",
+      "ratio_type": "ratio_traditional",
+      "effect": "savings"
+    }
+  },
+  "71102": {
+    "description": "Moratorium on Implementation of Rule Relating to Eligibility and Enrollment for Medicaid, CHIP, and the Basic Health Program",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -4020.0,
+      "2027": -5617.0,
+      "2028": -5794.0,
+      "2029": -6080.0,
+      "2030": -6337.0,
+      "2031": -6592.0,
+      "2032": -6859.0,
+      "2033": -7140.0,
+      "2034": -7416.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71103": {
+    "description": "Reducing Duplicate Enrollment Under the Medicaid and CHIP Programs",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 1.0,
+      "2027": 2.0,
+      "2028": 3.0,
+      "2029": 4.0,
+      "2030": -2774.0,
+      "2031": -3842.0,
+      "2032": -3059.0,
+      "2033": -3803.0,
+      "2034": -3951.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71104": {
+    "description": "Ensuring Deceased Providers Do Not Remain Enrolled",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 0.0,
+      "2027": 0.0,
+      "2028": 0.0,
+      "2029": 0.0,
+      "2030": 0.0,
+      "2031": 0.0,
+      "2032": 0.0,
+      "2033": 0.0,
+      "2034": 0.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71105": {
+    "description": "Ensuring Deceased Providers Do Not Remain Enrolled",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 0.0,
+      "2027": 0.0,
+      "2028": 0.0,
+      "2029": 0.0,
+      "2030": 0.0,
+      "2031": 0.0,
+      "2032": 0.0,
+      "2033": 0.0,
+      "2034": 0.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71106": {
+    "description": "Payment Reduction Related to Certain Erroneous Excess Payments Under Medicaid",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 0.0,
+      "2027": 0.0,
+      "2028": 0.0,
+      "2029": 0.0,
+      "2030": -108.0,
+      "2031": -3208.0,
+      "2032": -1303.0,
+      "2033": -84.0,
+      "2034": -2847.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "loss"
+    }
+  },
+  "71107": {
+    "description": "Eligibility Redeterminations",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 4.0,
+      "2027": -5083.0,
+      "2028": -7071.0,
+      "2029": -7461.0,
+      "2030": -7809.0,
+      "2031": -8180.0,
+      "2032": -8560.0,
+      "2033": -8978.0,
+      "2034": -9392.0
+    },
+    "rules": {
+      "share_type": "share_expansion",
+      "ratio_type": "ratio_expansion",
+      "effect": "savings"
+    }
+  },
+  "71108": {
+    "description": "Revising Home Equity Limit for Determining Eligibility for Long-Term Care Services Under",
+    "annual_millions": {
+      "2025": -1.0,
+      "2026": -5.0,
+      "2027": -5.0,
+      "2028": -11.0,
+      "2029": -20.0,
+      "2030": -24.0,
+      "2031": -28.0,
+      "2032": -32.0,
+      "2033": -38.0,
+      "2034": -31.0
+    },
+    "rules": {
+      "share_type": "share_ltss",
+      "ratio_type": "ratio_traditional",
+      "effect": "savings"
+    }
+  },
+  "71109": {
+    "description": "Alien Medicaid Eligibility",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -372.0,
+      "2027": -588.0,
+      "2028": -665.0,
+      "2029": -703.0,
+      "2030": -726.0,
+      "2031": -758.0,
+      "2032": -778.0,
+      "2033": -798.0,
+      "2034": -823.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71110": {
+    "description": "Expansion FMAP for Emergency Medicaid",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 0.0,
+      "2027": -2459.0,
+      "2028": -3112.0,
+      "2029": -3285.0,
+      "2030": -3466.0,
+      "2031": -3658.0,
+      "2032": -3856.0,
+      "2033": -4070.0,
+      "2034": -4294.0
+    },
+    "rules": {
+      "share_type": "share_expansion",
+      "ratio_type": "ratio_expansion",
+      "effect": "loss"
+    }
+  },
+  "71111": {
+    "description": "Moratorium on Implementation of Rule Relating to Staffing Standards for Long-Term Care Facilities Under the Medicare and Medicaid Programs",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -287.0,
+      "2027": -987.0,
+      "2028": -2061.0,
+      "2029": -3020.0,
+      "2030": -3287.0,
+      "2031": -3323.0,
+      "2032": -3354.0,
+      "2033": -3386.0,
+      "2034": -3418.0
+    },
+    "rules": {
+      "share_type": "share_ltss",
+      "ratio_type": "ratio_traditional",
+      "effect": "savings"
+    }
+  },
+  "71112": {
+    "description": "Reducing State Medicaid Costs",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 0.0,
+      "2027": -151.0,
+      "2028": -421.0,
+      "2029": -555.0,
+      "2030": -577.0,
+      "2031": -601.0,
+      "2032": -587.0,
+      "2033": -644.0,
+      "2034": -670.0
+    },
+    "rules": {
+      "share_type": "share_expansion",
+      "ratio_type": "ratio_expansion",
+      "effect": "savings"
+    }
+  },
+  "71113": {
+    "description": "Federal Payments to Prohibited Entities",
+    "annual_millions": {
+      "2025": -44.0,
+      "2026": -31.0,
+      "2027": 91.0,
+      "2028": 8.0,
+      "2029": 7.0,
+      "2030": 6.0,
+      "2031": 5.0,
+      "2032": 4.0,
+      "2033": 4.0,
+      "2034": 3.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71114": {
+    "description": "Sunsetting Increased FMAP Incentive",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -953.0,
+      "2027": -1360.0,
+      "2028": -1406.0,
+      "2029": -1480.0,
+      "2030": -1545.0,
+      "2031": -1613.0,
+      "2032": -1683.0,
+      "2033": -1759.0,
+      "2034": -1830.0
+    },
+    "rules": {
+      "share_type": "share_nonexpansion",
+      "ratio_type": "ratio_all",
+      "effect": "loss"
+    }
+  },
+  "71115a": {
+    "description": "Provider Taxes (All States)",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -1437.0,
+      "2027": -2579.0,
+      "2028": -4081.0,
+      "2029": -6002.0,
+      "2030": -8684.0,
+      "2031": -12085.0,
+      "2032": -14856.0,
+      "2033": -18024.0,
+      "2034": -21560.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "indeterminate"
+    }
+  },
+  "71115b": {
+    "description": "Provider Taxes (Expansion States)",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -1349.0,
+      "2027": -2158.0,
+      "2028": -3519.0,
+      "2029": -6292.0,
+      "2030": -9901.0,
+      "2031": -14639.0,
+      "2032": -19243.0,
+      "2033": -21293.0,
+      "2034": -23416.0
+    },
+    "rules": {
+      "share_type": "share_prov_tax_expansion",
+      "ratio_type": "ratio_all",
+      "effect": "indeterminate"
+    }
+  },
+  "71116": {
+    "description": "State Directed Payments",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -5457.0,
+      "2027": -7475.0,
+      "2028": -9271.0,
+      "2029": -13335.0,
+      "2030": -16552.0,
+      "2031": -19599.0,
+      "2032": -22846.0,
+      "2033": -25861.0,
+      "2034": -29028.0
+    },
+    "rules": {
+      "share_type": "share_sdp",
+      "ratio_type": "ratio_all",
+      "effect": "indeterminate"
+    }
+  },
+  "71117": {
+    "description": "Requirements Regarding Waiver of Uniform Tax Requirement for Medicaid Provider Tax",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": -3158.0,
+      "2027": -3426.0,
+      "2028": -3518.0,
+      "2029": -3684.0,
+      "2030": -3828.0,
+      "2031": -3969.0,
+      "2032": -4172.0,
+      "2033": -4345.0,
+      "2034": -4506.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "indeterminate"
+    }
+  },
+  "71118": {
+    "description": "Requiring Budget Neutrality for Medicaid Demonstration Projects Under Section 1115",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 2.0,
+      "2027": -48.0,
+      "2028": -103.0,
+      "2029": -222.0,
+      "2030": -349.0,
+      "2031": -483.0,
+      "2032": -630.0,
+      "2033": -657.0,
+      "2034": -682.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "indeterminate"
+    }
+  },
+  "71119": {
+    "description": "Requirement for States to Establish Medicaid Community Engagement Requirements for Certain Individuals",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 180.0,
+      "2027": -12960.0,
+      "2028": -18960.0,
+      "2029": -39810.0,
+      "2030": -46280.0,
+      "2031": -48440.0,
+      "2032": -50690.0,
+      "2033": -53100.0,
+      "2034": -55550.0
+    },
+    "rules": {
+      "share_type": "share_expansion",
+      "ratio_type": "ratio_expansion",
+      "effect": "savings"
+    }
+  },
+  "71120": {
+    "description": "Modifying Cost Sharing Requirements for Certain Expansion Individuals Under the Medicaid Program",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 1.0,
+      "2027": 6.0,
+      "2028": 4.0,
+      "2029": -1100.0,
+      "2030": -1152.0,
+      "2031": -1209.0,
+      "2032": -1268.0,
+      "2033": -1331.0,
+      "2034": -1395.0
+    },
+    "rules": {
+      "share_type": "share_expansion",
+      "ratio_type": "ratio_expansion",
+      "effect": "savings"
+    }
+  },
+  "71121": {
+    "description": "Making Certain Adjustments to Coverage of Home or Community-Based Services Under Medicaid",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 2.0,
+      "2027": 27.0,
+      "2028": 194.0,
+      "2029": 533.0,
+      "2030": 810.0,
+      "2031": 1144.0,
+      "2032": 1216.0,
+      "2033": 1289.0,
+      "2034": 1365.0
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "71401": {
+    "description": "Rural Health Transformation Program",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 10000.0,
+      "2027": 10000.0,
+      "2028": 10000.0,
+      "2029": 10000.0,
+      "2030": 10000.0,
+      "2031": 0.0,
+      "2032": 0.0,
+      "2033": 0.0,
+      "2034": 0.0
+    },
+    "rules": {
+      "share_type": "rht_special",
+      "ratio_type": "ratio_all",
+      "effect": "loss"
+    },
+    "notes": "Allocation of RHT funding across states is uncertain. This figure represents California authors' estimate ($1B for CA). KFF excludes this provision from state-level allocations."
+  },
+  "interactions": {
+    "description": "Medicaid Share of Interactions",
+    "annual_millions": {
+      "2025": 0.0,
+      "2026": 1415.7477355502376,
+      "2027": 4115.392428019724,
+      "2028": 6265.384187071279,
+      "2029": 8476.356931239665,
+      "2030": 9967.094797136277,
+      "2031": 11178.473825808482,
+      "2032": 11723.182355027753,
+      "2033": 12227.511583291283,
+      "2034": 13350.715403754015
+    },
+    "rules": {
+      "share_type": "share_all",
+      "ratio_type": "ratio_all",
+      "effect": "savings"
+    }
+  },
+  "_baseline": {
+    "description": "National Medicaid baseline projections (pre-OBBBA)",
+    "years": [
+      "2024",
+      "2025",
+      "2026",
+      "2027",
+      "2028",
+      "2029",
+      "2030",
+      "2031",
+      "2032",
+      "2033",
+      "2034"
+    ],
+    "national_traditional_billions": [
+      494.88181370826015,
+      528.1784955752212,
+      558.0916539792387,
+      592.2942052980133,
+      613.0296666666666,
+      640.8652154531947,
+      665.746661971831,
+      689.0996706827309,
+      719.3576213468868,
+      746.2216566626649,
+      776.6138757126569
+    ],
+    "national_expansion_billions": [
+      123.72045342706504,
+      126.40169124877089,
+      133.1688135507322,
+      140.92198274132045,
+      146.2018013468013,
+      154.10757320605754,
+      160.50046905676476,
+      167.94956850972906,
+      175.40606522659877,
+      182.00528211284504,
+      188.93982858228796
+    ]
+  }
+}
