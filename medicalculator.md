@@ -70,6 +70,19 @@ main_nav: true
     color: #333;
 }
 #mc-provtax-sort button.active { background: #333; color: #fff; border-color: #333; }
+
+
+/* Main Table */
+#mc-tbl-summary { border-collapse: collapse; width: 100%; }
+#mc-tbl-summary th, #mc-tbl-summary td {
+    text-align: center;
+    padding: 6px 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+#mc-tbl-summary th { font-weight: 600; border-bottom: 2px solid #333; }
+#mc-tbl-summary td.state-name { text-align: left; white-space: nowrap; }
+#mc-tbl-summary tr.selected { background: #fdf2e3; font-weight: 600; }
 </style>
 
 <h2 style="text-align:center"><i>How the "Big Beautiful Bill" Actually Changes Medicaid Funding</i></h2>
@@ -88,20 +101,21 @@ main_nav: true
 <div id="mc-map5" style="height:450px;width:100%"></div>
 <p style="font-size:0.85rem;color:#555">Notes: Projected federal Medicaid spending reductions by state. Green shading indicates Medicaid expansion states; blue shading indicates non-expansion states. Darker shading indicates larger reductions. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
 
-<h3 style="text-align:center">MCO Spending as Share of Total Medicaid Spending (FY 2024)</h3>
-<p>This map shows the share of each state's Medicaid financing derived from managed care organization (MCO) taxes and provider taxes. Darker shading indicates greater reliance on these tax financing mechanisms, which the OBBBA limits. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs.</p>
-<div id="mc-map2" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: Share of state Medicaid financing derived from managed care organization (MCO) taxes and provider taxes, by state. Darker shading indicates greater reliance on provider tax financing mechanisms. N/A states (Alabama, Alaska, Connecticut, Idaho, Maine, Montana, South Dakota, Vermont, Wyoming) have no contracts with comprehensive MCOs. KFF State Health Facts, FY 2024.</p>
+<table id="mc-tbl-summary">
+    <thead>
+        <tr>
+            <th style="text-align:left">State</th>
+            <th>Expansion ($B)</th>
+            <th>Non-Exp ($B)</th>
+            <th>% MCO</th>
+            <th>% of Federal</th>
+            <th>% of Total</th>
+        </tr>
+    </thead>
+    <tbody id="mc-tb-summary"></tbody>
+</table>
+<p style="font-size:0.85rem;color:#555">Notes: Expansion/Non-Exp reflect 10-year (2025-2034) projected federal Medicaid reduction by expansion status. % MCO is the share of state Medicaid financing from MCO/provider tax mechanisms (FY 2024, KFF). % of Federal and % of Total reflect the 10-year federal reduction as a share of baseline federal and total (federal + state) Medicaid spending, respectively. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
 
-<h3 style="text-align:center">Federal Reduction as % of Baseline Federal Medicaid Spending (10-yr, 2025–2034)</h3>
-<p>This map shows each state's projected 10-year federal Medicaid reduction as a percentage of its total baseline federal Medicaid spending over the same period.</p>
-<div id="mc-map6" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: 10-year federal Medicaid reduction as a share of baseline federal Medicaid spending, by state. Darker shading indicates a larger relative reduction. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
-
-<h3 style="text-align:center">Federal Reduction as % of Total Baseline Medicaid Spending (10-yr, 2025–2034)</h3>
-<p>This map shows each state's projected 10-year federal Medicaid reduction as a percentage of its total baseline Medicaid spending (federal + state) over the same period.</p>
-<div id="mc-map7" style="height:450px;width:100%"></div>
-<p style="font-size:0.85rem;color:#555">Notes: 10-year federal Medicaid reduction as a share of total baseline Medicaid spending (federal + state), by state. Darker shading indicates a larger relative reduction. Authors' calculations based on CBO, KFF, and MACPAC data.</p>
 
 <h3 style="text-align:center">Provider Tax Coverage by Type (SFY 2025)</h3>
 <p>States vary widely in how many provider types they tax — from none (Alaska) to all five tracked categories (Arkansas, California, Kentucky, Louisiana, Minnesota, Oklahoma, West Virginia). Broader coverage means more revenue exposed to the OBBBA's new provider tax restrictions.</p>
@@ -322,64 +336,8 @@ main_nav: true
     }
 
 
-    let mcMCOMap = null;
 
-    function renderMCOMap(selectedState) {
-        const locations = [], values = [], text = [];
 
-        for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
-            const pct = MCO_PCT[state];
-            locations.push(abbrev);
-            values.push(pct !== null ? pct : -1);
-            text.push(pct !== null
-                ? `<b>${state}</b><br>MCO spending: ${pct}% of total Medicaid`
-                : `<b>${state}</b><br>No MCO contracts (N/A)`
-            );
-        }
-        
-        const trace = {
-            type: 'choropleth',
-            locationmode: 'USA-states',
-            locations,
-            z: values,
-            text,
-            hovertemplate: '%{text}<extra></extra>',
-            colorscale: [[0, '#fadbd8'], [1, '#7b241c']],
-            zmin: 0, zmax: 100,
-            colorbar: { title: '% MCO', thickness: 15 },
-            marker: {
-                line: {
-                    color: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-                    ),
-                    width: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-                    )
-                }
-            }
-        };
-
-        const layout = {
-            geo: { scope: 'usa', showlakes: false },
-            margin: { t: 10, b: 0, l: 0, r: 0 },
-            paper_bgcolor: 'rgba(0,0,0,0)',
-            plot_bgcolor: 'rgba(0,0,0,0)'
-        };
-
-        if (mcMCOMap) {
-            Plotly.react('mc-map2', [trace], layout);
-        } else {
-            Plotly.newPlot('mc-map2', [trace], layout, { displayModeBar: false});
-            document.getElementById('mc-map2').on('plotly_click', data => {
-                const abbrev = data.points[0].location;
-                const state = ABBREV_STATE[abbrev];
-                if (state) {
-                    document.getElementById('mc-state-select').value = state;
-                    onStateChange(state);
-                    }});
-            mcMCOMap = true;
-        }
-    }
 
 let mcMap5 = null;
 
@@ -460,62 +418,7 @@ function renderCombinedMap(selectedState) {
     }
 }
 
-let mcMap6 = null;
 
-function renderFedPctMap(selectedState) {
-    const locations = [], values = [], text = [];
-
-    for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
-        if (!allStateTotals[state] || !allFedBaseline[state]) continue;
-        const fed = allStateTotals[state].fed / 1000; // billions
-        const baseline = allFedBaseline[state];
-        const pct = baseline !== 0 ? +((Math.abs(fed) / baseline) * 100).toFixed(1) : 0;
-        locations.push(abbrev);
-        values.push(pct);
-        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
-    }
-
-    const trace = {
-        type: 'choropleth',
-        locationmode: 'USA-states',
-        locations, z: values, text,
-        hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#fdebd0'], [1, '#d35400']],
-        colorbar: { title: '% of Federal', thickness: 15 },
-        marker: {
-            line: {
-                color: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-                ),
-                width: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-                )
-            }
-        }
-    };
-
-    const layout = {
-        geo: { scope: 'usa', showlakes: false },
-        margin: { t: 10, b: 0, l: 0, r: 0 },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)'
-    };
-
-    if (mcMap6) {
-        Plotly.react('mc-map6', [trace], layout);
-    } else {
-        Plotly.newPlot('mc-map6', [trace], layout, { displayModeBar: false });
-        document.getElementById('mc-map6').on('plotly_click', data => {
-            const abbrev = data.points[0].location;
-            const state = ABBREV_STATE[abbrev];
-            if (state) {
-                document.getElementById('mc-state-select').value = state;
-                onStateChange(state);
-            }
-        });
-        mcMap6 = true;
-    }
-}
 
 let STATE_PARAMS = null;
 let CBO_SCORES   = null;
@@ -535,10 +438,8 @@ Promise.all([
     populateDropdown();
     precomputeAll();
     precomputeBaselines();
-    renderFedPctMap(null);
-    renderTotalPctMap(null);
-    renderMCOMap(null);
     renderCombinedMap(null);
+    renderSummaryTable(null);
     renderProviderTaxTable('count');
 })
 .catch(err => {
@@ -726,62 +627,35 @@ function renderChart2(stateName) {
         document.getElementById('mc-tb-grouped').innerHTML = html;
     }
 
-let mcMap7 = null;
+function renderSummaryTable(selectedState) {
+    const rows = Object.keys(STATE_ABBREV).sort().map(state => {
+        const fed = allStateTotals[state] ? allStateTotals[state].fed / 1000 : null;
+        const isExp = STATE_PARAMS[state] && STATE_PARAMS[state].is_expansion;
+        const mco = MCO_PCT[state];
+        const fedBase = allFedBaseline[state];
+        const totBase = allTotalBaseline[state];
+        const pctFed = (fed !== null && fedBase) ? +((Math.abs(fed) / fedBase) * 100).toFixed(1) : null;
+        const pctTot = (fed !== null && totBase) ? +((Math.abs(fed) / totBase) * 100).toFixed(1) : null;
+        return { state, fed, isExp, mco, pctFed, pctTot };
+    });
 
-function renderTotalPctMap(selectedState) {
-    const locations = [], values = [], text = [];
-
-    for (const [state, abbrev] of Object.entries(STATE_ABBREV)) {
-        if (!allStateTotals[state] || !allTotalBaseline[state]) continue;
-        const fed = allStateTotals[state].fed / 1000; // billions
-        const baseline = allTotalBaseline[state];
-        const pct = baseline !== 0 ? +((Math.abs(fed) / baseline) * 100).toFixed(1) : 0;
-        locations.push(abbrev);
-        values.push(pct);
-        text.push(`<b>${state}</b><br>Federal reduction: ${pct}% of baseline federal spending`);
-    }
-
-    const trace = {
-        type: 'choropleth',
-        locationmode: 'USA-states',
-        locations, z: values, text,
-        hovertemplate: '%{text}<extra></extra>',
-        colorscale: [[0, '#d6eaf8'], [1, '#1a5276']],
-        colorbar: { title: '% of Total', thickness: 15 },
-        marker: {
-            line: {
-                color: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? '#e74c3c' : '#fff'
-                ),
-                width: locations.map(a =>
-                    selectedState && STATE_ABBREV[selectedState] === a ? 3 : 0.5
-                )
-            }
-        }
-    };
-
-    const layout = {
-        geo: { scope: 'usa', showlakes: false },
-        margin: { t: 10, b: 0, l: 0, r: 0 },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)'
-    };
-
-    if (mcMap7) {
-        Plotly.react('mc-map7', [trace], layout);
-    } else {
-        Plotly.newPlot('mc-map7', [trace], layout, { displayModeBar: false });
-        document.getElementById('mc-map7').on('plotly_click', data => {
-            const abbrev = data.points[0].location;
-            const state = ABBREV_STATE[abbrev];
-            if (state) {
-                document.getElementById('mc-state-select').value = state;
-                onStateChange(state);
-            }
-        });
-        mcMap7 = true;
-    }
+    const tbody = document.getElementById('mc-tb-summary');
+    tbody.innerHTML = '';
+    rows.forEach(r => {
+        const tr = document.createElement('tr');
+        if (selectedState && r.state === selectedState) tr.classList.add('selected');
+        tr.innerHTML = `
+        <td class="state-name">${r.state}</td>
+        <td>${r.fed !== null && r.isExp ? r.fed.toFixed(2) : '-'}</td>
+        <td>${r.fed !== null && !r.isExp ? r.fed.toFixed(2) : '-'}</td>
+        <td>${r.mco !== null && r.mco !== undefined ? r.mco.toFixed(1) + '%' : 'N/A'}</td>
+        <td>${r.pctFed !== null ? r.pctFed + '%' : '-'}</td>
+        <td>${r.pctTot !== null ? r.pctTot + '%' : '-'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
+
 
 function computeFigureXX2(stateName) {
     const p = STATE_PARAMS[stateName];
@@ -857,10 +731,8 @@ document.querySelectorAll('#mc-provtax-sort button').forEach(btn => {
 
 function onStateChange(stateName) {
     if (!stateName) return;
-    renderMCOMap(stateName);
     renderCombinedMap(stateName);
-    renderFedPctMap(stateName);
-    renderTotalPctMap(stateName);
+    renderSummaryTable(stateName);
     const { rows, sections, params, totals } = compute(stateName);
 
     // State heading
