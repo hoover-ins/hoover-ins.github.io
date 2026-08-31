@@ -514,7 +514,9 @@ function compute(stateName) {
             slb: totSlb,
             sub: totSub,
             plb: totFed - totSub,
-            pub: totFed - totSlb
+            pub: totFed - totSlb,
+            stateBudgetLow: totSlb, //Scenario i): Does not backfill
+            stateBudgetHigh: totSub //Scenario ii): Does Backfill
         }
     };
 }
@@ -741,8 +743,8 @@ function onStateChange(stateName) {
 
     // Headline metrics
     document.getElementById('mc-m-fed').textContent  = fmt(totals.fed);
-    document.getElementById('mc-m-slb').textContent  = fmt(totals.slb);
-    document.getElementById('mc-m-sub').textContent  = fmt(totals.sub);
+    document.getElementById('mc-m-sub').textContent  = fmt(totals.stateBudgetLow);
+    document.getElementById('mc-m-slb').textContent  = fmt(totals.stateBudgetHigh);
     document.getElementById('mc-m-prov').textContent = fmt(totals.plb) + ' to ' + fmt(totals.pub);
 
     // show results
